@@ -62,7 +62,19 @@ const Layout = () => {
              <Link to="/patterns/singleton" className="flex items-center gap-3 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg text-sm ml-2 border-l border-gray-800 hover:border-blue-500 transition-colors">
                 Singleton
              </Link>
-          </div>
+             <Link to="/patterns/factory" className="flex items-center gap-3 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg text-sm ml-2 border-l border-gray-800 hover:border-blue-500 transition-colors">
+                 Factory Method
+              </Link>
+              <Link to="/patterns/abstract-factory" className="flex items-center gap-3 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg text-sm ml-2 border-l border-gray-800 hover:border-blue-500 transition-colors">
+                 Abstract Factory
+              </Link>
+              <Link to="/patterns/observer" className="flex items-center gap-3 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg text-sm ml-2 border-l border-gray-800 hover:border-yellow-500 transition-colors">
+                 Observer
+              </Link>
+              <Link to="/patterns/strategy" className="flex items-center gap-3 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg text-sm ml-2 border-l border-gray-800 hover:border-yellow-500 transition-colors">
+                 Strategy
+              </Link>
+           </div>
           <SidebarItem to="/creational" icon={Box} label="Creational" active={isActive('/creational')} />
           <SidebarItem to="/structural" icon={Layers} label="Structural" active={isActive('/structural')} />
           <SidebarItem to="/behavioral" icon={Zap} label="Behavioral" active={isActive('/behavioral')} />

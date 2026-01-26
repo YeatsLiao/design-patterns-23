@@ -1,0 +1,201 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CreditCard, Wallet, Landmark, CheckCircle, ShoppingBag, ArrowRight } from 'lucide-react';
+import clsx from 'clsx';
+
+// Strategy Interface Idea: 
+// pay(amount)
+
+type PaymentMethod = 'credit-card' | 'paypal' | 'bank-transfer';
+
+const StrategyDemo = () => {
+  const [selectedStrategy, setSelectedStrategy] = useState<PaymentMethod>('credit-card');
+  const [amount, setAmount] = useState(100);
+  const [processing, setProcessing] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success'>('idle');
+  const [logs, setLogs] = useState<string[]>([]);
+
+  // --- Strategy Implementations ---
+  const processPayment = () => {
+    setProcessing(true);
+    setStatus('idle');
+    addLog(`Context: Delegating payment to ${selectedStrategy} strategy...`);
+
+    // Simulate different strategies having different processing times/logic
+    setTimeout(() => {
+      let message = "";
+      switch (selectedStrategy) {
+        case 'credit-card':
+          message = `Credit Card Strategy: Charged $${amount} (Fee: 2.5%)`;
+          break;
+        case 'paypal':
+          message = `PayPal Strategy: Redirecting... Paid $${amount} successfully.`;
+          break;
+        case 'bank-transfer':
+          message = `Bank Transfer Strategy: Created invoice for $${amount}. Pending approval.`;
+          break;
+      }
+      addLog(message);
+      setProcessing(false);
+      setStatus('success');
+    }, 1500);
+  };
+
+  const addLog = (msg: string) => {
+    setLogs(prev => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...prev]);
+  };
+
+  const renderStrategyForm = () => {
+    switch (selectedStrategy) {
+      case 'credit-card':
+        return (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
+            <div className="bg-gray-700 p-3 rounded border border-gray-600">
+              <div className="flex justify-between mb-2">
+                <div className="w-12 h-8 bg-gray-500 rounded"></div>
+                <div className="text-xs text-gray-400">VISA</div>
+              </div>
+              <div className="text-sm font-mono tracking-widest text-gray-300 mb-2">•••• •••• •••• 4242</div>
+              <div className="flex justify-between text-xs text-gray-400">
+                <span>John Doe</span>
+                <span>12/25</span>
+              </div>
+            </div>
+            <p className="text-xs text-gray-400">Requires 16-digit number + CVV.</p>
+          </motion.div>
+        );
+      case 'paypal':
+        return (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3 text-center py-4">
+            <div className="bg-blue-900/30 p-4 rounded-full inline-block mb-2">
+              <Wallet size={32} className="text-blue-400" />
+            </div>
+            <p className="text-sm text-blue-300">You will be redirected to PayPal</p>
+          </motion.div>
+        );
+      case 'bank-transfer':
+        return (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
+             <div className="space-y-2 text-sm text-gray-300">
+                <div className="flex justify-between border-b border-gray-700 pb-1">
+                   <span>Bank:</span> <span className="font-mono">Chase</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-700 pb-1">
+                   <span>Account:</span> <span className="font-mono">*****8899</span>
+                </div>
+                <div className="flex justify-between border-b border-gray-700 pb-1">
+                   <span>Routing:</span> <span className="font-mono">021***</span>
+                </div>
+             </div>
+             <p className="text-xs text-yellow-500/80">Processing takes 3-5 business days.</p>
+          </motion.div>
+        );
+    }
+  };
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* LEFT: Client / Context */}
+      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+          <ShoppingBag size={20} className="text-green-400" />
+          Checkout (Context)
+        </h3>
+
+        <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
+          <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-800">
+            <span className="text-gray-400">Total Amount</span>
+            <span className="text-2xl font-bold text-white">${amount}.00</span>
+          </div>
+
+          <div className="space-y-4">
+            <label className="text-sm text-gray-400">Select Payment Strategy:</label>
+            <div className="grid grid-cols-3 gap-2">
+              <button 
+                onClick={() => setSelectedStrategy('credit-card')}
+                className={clsx(
+                  "p-3 rounded-lg border flex flex-col items-center gap-2 transition-all",
+                  selectedStrategy === 'credit-card' ? "bg-green-900/30 border-green-500 text-green-400" : "bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700"
+                )}
+              >
+                <CreditCard size={20} />
+                <span className="text-xs">Card</span>
+              </button>
+              <button 
+                onClick={() => setSelectedStrategy('paypal')}
+                className={clsx(
+                  "p-3 rounded-lg border flex flex-col items-center gap-2 transition-all",
+                  selectedStrategy === 'paypal' ? "bg-blue-900/30 border-blue-500 text-blue-400" : "bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700"
+                )}
+              >
+                <Wallet size={20} />
+                <span className="text-xs">PayPal</span>
+              </button>
+              <button 
+                onClick={() => setSelectedStrategy('bank-transfer')}
+                className={clsx(
+                  "p-3 rounded-lg border flex flex-col items-center gap-2 transition-all",
+                  selectedStrategy === 'bank-transfer' ? "bg-yellow-900/30 border-yellow-500 text-yellow-400" : "bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700"
+                )}
+              >
+                <Landmark size={20} />
+                <span className="text-xs">Bank</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <button 
+              onClick={processPayment}
+              disabled={processing}
+              className="w-full py-3 bg-green-600 hover:bg-green-500 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
+            >
+              {processing ? "Processing Strategy..." : `Pay $${amount} Now`}
+              {!processing && <ArrowRight size={18} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT: Strategy Execution & Logs */}
+      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 flex flex-col">
+        <h3 className="text-xl font-semibold text-white mb-6">Strategy Execution</h3>
+
+        {/* Dynamic Form Area */}
+        <div className="bg-gray-950 rounded-lg p-6 mb-6 min-h-[160px] flex items-center justify-center border border-gray-800 relative overflow-hidden">
+           <div className="absolute top-2 left-3 text-xs text-gray-600 font-mono">Current Strategy Context</div>
+           {renderStrategyForm()}
+           
+           <AnimatePresence>
+             {status === 'success' && (
+               <motion.div 
+                 initial={{ opacity: 0, scale: 0.5 }}
+                 animate={{ opacity: 1, scale: 1 }}
+                 exit={{ opacity: 0 }}
+                 className="absolute inset-0 bg-green-900/90 flex flex-col items-center justify-center text-white z-10"
+                 onClick={() => setStatus('idle')} // Click to dismiss
+               >
+                 <CheckCircle size={48} className="mb-2 text-green-400" />
+                 <span className="font-bold">Payment Successful!</span>
+                 <span className="text-xs text-green-300 mt-2">Click to reset</span>
+               </motion.div>
+             )}
+           </AnimatePresence>
+        </div>
+
+        {/* Logs */}
+        <div className="flex-1 bg-black rounded-lg p-4 font-mono text-xs overflow-y-auto max-h-[300px] border border-gray-800">
+          <div className="text-gray-500 mb-2 border-b border-gray-800 pb-1">System Logs:</div>
+          {logs.length === 0 && <span className="text-gray-700 italic">Waiting for transaction...</span>}
+          {logs.map((log, i) => (
+            <div key={i} className="mb-1 text-green-400">
+              <span className="opacity-50 mr-2">&gt;</span>{log}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default StrategyDemo;
