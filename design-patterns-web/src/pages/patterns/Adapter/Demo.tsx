@@ -16,22 +16,22 @@ const AdapterDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('adapter.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('adapter.demo.title')}</h3>
         
         <div className="space-y-6">
           <div>
-            <label className="text-sm text-gray-400 block mb-2">{t('adapter.demo.devicePlug')}</label>
+            <label className="text-sm text-gray-600 dark:text-gray-400 block mb-2">{t('adapter.demo.devicePlug')}</label>
             <div className="flex gap-2">
               <button 
                 onClick={() => setPlugType('US')}
-                className={clsx("px-4 py-2 rounded border", plugType === 'US' ? "bg-blue-600 border-blue-500 text-white" : "bg-gray-700 border-gray-600 text-gray-300")}
+                className={clsx("px-4 py-2 rounded border", plugType === 'US' ? "bg-blue-600 border-blue-500 text-gray-900 dark:text-white" : "bg-gray-700 border-gray-600 text-gray-700 dark:text-gray-300")}
               >
                 {t('adapter.demo.usPlug')}
               </button>
               <button 
                 onClick={() => setPlugType('EU')}
-                className={clsx("px-4 py-2 rounded border", plugType === 'EU' ? "bg-blue-600 border-blue-500 text-white" : "bg-gray-700 border-gray-600 text-gray-300")}
+                className={clsx("px-4 py-2 rounded border", plugType === 'EU' ? "bg-blue-600 border-blue-500 text-gray-900 dark:text-white" : "bg-gray-700 border-gray-600 text-gray-700 dark:text-gray-300")}
               >
                 {t('adapter.demo.euPlug')}
               </button>
@@ -39,12 +39,12 @@ const AdapterDemo = () => {
           </div>
 
           <div>
-            <label className="text-sm text-gray-400 block mb-2">{t('adapter.demo.inventory')}</label>
+            <label className="text-sm text-gray-600 dark:text-gray-400 block mb-2">{t('adapter.demo.inventory')}</label>
             <button 
               onClick={() => setHasAdapter(!hasAdapter)}
               className={clsx(
                 "w-full px-4 py-3 rounded border flex items-center justify-between transition-colors", 
-                hasAdapter ? "bg-green-900/30 border-green-500 text-green-400" : "bg-gray-700 border-gray-600 text-gray-400"
+                hasAdapter ? "bg-green-900/30 border-green-500 text-green-400" : "bg-gray-700 border-gray-600 text-gray-600 dark:text-gray-400"
               )}
             >
               <span>{t('adapter.demo.adapterName')}</span>
@@ -54,7 +54,7 @@ const AdapterDemo = () => {
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 flex flex-col items-center justify-center min-h-[300px] relative">
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center min-h-[300px] relative">
          <div className="flex items-center gap-1">
             {/* Device Plug */}
             <motion.div 
@@ -77,7 +77,7 @@ const AdapterDemo = () => {
             {hasAdapter && plugType === 'US' && (
               <motion.div 
                 initial={{ scale: 0 }} animate={{ scale: 1 }}
-                className="w-12 h-10 bg-green-600 rounded flex items-center justify-center text-xs text-white z-0"
+                className="w-12 h-10 bg-green-600 rounded flex items-center justify-center text-xs text-gray-900 dark:text-white z-0"
               >
                 {t('adapter.demo.adapt')}
               </motion.div>
@@ -90,7 +90,7 @@ const AdapterDemo = () => {
                      <div className="w-3 h-3 bg-black rounded-full shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"></div>
                      <div className="w-3 h-3 bg-black rounded-full shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"></div>
                   </div>
-                  <span className="text-[10px] text-gray-500 font-mono">EU 220V</span>
+                  <span className="text-[10px] text-gray-500 dark:text-gray-500 font-mono">EU 220V</span>
                </div>
             </div>
          </div>

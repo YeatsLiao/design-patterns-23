@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const SidebarItem = ({ to, icon: Icon, label, active }: { to: string; icon: any; label: string; active: boolean }) => (
   <Link
@@ -13,8 +14,8 @@ const SidebarItem = ({ to, icon: Icon, label, active }: { to: string; icon: any;
     className={clsx(
       "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors mb-1",
       active 
-        ? "bg-blue-600 text-white" 
-        : "text-gray-400 hover:bg-gray-800 hover:text-white"
+        ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30" 
+        : "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
     )}
   >
     <Icon size={20} />
@@ -28,8 +29,8 @@ const SubMenuLink = ({ to, label, active }: { to: string; label: string; active:
     className={clsx(
       "block px-4 py-2 text-sm ml-6 border-l transition-colors",
       active 
-        ? "border-blue-500 text-white bg-gray-800/50 rounded-r" 
-        : "border-gray-800 text-gray-500 hover:text-gray-300 hover:border-gray-600"
+        ? "border-blue-500 text-blue-700 bg-blue-50 dark:text-white dark:bg-gray-800/50 rounded-r" 
+        : "border-gray-200 text-gray-500 hover:text-gray-900 hover:border-gray-400 dark:border-gray-800 dark:text-gray-500 dark:hover:text-gray-300 dark:hover:border-gray-600"
     )}
   >
     {label}
@@ -47,10 +48,10 @@ const Layout = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-900 text-gray-100 overflow-hidden">
+    <div className="flex h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 overflow-hidden transition-colors duration-300">
       {/* Mobile Menu Button */}
       <button 
-        className="md:hidden fixed top-4 right-4 z-50 p-2 bg-gray-800 rounded-md"
+        className="md:hidden fixed top-4 right-4 z-50 p-2 bg-white dark:bg-gray-800 rounded-md shadow-md border border-gray-200 dark:border-gray-700"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -58,13 +59,13 @@ const Layout = () => {
 
       {/* Sidebar */}
       <aside className={clsx(
-        "fixed md:static inset-y-0 left-0 z-40 w-64 bg-gray-950 border-r border-gray-800 transform transition-transform duration-300 md:transform-none flex flex-col",
+        "fixed md:static inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 transform transition-transform duration-300 md:transform-none flex flex-col",
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       )}>
-        <div className="p-6 border-b border-gray-800 flex-shrink-0">
-          <div className="flex items-center gap-2 text-blue-500">
+        <div className="p-6 border-b border-gray-200 dark:border-gray-800 flex-shrink-0">
+          <div className="flex items-center gap-2 text-blue-600 dark:text-blue-500">
             <Box size={28} />
-            <h1 className="text-xl font-bold text-white">{t('common.patterns')}</h1>
+            <h1 className="text-xl font-bold text-gray-900 dark:text-white">{t('common.patterns')}</h1>
           </div>
           <p className="text-xs text-gray-500 mt-2">{t('common.interactiveLearning')}</p>
         </div>
@@ -72,7 +73,7 @@ const Layout = () => {
         <nav className="p-4 overflow-y-auto flex-1 custom-scrollbar">
           <SidebarItem to="/" icon={LayoutDashboard} label={t('common.dashboard')} active={isActive('/')} />
           
-          <div className="mt-6 mb-2 px-4 text-xs font-semibold text-blue-400 uppercase tracking-wider flex items-center gap-2">
+          <div className="mt-6 mb-2 px-4 text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider flex items-center gap-2">
             <Box size={14} /> {t('common.creational')}
           </div>
           <div className="space-y-0.5 mb-4">
@@ -83,7 +84,7 @@ const Layout = () => {
             <SubMenuLink to="/patterns/prototype" label={t('patterns.prototype')} active={location.pathname === '/patterns/prototype'} />
           </div>
 
-          <div className="mt-6 mb-2 px-4 text-xs font-semibold text-green-400 uppercase tracking-wider flex items-center gap-2">
+          <div className="mt-6 mb-2 px-4 text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-wider flex items-center gap-2">
             <Layers size={14} /> {t('common.structural')}
           </div>
           <div className="space-y-0.5 mb-4">
@@ -96,7 +97,7 @@ const Layout = () => {
             <SubMenuLink to="/patterns/proxy" label={t('patterns.proxy')} active={location.pathname === '/patterns/proxy'} />
           </div>
 
-          <div className="mt-6 mb-2 px-4 text-xs font-semibold text-yellow-400 uppercase tracking-wider flex items-center gap-2">
+          <div className="mt-6 mb-2 px-4 text-xs font-semibold text-yellow-600 dark:text-yellow-400 uppercase tracking-wider flex items-center gap-2">
             <Zap size={14} /> {t('common.behavioral')}
           </div>
           <div className="space-y-0.5 mb-10">
@@ -114,13 +115,14 @@ const Layout = () => {
           </div>
         </nav>
         
-        <div className="p-4 border-t border-gray-800">
+        <div className="p-4 border-t border-gray-200 dark:border-gray-800 space-y-3">
+           <ThemeSwitcher />
            <LanguageSwitcher />
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto bg-gray-900 relative">
+      <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 relative transition-colors duration-300">
         <div className="max-w-7xl mx-auto p-6 md:p-10">
           <Outlet />
         </div>

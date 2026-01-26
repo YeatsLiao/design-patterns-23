@@ -65,7 +65,7 @@ const SingletonDemo = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* LEFT: Bad Practice (No Singleton) */}
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-red-400">{t('singleton.demo.withoutSingleton')}</h3>
           <div className="flex gap-2">
@@ -77,15 +77,15 @@ const SingletonDemo = () => {
             </button>
             <button 
               onClick={clearMultipleInstances}
-              className="p-1.5 text-gray-500 hover:text-white transition-colors"
+              className="p-1.5 text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:text-white transition-colors"
             >
               <Trash2 size={16} />
             </button>
           </div>
         </div>
 
-        <div className="min-h-[200px] bg-gray-900/50 rounded-lg p-4 mb-4 relative overflow-hidden">
-          <p className="text-sm text-gray-500 mb-4 text-center">
+        <div className="min-h-[200px] bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4 mb-4 relative overflow-hidden">
+          <p className="text-sm text-gray-500 dark:text-gray-500 mb-4 text-center">
             {t('singleton.demo.instructionBad')}
           </p>
           <div className="flex flex-wrap gap-3 justify-center content-start">
@@ -98,7 +98,7 @@ const SingletonDemo = () => {
                   exit={{ scale: 0, opacity: 0 }}
                   className={clsx(
                     instance.color,
-                    "w-12 h-12 rounded-lg flex items-center justify-center shadow-lg text-white font-bold text-xs"
+                    "w-12 h-12 rounded-lg flex items-center justify-center shadow-lg text-gray-900 dark:text-white font-bold text-xs"
                   )}
                   title={`ID: ${instance.id}`}
                 >
@@ -108,25 +108,25 @@ const SingletonDemo = () => {
             </AnimatePresence>
           </div>
         </div>
-        <div className="text-xs text-gray-400 font-mono bg-gray-950 p-3 rounded">
+        <div className="text-xs text-gray-600 dark:text-gray-400 font-mono bg-gray-100 dark:bg-gray-950 p-3 rounded">
           {t('singleton.demo.instancesCreated')}: {multipleInstances.length}
         </div>
       </div>
 
       {/* RIGHT: Singleton Pattern */}
-      <div className="bg-gray-800 rounded-xl p-6 border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-blue-400">{t('singleton.demo.withSingleton')}</h3>
           <div className="flex gap-2">
             <button 
               onClick={getSingletonInstance}
-              className="flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white hover:bg-blue-500 rounded-lg transition-colors text-sm font-medium shadow-lg shadow-blue-900/20"
+              className="flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-gray-900 dark:text-white hover:bg-blue-500 rounded-lg transition-colors text-sm font-medium shadow-lg shadow-blue-900/20"
             >
               <RefreshCw size={16} /> {t('singleton.demo.getInstance')}
             </button>
             <button 
               onClick={resetSingleton}
-              className="p-1.5 text-gray-500 hover:text-white transition-colors"
+              className="p-1.5 text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:text-white transition-colors"
               title="Reset Demo"
             >
               <Trash2 size={16} />
@@ -134,8 +134,8 @@ const SingletonDemo = () => {
           </div>
         </div>
 
-        <div className="min-h-[200px] bg-gray-900/50 rounded-lg p-4 mb-4 flex flex-col items-center justify-center relative">
-          <p className="text-sm text-gray-500 mb-4 absolute top-4 w-full text-center px-4">
+        <div className="min-h-[200px] bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4 mb-4 flex flex-col items-center justify-center relative">
+          <p className="text-sm text-gray-500 dark:text-gray-500 mb-4 absolute top-4 w-full text-center px-4">
             {t('singleton.demo.instructionGood')}
           </p>
           
@@ -145,21 +145,21 @@ const SingletonDemo = () => {
                 key="singleton"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: [1, 1.1, 1], opacity: 1 }} // Pulse effect on access
-                className="w-24 h-24 bg-blue-600 rounded-2xl flex flex-col items-center justify-center shadow-xl text-white z-10"
+                className="w-24 h-24 bg-blue-600 rounded-2xl flex flex-col items-center justify-center shadow-xl text-gray-900 dark:text-white z-10"
               >
                 <Database size={32} className="mb-2" />
                 <span className="text-xs font-mono opacity-80">{singletonInstance.id}</span>
               </motion.div>
             ) : (
-              <div className="w-24 h-24 border-2 border-dashed border-gray-700 rounded-2xl flex items-center justify-center text-gray-700">
+              <div className="w-24 h-24 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-2xl flex items-center justify-center text-gray-700">
                 <span className="text-xs">Null</span>
               </div>
             )}
           </AnimatePresence>
         </div>
 
-        <div className="h-32 bg-gray-950 p-3 rounded overflow-hidden font-mono text-xs">
-          <div className="text-gray-500 mb-1 border-b border-gray-800 pb-1">{t('singleton.demo.accessLog')}:</div>
+        <div className="h-32 bg-gray-100 dark:bg-gray-950 p-3 rounded overflow-hidden font-mono text-xs">
+          <div className="text-gray-500 dark:text-gray-500 mb-1 border-b border-gray-200 dark:border-gray-800 pb-1">{t('singleton.demo.accessLog')}:</div>
           <div className="flex flex-col gap-1">
             {accessLog.map((log, i) => (
               <motion.div 

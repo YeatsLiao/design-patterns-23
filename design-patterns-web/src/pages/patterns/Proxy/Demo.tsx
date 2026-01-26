@@ -46,41 +46,41 @@ const ProxyDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('proxy.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('proxy.demo.title')}</h3>
         
         <div className="flex gap-4 mb-8">
            <button 
              onClick={() => downloadVideo('vid-1')}
              disabled={loading}
-             className="px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-600 rounded text-white font-medium flex items-center gap-2"
+             className="px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-600 rounded text-gray-900 dark:text-white font-medium flex items-center gap-2"
            >
              <Download size={18} /> {t('proxy.demo.downloadVid1')}
            </button>
            <button 
              onClick={() => downloadVideo('vid-2')}
              disabled={loading}
-             className="px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-600 rounded text-white font-medium flex items-center gap-2"
+             className="px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-600 rounded text-gray-900 dark:text-white font-medium flex items-center gap-2"
            >
              <Download size={18} /> {t('proxy.demo.downloadVid2')}
            </button>
         </div>
 
-        <div className="bg-black rounded-lg p-4 h-[300px] overflow-y-auto font-mono text-xs border border-gray-800">
+        <div className="bg-black rounded-lg p-4 h-[300px] overflow-y-auto font-mono text-xs border border-gray-200 dark:border-gray-800">
            {logs.map((log, i) => (
              <div key={i} className="mb-1 text-green-400">{log}</div>
            ))}
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 flex flex-col items-center justify-center relative">
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center relative">
          <div className="flex items-center gap-8">
             {/* Client */}
             <div className="flex flex-col items-center gap-2">
                <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center border-2 border-white">
-                  <Globe size={24} className="text-white" />
+                  <Globe size={24} className="text-gray-900 dark:text-white" />
                </div>
-               <span className="text-xs text-gray-400">{t('proxy.demo.client')}</span>
+               <span className="text-xs text-gray-600 dark:text-gray-400">{t('proxy.demo.client')}</span>
             </div>
 
             {/* Proxy */}
@@ -91,7 +91,7 @@ const ProxyDemo = () => {
                <span className="text-xs text-blue-400 absolute -bottom-6 w-full text-center">{t('proxy.demo.proxyCache')}</span>
                
                {/* Cache Indicator */}
-               <div className="absolute -top-2 -right-2 bg-green-600 text-white text-[10px] px-2 py-0.5 rounded-full">
+               <div className="absolute -top-2 -right-2 bg-green-600 text-gray-900 dark:text-white text-[10px] px-2 py-0.5 rounded-full">
                  {Object.keys(cache).length} items
                </div>
             </div>
@@ -101,7 +101,7 @@ const ProxyDemo = () => {
                <div className="w-16 h-16 bg-red-900 rounded-lg flex items-center justify-center border-2 border-red-500 border-dashed">
                   <Database size={24} className="text-red-400" />
                </div>
-               <span className="text-xs text-gray-400">{t('proxy.demo.realServer')}</span>
+               <span className="text-xs text-gray-600 dark:text-gray-400">{t('proxy.demo.realServer')}</span>
             </div>
          </div>
          

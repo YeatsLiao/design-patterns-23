@@ -56,30 +56,30 @@ const FlyweightDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('flyweight.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('flyweight.demo.title')}</h3>
         
         <div className="space-y-4 mb-8">
-           <button onClick={() => plantForest(10)} className="w-full py-2 bg-gray-700 hover:bg-gray-600 rounded text-white">{t('flyweight.demo.plant10')}</button>
-           <button onClick={() => plantForest(100)} className="w-full py-2 bg-gray-700 hover:bg-gray-600 rounded text-white">{t('flyweight.demo.plant100')}</button>
-           <button onClick={() => plantForest(1000)} className="w-full py-2 bg-blue-600 hover:bg-blue-500 rounded text-white font-bold">{t('flyweight.demo.plant1000')}</button>
+           <button onClick={() => plantForest(10)} className="w-full py-2 bg-gray-700 hover:bg-gray-600 rounded text-gray-900 dark:text-white">{t('flyweight.demo.plant10')}</button>
+           <button onClick={() => plantForest(100)} className="w-full py-2 bg-gray-700 hover:bg-gray-600 rounded text-gray-900 dark:text-white">{t('flyweight.demo.plant100')}</button>
+           <button onClick={() => plantForest(1000)} className="w-full py-2 bg-blue-600 hover:bg-blue-500 rounded text-gray-900 dark:text-white font-bold">{t('flyweight.demo.plant1000')}</button>
            <button onClick={clear} className="w-full py-2 bg-red-900/50 hover:bg-red-900/70 text-red-200 rounded">{t('flyweight.demo.clear')}</button>
         </div>
 
-        <div className="bg-gray-950 p-4 rounded-lg font-mono text-xs">
+        <div className="bg-gray-100 dark:bg-gray-950 p-4 rounded-lg font-mono text-xs">
            <div className="flex justify-between mb-2">
-             <span className="text-gray-400">{t('flyweight.demo.totalTrees')}</span>
-             <span className="text-white font-bold">{count.toLocaleString()}</span>
+             <span className="text-gray-600 dark:text-gray-400">{t('flyweight.demo.totalTrees')}</span>
+             <span className="text-gray-900 dark:text-white font-bold">{count.toLocaleString()}</span>
            </div>
            <div className="flex justify-between mb-2">
-             <span className="text-gray-400">{t('flyweight.demo.estMemoryNaive')}</span>
+             <span className="text-gray-600 dark:text-gray-400">{t('flyweight.demo.estMemoryNaive')}</span>
              <span className="text-red-400">{memoryUsage.withoutFlyweight.toLocaleString()} units</span>
            </div>
-           <div className="flex justify-between border-t border-gray-800 pt-2">
-             <span className="text-gray-400">{t('flyweight.demo.estMemoryFlyweight')}</span>
+           <div className="flex justify-between border-t border-gray-200 dark:border-gray-800 pt-2">
+             <span className="text-gray-600 dark:text-gray-400">{t('flyweight.demo.estMemoryFlyweight')}</span>
              <span className="text-green-400">{memoryUsage.withFlyweight.toLocaleString()} units</span>
            </div>
-           <p className="mt-2 text-gray-500 italic">{t('flyweight.demo.savings')} {Math.round((1 - memoryUsage.withFlyweight/memoryUsage.withoutFlyweight)*100)}%</p>
+           <p className="mt-2 text-gray-500 dark:text-gray-500 italic">{t('flyweight.demo.savings')} {Math.round((1 - memoryUsage.withFlyweight/memoryUsage.withoutFlyweight)*100)}%</p>
         </div>
       </div>
 
@@ -99,7 +99,7 @@ const FlyweightDemo = () => {
             );
          })}
          {trees.length > 500 && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-white font-bold backdrop-blur-sm">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-gray-900 dark:text-white font-bold backdrop-blur-sm">
                <Trans i18nKey="flyweight.demo.renderingCapped" values={{ count }} />
             </div>
          )}

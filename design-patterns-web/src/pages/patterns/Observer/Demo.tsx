@@ -69,7 +69,7 @@ const ObserverDemo = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* LEFT: Publisher (YouTuber) */}
-      <div className="bg-gray-800 rounded-xl p-6 border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-red-400 flex items-center gap-2">
             <Video size={20} />
@@ -80,14 +80,14 @@ const ObserverDemo = () => {
           </span>
         </div>
 
-        <div className="bg-gray-900/50 p-6 rounded-xl flex flex-col gap-4 items-center justify-center min-h-[200px]">
+        <div className="bg-gray-50 dark:bg-gray-900/50 p-6 rounded-xl flex flex-col gap-4 items-center justify-center min-h-[200px]">
           <div className="w-full max-w-xs">
-            <label className="text-xs text-gray-500 mb-1 block">{t('observer.demo.videoTitle')}</label>
+            <label className="text-xs text-gray-500 dark:text-gray-500 mb-1 block">{t('observer.demo.videoTitle')}</label>
             <input 
               type="text" 
               value={videoTitle}
               onChange={(e) => setVideoTitle(e.target.value)}
-              className="w-full bg-gray-950 border border-gray-700 rounded px-3 py-2 text-white text-sm focus:border-red-500 focus:outline-none transition-colors"
+              className="w-full bg-gray-100 dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded px-3 py-2 text-gray-900 dark:text-white text-sm focus:border-red-500 focus:outline-none transition-colors"
             />
           </div>
 
@@ -95,7 +95,7 @@ const ObserverDemo = () => {
             onClick={uploadVideo}
             disabled={isUploading || subscribers.length === 0}
             className={clsx(
-              "flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white shadow-lg transition-all",
+              "flex items-center gap-2 px-6 py-3 rounded-full font-bold text-gray-900 dark:text-white shadow-lg transition-all",
               isUploading 
                 ? "bg-gray-600 cursor-not-allowed" 
                 : subscribers.length === 0
@@ -124,8 +124,8 @@ const ObserverDemo = () => {
         {/* Subscriber Management */}
         <div className="mt-6">
           <div className="flex justify-between items-center mb-2">
-            <h4 className="text-sm font-semibold text-gray-400">{t('observer.demo.subscribersList')}</h4>
-            <button onClick={subscribe} className="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded text-white transition-colors">
+            <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400">{t('observer.demo.subscribersList')}</h4>
+            <button onClick={subscribe} className="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded text-gray-900 dark:text-white transition-colors">
               {t('observer.demo.addSubscriber')}
             </button>
           </div>
@@ -137,15 +137,15 @@ const ObserverDemo = () => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0 }}
-                  className="bg-gray-950 rounded-full pl-1 pr-3 py-1 flex items-center gap-2 border border-gray-700 group"
+                  className="bg-gray-100 dark:bg-gray-950 rounded-full pl-1 pr-3 py-1 flex items-center gap-2 border border-gray-200 dark:border-gray-700 group"
                 >
-                  <div className={clsx("w-6 h-6 rounded-full flex items-center justify-center text-[10px] text-white font-bold", sub.avatarColor)}>
+                  <div className={clsx("w-6 h-6 rounded-full flex items-center justify-center text-[10px] text-gray-900 dark:text-white font-bold", sub.avatarColor)}>
                     {sub.name[0]}
                   </div>
-                  <span className="text-xs text-gray-300">{sub.name}</span>
+                  <span className="text-xs text-gray-700 dark:text-gray-300">{sub.name}</span>
                   <button 
                     onClick={() => unsubscribe(sub.id)}
-                    className="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-red-400 transition-opacity"
+                    className="opacity-0 group-hover:opacity-100 text-gray-500 dark:text-gray-500 hover:text-red-400 transition-opacity"
                   >
                     <Trash2 size={12} />
                   </button>
@@ -158,16 +158,16 @@ const ObserverDemo = () => {
       </div>
 
       {/* RIGHT: Subscribers (Observers) */}
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-blue-400 flex items-center gap-2">
             <Bell size={20} />
             {t('observer.demo.titleObservers')}
           </h3>
-          <button onClick={() => setNotifications([])} className="text-xs text-gray-500 hover:text-white">{t('observer.demo.clear')}</button>
+          <button onClick={() => setNotifications([])} className="text-xs text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:text-white">{t('observer.demo.clear')}</button>
         </div>
 
-        <div className="bg-gray-950 rounded-xl p-4 h-[400px] overflow-y-auto custom-scrollbar relative">
+        <div className="bg-gray-100 dark:bg-gray-950 rounded-xl p-4 h-[400px] overflow-y-auto custom-scrollbar relative">
           <AnimatePresence>
             {notifications.map((notif) => {
               const sub = subscribers.find(s => s.id === notif.subscriberId);
@@ -180,16 +180,16 @@ const ObserverDemo = () => {
                   initial={{ x: 50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="mb-3 p-3 bg-gray-900 border-l-2 border-red-500 rounded-r shadow-sm flex items-start gap-3"
+                  className="mb-3 p-3 bg-gray-50 dark:bg-gray-900 border-l-2 border-red-500 rounded-r shadow-sm flex items-start gap-3"
                 >
-                  <div className={clsx("mt-1 w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs text-white font-bold", sub?.avatarColor || "bg-gray-700")}>
+                  <div className={clsx("mt-1 w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs text-gray-900 dark:text-white font-bold", sub?.avatarColor || "bg-gray-700")}>
                     {sub ? sub.name[0] : "?"}
                   </div>
                   <div>
-                    <div className="text-xs text-gray-400 flex items-center gap-1">
+                    <div className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-1">
                       {t('observer.demo.received', { name: sub ? sub.name : t('observer.demo.formerSubscriber') })}
                     </div>
-                    <div className="text-sm text-white font-medium">{notif.message}</div>
+                    <div className="text-sm text-gray-900 dark:text-white font-medium">{notif.message}</div>
                   </div>
                   <Heart size={14} className="ml-auto text-gray-600 hover:text-red-500 cursor-pointer" />
                 </motion.div>

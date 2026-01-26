@@ -64,12 +64,12 @@ const CommandDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('command.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('command.demo.title')}</h3>
         
         <div className="grid grid-cols-2 gap-4 mb-6">
-           <button onClick={() => executeCommand(new TurnOnCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-white font-medium">{t('command.demo.on')}</button>
-           <button onClick={() => executeCommand(new TurnOffCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-white font-medium">{t('command.demo.off')}</button>
+           <button onClick={() => executeCommand(new TurnOnCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-gray-900 dark:text-white font-medium">{t('command.demo.on')}</button>
+           <button onClick={() => executeCommand(new TurnOffCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-gray-900 dark:text-white font-medium">{t('command.demo.off')}</button>
            <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-red-500'))} className="p-3 bg-red-900/30 text-red-400 border border-red-900 rounded hover:bg-red-900/50">{t('command.demo.red')}</button>
            <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-blue-500'))} className="p-3 bg-blue-900/30 text-blue-400 border border-blue-900 rounded hover:bg-blue-900/50">{t('command.demo.blue')}</button>
         </div>
@@ -77,13 +77,13 @@ const CommandDemo = () => {
         <button 
           onClick={undoLast} 
           disabled={history.length === 0}
-          className="w-full py-3 bg-yellow-600 hover:bg-yellow-500 disabled:bg-gray-700 disabled:text-gray-500 text-white rounded-lg flex items-center justify-center gap-2 transition-colors"
+          className="w-full py-3 bg-yellow-600 hover:bg-yellow-500 disabled:bg-gray-700 disabled:text-gray-500 dark:text-gray-500 text-gray-900 dark:text-white rounded-lg flex items-center justify-center gap-2 transition-colors"
         >
           <RotateCcw size={18} /> {t('command.demo.undo', { count: history.length })}
         </button>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 flex items-center justify-center min-h-[300px]">
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 flex items-center justify-center min-h-[300px]">
          <motion.div 
            animate={{ scale: lightState.isOn ? 1.2 : 1 }}
            className="relative"

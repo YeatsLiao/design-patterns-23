@@ -65,8 +65,8 @@ const TemplateMethodDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('templateMethod.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('templateMethod.demo.title')}</h3>
         
         <div className="grid grid-cols-2 gap-4 mb-6">
            <button 
@@ -88,17 +88,17 @@ const TemplateMethodDemo = () => {
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 min-h-[400px]">
-         <h4 className="text-gray-400 uppercase tracking-wider text-xs mb-4">{t('templateMethod.demo.executionSteps')}</h4>
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 min-h-[400px]">
+         <h4 className="text-gray-600 dark:text-gray-400 uppercase tracking-wider text-xs mb-4">{t('templateMethod.demo.executionSteps')}</h4>
          <div className="space-y-4">
             {logs.map((log, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="flex items-center gap-3 text-sm text-gray-300 bg-black p-3 rounded border-l-4 border-blue-500"
+                className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300 bg-black p-3 rounded border-l-4 border-blue-500"
               >
-                 <ArrowDown size={16} className="text-gray-500" />
+                 <ArrowDown size={16} className="text-gray-500 dark:text-gray-500" />
                  {log}
               </motion.div>
             ))}

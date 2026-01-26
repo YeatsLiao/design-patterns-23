@@ -44,29 +44,29 @@ const MementoDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('memento.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('memento.demo.title')}</h3>
         
         <textarea 
-          className="w-full h-40 bg-gray-900 border border-gray-600 rounded p-4 text-white font-mono mb-4 focus:border-blue-500 outline-none"
+          className="w-full h-40 bg-gray-50 dark:bg-gray-900 border border-gray-600 rounded p-4 text-gray-900 dark:text-white font-mono mb-4 focus:border-blue-500 outline-none"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder={t('memento.demo.placeholder')}
         />
 
         <div className="flex gap-4">
-           <button onClick={save} className="flex-1 py-3 bg-blue-600 hover:bg-blue-500 rounded text-white flex items-center justify-center gap-2 font-bold">
+           <button onClick={save} className="flex-1 py-3 bg-blue-600 hover:bg-blue-500 rounded text-gray-900 dark:text-white flex items-center justify-center gap-2 font-bold">
              <Save size={18} /> {t('memento.demo.save')}
            </button>
-           <button onClick={undo} disabled={historyCount === 0} className="flex-1 py-3 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 rounded text-white flex items-center justify-center gap-2">
+           <button onClick={undo} disabled={historyCount === 0} className="flex-1 py-3 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 rounded text-gray-900 dark:text-white flex items-center justify-center gap-2">
              <RotateCcw size={18} /> {t('memento.demo.undo', { count: historyCount })}
            </button>
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 flex flex-col items-center justify-center">
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center">
          <History size={64} className="text-gray-700 mb-4" />
-         <div className="text-gray-400 text-center">
+         <div className="text-gray-600 dark:text-gray-400 text-center">
            <p className="mb-2">{t('memento.demo.snapshotStored')}</p>
            <p className="text-xs text-gray-600">{t('memento.demo.caretakerDesc')}</p>
          </div>

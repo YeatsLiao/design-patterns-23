@@ -39,17 +39,17 @@ const BuilderDemo = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Builder Controls */}
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('builder.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('builder.demo.title')}</h3>
         
         <div className="space-y-3 mb-6">
-          <p className="text-sm text-gray-400">{t('builder.demo.step1')}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">{t('builder.demo.step1')}</p>
           <div className="grid grid-cols-2 gap-2">
             {ingredients.map(ing => (
               <button
                 key={ing.id}
                 onClick={() => addLayer(ing.id)}
-                className="flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm text-white transition-colors"
+                className="flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm text-gray-900 dark:text-white transition-colors"
               >
                 <span>{ing.label}</span>
                 <Plus size={16} />
@@ -59,16 +59,16 @@ const BuilderDemo = () => {
         </div>
 
         <div className="space-y-3">
-           <p className="text-sm text-gray-400">{t('builder.demo.step2')}</p>
+           <p className="text-sm text-gray-600 dark:text-gray-400">{t('builder.demo.step2')}</p>
            <button 
              onClick={finish}
-             className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg flex items-center justify-center gap-2"
+             className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-gray-900 dark:text-white font-bold rounded-lg flex items-center justify-center gap-2"
            >
              <Check size={18} /> {t('builder.demo.complete')}
            </button>
            <button 
              onClick={reset}
-             className="w-full py-3 bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-lg flex items-center justify-center gap-2"
+             className="w-full py-3 bg-gray-700 hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg flex items-center justify-center gap-2"
            >
              <RotateCcw size={18} /> {t('builder.demo.reset')}
            </button>
@@ -76,7 +76,7 @@ const BuilderDemo = () => {
       </div>
 
       {/* Product Visualization */}
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 flex flex-col items-center justify-end min-h-[400px] relative overflow-hidden">
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-end min-h-[400px] relative overflow-hidden">
         <div className="flex flex-col-reverse items-center w-48 gap-1">
           <AnimatePresence>
             {burger.layers.map((layer, index) => {
@@ -115,8 +115,8 @@ const BuilderDemo = () => {
           </AnimatePresence>
         </div>
         <div className="mt-8 text-center">
-            <h4 className="text-white font-bold text-lg">{t('builder.demo.yourBurger')}</h4>
-            <p className="text-gray-500 text-xs">{burger.layers.length} {t('builder.demo.layers')}</p>
+            <h4 className="text-gray-900 dark:text-white font-bold text-lg">{t('builder.demo.yourBurger')}</h4>
+            <p className="text-gray-500 dark:text-gray-500 text-xs">{burger.layers.length} {t('builder.demo.layers')}</p>
         </div>
       </div>
     </div>

@@ -44,9 +44,9 @@ const SmartHomeFacadeDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('facade.demo.title')}</h3>
-        <p className="text-sm text-gray-400 mb-6">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('facade.demo.title')}</h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
            {t('facade.demo.description')}
         </p>
 
@@ -86,8 +86,8 @@ const SmartHomeFacadeDemo = () => {
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
-         <h4 className="text-gray-400 uppercase tracking-wider text-xs mb-4">{t('facade.demo.systemState')}</h4>
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800">
+         <h4 className="text-gray-600 dark:text-gray-400 uppercase tracking-wider text-xs mb-4">{t('facade.demo.systemState')}</h4>
          
          <div className="grid grid-cols-2 gap-4">
             <StatusItem icon={Sun} label={t('facade.demo.lights')} isOn={lights} color="text-yellow-400" />
@@ -102,10 +102,10 @@ const SmartHomeFacadeDemo = () => {
 };
 
 const StatusItem = ({ icon: Icon, label, isOn, color, onLabel = "ON", offLabel = "OFF" }: any) => (
-  <div className={clsx("p-4 rounded-lg border flex flex-col items-center gap-2 transition-all", isOn ? `bg-gray-800 border-${color.split('-')[1]}-500/50` : "bg-gray-950 border-gray-800 opacity-50")}>
+  <div className={clsx("p-4 rounded-lg border flex flex-col items-center gap-2 transition-all", isOn ? `bg-white dark:bg-gray-800 border-${color.split('-')[1]}-500/50` : "bg-gray-100 dark:bg-gray-950 border-gray-200 dark:border-gray-800 opacity-50")}>
      <Icon size={24} className={isOn ? color : "text-gray-600"} />
-     <span className="text-sm text-gray-300 font-medium">{label}</span>
-     <span className="text-xs text-gray-500 font-mono">{isOn ? onLabel : offLabel}</span>
+     <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">{label}</span>
+     <span className="text-xs text-gray-500 dark:text-gray-500 font-mono">{isOn ? onLabel : offLabel}</span>
   </div>
 );
 

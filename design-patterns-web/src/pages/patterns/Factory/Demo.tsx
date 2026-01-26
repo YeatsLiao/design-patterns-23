@@ -74,17 +74,17 @@ const FactoryDemo = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* LEFT: Bad Practice (Tight Coupling) */}
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-red-400 flex items-center gap-2">
             <AlertCircle size={20} />
             {t('factory.demo.tightCoupling')}
           </h3>
-          <button onClick={clearAll} className="text-xs text-gray-500 hover:text-white">{t('common.clearAll')}</button>
+          <button onClick={clearAll} className="text-xs text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:text-white">{t('common.clearAll')}</button>
         </div>
 
-        <div className="mb-6 p-4 bg-gray-900/50 rounded-lg border border-red-900/20">
-          <p className="text-sm text-gray-400 mb-3">
+        <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-red-900/20">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
              <Trans i18nKey="factory.demo.tightCouplingDesc" />
           </p>
           <div className="flex flex-wrap gap-2">
@@ -100,14 +100,14 @@ const FactoryDemo = () => {
           </div>
         </div>
 
-        <div className="min-h-[150px] bg-gray-950 rounded-lg p-3 flex flex-wrap gap-2 content-start">
+        <div className="min-h-[150px] bg-gray-100 dark:bg-gray-950 rounded-lg p-3 flex flex-wrap gap-2 content-start">
             <AnimatePresence>
               {badProducts.map((p) => (
                 <motion.div
                   key={p.id}
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className={clsx(getProductColor(p.type), "w-10 h-10 rounded-full flex items-center justify-center text-white shadow-md")}
+                  className={clsx(getProductColor(p.type), "w-10 h-10 rounded-full flex items-center justify-center text-gray-900 dark:text-white shadow-md")}
                 >
                   {renderIcon(p.type)}
                 </motion.div>
@@ -118,7 +118,7 @@ const FactoryDemo = () => {
       </div>
 
       {/* RIGHT: Factory Method Pattern */}
-      <div className="bg-gray-800 rounded-xl p-6 border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-blue-400 flex items-center gap-2">
             <Settings size={20} />
@@ -126,14 +126,14 @@ const FactoryDemo = () => {
           </h3>
         </div>
 
-        <div className="mb-6 p-4 bg-gray-900/50 rounded-lg border border-blue-900/20">
-          <p className="text-sm text-gray-400 mb-3">
+        <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-blue-900/20">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
              <Trans i18nKey="factory.demo.factoryPatternDesc" />
           </p>
           
-          <div className="flex items-center gap-4 bg-gray-950 p-3 rounded-lg border border-gray-700">
+          <div className="flex items-center gap-4 bg-gray-100 dark:bg-gray-950 p-3 rounded-lg border border-gray-200 dark:border-gray-700">
             <div className="flex-1">
-              <label className="text-xs text-gray-500 block mb-1">{t('factory.demo.selectLogistics')}</label>
+              <label className="text-xs text-gray-500 dark:text-gray-500 block mb-1">{t('factory.demo.selectLogistics')}</label>
               <div className="flex gap-2">
                 {(['car', 'truck', 'bike'] as ProductType[]).map(type => (
                   <button
@@ -141,7 +141,7 @@ const FactoryDemo = () => {
                     onClick={() => setSelectedFactory(type)}
                     className={clsx(
                       "p-2 rounded-md transition-all",
-                      selectedFactory === type ? "bg-blue-600 text-white shadow-lg" : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+                      selectedFactory === type ? "bg-blue-600 text-gray-900 dark:text-white shadow-lg" : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-700"
                     )}
                   >
                     {renderIcon(type)}
@@ -154,7 +154,7 @@ const FactoryDemo = () => {
 
             <button 
               onClick={orderFromFactory}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-lg shadow-lg transition-all active:scale-95"
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-gray-900 dark:text-white font-semibold rounded-lg shadow-lg transition-all active:scale-95"
             >
               <ShoppingCart size={18} />
               <span>{t('factory.demo.order')}</span>
@@ -163,8 +163,8 @@ const FactoryDemo = () => {
         </div>
 
         {/* Assembly Line Visualization */}
-        <div className="min-h-[150px] bg-gray-950 rounded-lg p-3 relative overflow-hidden">
-            <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-800 -translate-y-1/2 rounded-full"></div>
+        <div className="min-h-[150px] bg-gray-100 dark:bg-gray-950 rounded-lg p-3 relative overflow-hidden">
+            <div className="absolute top-1/2 left-0 w-full h-2 bg-white dark:bg-gray-800 -translate-y-1/2 rounded-full"></div>
             
             <div className="flex gap-4 items-center h-full overflow-x-auto px-4 pb-2 relative z-10">
               <AnimatePresence>
@@ -174,7 +174,7 @@ const FactoryDemo = () => {
                     initial={{ x: -50, opacity: 0, rotate: -90 }}
                     animate={{ x: 0, opacity: 1, rotate: 0 }}
                     className={clsx(
-                      "flex-shrink-0 w-16 h-16 rounded-xl flex flex-col items-center justify-center text-white shadow-xl border border-white/10",
+                      "flex-shrink-0 w-16 h-16 rounded-xl flex flex-col items-center justify-center text-gray-900 dark:text-white shadow-xl border border-white/10",
                       getProductColor(p.type)
                     )}
                   >

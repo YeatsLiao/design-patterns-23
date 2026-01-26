@@ -84,12 +84,12 @@ const IteratorDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('iterator.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('iterator.demo.title')}</h3>
         
         <div className="space-y-2 mb-6">
            {songs.map((song, i) => (
-             <div key={i} className={`p-3 rounded flex items-center gap-3 ${currentSong === song ? "bg-blue-900/50 border border-blue-500 text-white" : "bg-gray-900 text-gray-400"}`}>
+             <div key={i} className={`p-3 rounded flex items-center gap-3 ${currentSong === song ? "bg-blue-900/50 border border-blue-500 text-gray-900 dark:text-white" : "bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-400"}`}>
                 <span className="text-xs font-mono opacity-50">{i + 1}</span>
                 <Music size={16} />
                 <span>{song}</span>
@@ -99,20 +99,20 @@ const IteratorDemo = () => {
         </div>
 
         <div className="flex justify-center gap-4">
-           <button onClick={start} className="p-4 bg-green-600 rounded-full text-white hover:bg-green-500 shadow-lg"><Play size={24} fill="currentColor" /></button>
-           <button onClick={next} className="p-4 bg-gray-700 rounded-full text-white hover:bg-gray-600"><SkipForward size={24} /></button>
+           <button onClick={start} className="p-4 bg-green-600 rounded-full text-gray-900 dark:text-white hover:bg-green-500 shadow-lg"><Play size={24} fill="currentColor" /></button>
+           <button onClick={next} className="p-4 bg-gray-700 rounded-full text-gray-900 dark:text-white hover:bg-gray-600"><SkipForward size={24} /></button>
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 flex flex-col items-center justify-center min-h-[300px]">
-         <div className="w-48 h-48 bg-black rounded-full flex items-center justify-center border-4 border-gray-800 relative shadow-2xl">
-            <div className="absolute inset-0 rounded-full border-2 border-gray-700 border-dashed animate-[spin_10s_linear_infinite]" style={{ animationPlayState: isPlaying ? 'running' : 'paused' }}></div>
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center min-h-[300px]">
+         <div className="w-48 h-48 bg-black rounded-full flex items-center justify-center border-4 border-gray-200 dark:border-gray-800 relative shadow-2xl">
+            <div className="absolute inset-0 rounded-full border-2 border-gray-200 dark:border-gray-700 border-dashed animate-[spin_10s_linear_infinite]" style={{ animationPlayState: isPlaying ? 'running' : 'paused' }}></div>
             <div className="text-center z-10">
                {currentSong ? (
                  <motion.div key={currentSong} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                    <Music size={32} className="mx-auto mb-2 text-blue-400" />
-                   <div className="text-sm font-bold text-white">{currentSong}</div>
-                   <div className="text-xs text-gray-500">{t('iterator.demo.nowPlaying')}</div>
+                   <div className="text-sm font-bold text-gray-900 dark:text-white">{currentSong}</div>
+                   <div className="text-xs text-gray-500 dark:text-gray-500">{t('iterator.demo.nowPlaying')}</div>
                  </motion.div>
                ) : (
                  <span className="text-gray-600">{t('iterator.demo.stopped')}</span>

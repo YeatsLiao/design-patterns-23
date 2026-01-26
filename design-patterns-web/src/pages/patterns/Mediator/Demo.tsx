@@ -73,8 +73,8 @@ const MediatorDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('mediator.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('mediator.demo.title')}</h3>
         
         <div className="space-y-4">
            <UserControl user={user1} color="bg-pink-600" onSend={(msg) => handleSend(user1, msg)} t={t} />
@@ -83,11 +83,11 @@ const MediatorDemo = () => {
         </div>
       </div>
 
-      <div className="bg-black rounded-xl p-6 border border-gray-800 h-[400px] overflow-y-auto flex flex-col-reverse">
+      <div className="bg-black rounded-xl p-6 border border-gray-200 dark:border-gray-800 h-[400px] overflow-y-auto flex flex-col-reverse">
          {logs.length === 0 && <div className="text-gray-600 text-center my-auto">{t('mediator.demo.noMessages')}</div>}
          {logs.map((log, i) => (
            <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-2">
-              <span className="text-xs font-bold text-gray-400">{log.from}:</span> <span className="text-white text-sm">{log.msg}</span>
+              <span className="text-xs font-bold text-gray-600 dark:text-gray-400">{log.from}:</span> <span className="text-gray-900 dark:text-white text-sm">{log.msg}</span>
            </motion.div>
          ))}
       </div>
@@ -98,20 +98,20 @@ const MediatorDemo = () => {
 const UserControl = ({ user, color, onSend, t }: any) => {
   const [msg, setMsg] = useState("");
   return (
-    <div className="bg-gray-900 p-4 rounded-lg flex items-center gap-4">
-       <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${color}`}>
+    <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg flex items-center gap-4">
+       <div className={`w-10 h-10 rounded-full flex items-center justify-center text-gray-900 dark:text-white font-bold ${color}`}>
          {user?.name[0]}
        </div>
        <div className="flex-1">
-          <div className="text-xs text-gray-400 mb-1">{user?.name}</div>
+          <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">{user?.name}</div>
           <div className="flex gap-2">
              <input 
-               className="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm text-white flex-1"
+               className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-2 py-1 text-sm text-gray-900 dark:text-white flex-1"
                placeholder={t('mediator.demo.saySomething')}
                value={msg}
                onChange={e => setMsg(e.target.value)}
              />
-             <button onClick={() => { onSend(msg); setMsg(""); }} className="p-1 bg-gray-700 hover:bg-gray-600 rounded text-white">
+             <button onClick={() => { onSend(msg); setMsg(""); }} className="p-1 bg-gray-700 hover:bg-gray-600 rounded text-gray-900 dark:text-white">
                <Send size={16} />
              </button>
           </div>

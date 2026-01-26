@@ -50,25 +50,25 @@ const DecoratorDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('decorator.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('decorator.demo.title')}</h3>
         
         <div className="space-y-4 mb-8">
-           <button onClick={addMilk} className="w-full flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-white transition-colors">
+           <button onClick={addMilk} className="w-full flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-gray-900 dark:text-white transition-colors">
               <span className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-white"></div> {t('decorator.demo.addMilk')}</span>
               <span>+$0.50</span>
            </button>
-           <button onClick={addSugar} className="w-full flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-white transition-colors">
+           <button onClick={addSugar} className="w-full flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-gray-900 dark:text-white transition-colors">
               <span className="flex items-center gap-2"><div className="w-4 h-4 rounded-sm bg-gray-300"></div> {t('decorator.demo.addSugar')}</span>
               <span>+$0.25</span>
            </button>
-           <button onClick={addWhip} className="w-full flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-white transition-colors">
+           <button onClick={addWhip} className="w-full flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-gray-900 dark:text-white transition-colors">
               <span className="flex items-center gap-2"><div className="w-4 h-4 rounded-t-full bg-pink-200"></div> {t('decorator.demo.addWhip')}</span>
               <span>+$1.00</span>
            </button>
         </div>
 
-        <button onClick={reset} className="text-sm text-gray-400 hover:text-white underline w-full text-center">{t('decorator.demo.startOver')}</button>
+        <button onClick={reset} className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white underline w-full text-center">{t('decorator.demo.startOver')}</button>
       </div>
 
       <div className="bg-[#3e2723] rounded-xl p-6 border border-[#5d4037] flex flex-col items-center justify-center relative overflow-hidden shadow-2xl">

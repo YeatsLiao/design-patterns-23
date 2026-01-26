@@ -92,31 +92,31 @@ const StateDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">{t('state.demo.title')}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('state.demo.title')}</h3>
         
         <div className="flex justify-center gap-6 mb-8">
-           <button onClick={handlePlay} className="p-4 bg-green-600 rounded-full hover:bg-green-500 shadow-lg text-white">
+           <button onClick={handlePlay} className="p-4 bg-green-600 rounded-full hover:bg-green-500 shadow-lg text-gray-900 dark:text-white">
              <Play size={24} fill="currentColor" />
            </button>
-           <button onClick={handlePause} className="p-4 bg-yellow-600 rounded-full hover:bg-yellow-500 shadow-lg text-white">
+           <button onClick={handlePause} className="p-4 bg-yellow-600 rounded-full hover:bg-yellow-500 shadow-lg text-gray-900 dark:text-white">
              <Pause size={24} fill="currentColor" />
            </button>
-           <button onClick={handleStop} className="p-4 bg-red-600 rounded-full hover:bg-red-500 shadow-lg text-white">
+           <button onClick={handleStop} className="p-4 bg-red-600 rounded-full hover:bg-red-500 shadow-lg text-gray-900 dark:text-white">
              <Square size={24} fill="currentColor" />
            </button>
         </div>
 
-        <div className="bg-black p-4 rounded text-center text-gray-400 font-mono">
+        <div className="bg-black p-4 rounded text-center text-gray-600 dark:text-gray-400 font-mono">
            {log}
         </div>
       </div>
 
-      <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 flex flex-col items-center justify-center min-h-[300px]">
+      <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center min-h-[300px]">
          <div className={clsx(
            "w-40 h-40 rounded-full flex items-center justify-center border-4 transition-all duration-500",
            status === 'Playing' ? "border-green-500 shadow-[0_0_30px_rgba(34,197,94,0.3)] animate-pulse" : 
-           status === 'Paused' ? "border-yellow-500" : "border-gray-700 opacity-50"
+           status === 'Paused' ? "border-yellow-500" : "border-gray-200 dark:border-gray-700 opacity-50"
          )}>
             <Music size={64} className={clsx(
               "transition-colors",
@@ -124,7 +124,7 @@ const StateDemo = () => {
               status === 'Paused' ? "text-yellow-400" : "text-gray-600"
             )} />
          </div>
-         <h4 className="mt-6 text-2xl font-bold text-white uppercase tracking-widest">{t('state.demo.status' + status)}</h4>
+         <h4 className="mt-6 text-2xl font-bold text-gray-900 dark:text-white uppercase tracking-widest">{t('state.demo.status' + status)}</h4>
       </div>
     </div>
   );
