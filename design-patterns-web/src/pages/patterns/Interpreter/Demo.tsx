@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 // Expression Interface
 interface Expression {
@@ -40,6 +41,7 @@ const parse = (input: string): Expression => {
 };
 
 const InterpreterDemo = () => {
+  const { t } = useTranslation();
   const [input, setInput] = useState("5 + 10 - 3");
   const [result, setResult] = useState<number | null>(null);
   const [treeVisualization, setTreeVisualization] = useState<string>("");
@@ -48,20 +50,20 @@ const InterpreterDemo = () => {
     try {
       const expression = parse(input);
       setResult(expression.interpret());
-      setTreeVisualization("Expression Tree Built successfully.");
+      setTreeVisualization(t('interpreter.demo.success'));
     } catch (e) {
       setResult(null);
-      setTreeVisualization("Invalid Expression format. Use space separated: '1 + 2'");
+      setTreeVisualization(t('interpreter.demo.error'));
     }
   };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">Math Interpreter</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('interpreter.demo.title')}</h3>
         
         <div className="mb-4">
-           <label className="text-sm text-gray-400 mb-2 block">Enter Expression (space separated)</label>
+           <label className="text-sm text-gray-400 mb-2 block">{t('interpreter.demo.label')}</label>
            <div className="flex gap-2">
              <input 
                type="text" 
@@ -73,22 +75,22 @@ const InterpreterDemo = () => {
                onClick={handleCalculate}
                className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded flex items-center gap-2"
              >
-               <Calculator size={18} /> Interpret
+               <Calculator size={18} /> {t('interpreter.demo.interpret')}
              </button>
            </div>
-           <p className="text-xs text-gray-500 mt-2">Supported: +, - (e.g., "10 + 5 - 2")</p>
+           <p className="text-xs text-gray-500 mt-2">{t('interpreter.demo.supported')}</p>
         </div>
       </div>
 
       <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 flex flex-col items-center justify-center min-h-[300px]">
          {result !== null ? (
            <div className="text-center">
-             <div className="text-sm text-gray-400 mb-2">Interpretation Result</div>
+             <div className="text-sm text-gray-400 mb-2">{t('interpreter.demo.result')}</div>
              <div className="text-6xl font-bold text-green-400 font-mono">{result}</div>
              <div className="mt-4 text-xs text-gray-600 font-mono">{treeVisualization}</div>
            </div>
          ) : (
-           <div className="text-gray-600">Waiting for input...</div>
+           <div className="text-gray-600">{t('interpreter.demo.waiting')}</div>
          )}
       </div>
     </div>

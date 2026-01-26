@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { User, Send, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 // Mediator Interface
 interface ChatMediator {
@@ -42,6 +43,7 @@ class UserComponent {
 }
 
 const MediatorDemo = () => {
+  const { t } = useTranslation();
   const [logs, setLogs] = useState<{from: string, msg: string}[]>([]);
   const [mediator] = useState(() => new ChatRoom()); // Persistent mediator instance
   
@@ -72,17 +74,17 @@ const MediatorDemo = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">Chat Room (Mediator)</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('mediator.demo.title')}</h3>
         
         <div className="space-y-4">
-           <UserControl user={user1} color="bg-pink-600" onSend={(msg) => handleSend(user1, msg)} />
-           <UserControl user={user2} color="bg-blue-600" onSend={(msg) => handleSend(user2, msg)} />
-           <UserControl user={user3} color="bg-green-600" onSend={(msg) => handleSend(user3, msg)} />
+           <UserControl user={user1} color="bg-pink-600" onSend={(msg) => handleSend(user1, msg)} t={t} />
+           <UserControl user={user2} color="bg-blue-600" onSend={(msg) => handleSend(user2, msg)} t={t} />
+           <UserControl user={user3} color="bg-green-600" onSend={(msg) => handleSend(user3, msg)} t={t} />
         </div>
       </div>
 
       <div className="bg-black rounded-xl p-6 border border-gray-800 h-[400px] overflow-y-auto flex flex-col-reverse">
-         {logs.length === 0 && <div className="text-gray-600 text-center my-auto">No messages yet...</div>}
+         {logs.length === 0 && <div className="text-gray-600 text-center my-auto">{t('mediator.demo.noMessages')}</div>}
          {logs.map((log, i) => (
            <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-2">
               <span className="text-xs font-bold text-gray-400">{log.from}:</span> <span className="text-white text-sm">{log.msg}</span>
@@ -93,7 +95,7 @@ const MediatorDemo = () => {
   );
 };
 
-const UserControl = ({ user, color, onSend }: any) => {
+const UserControl = ({ user, color, onSend, t }: any) => {
   const [msg, setMsg] = useState("");
   return (
     <div className="bg-gray-900 p-4 rounded-lg flex items-center gap-4">
@@ -105,7 +107,7 @@ const UserControl = ({ user, color, onSend }: any) => {
           <div className="flex gap-2">
              <input 
                className="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm text-white flex-1"
-               placeholder="Say something..."
+               placeholder={t('mediator.demo.saySomething')}
                value={msg}
                onChange={e => setMsg(e.target.value)}
              />

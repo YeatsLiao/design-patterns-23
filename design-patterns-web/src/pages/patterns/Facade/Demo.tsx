@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Home, Moon, Sun, Music, Tv, Lock, Wind } from 'lucide-react';
+import { Moon, Sun, Music, Tv, Lock, Wind } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 // Subsystem Components (Simulated)
 const SmartHomeFacadeDemo = () => {
+  const { t } = useTranslation();
   const [lights, setLights] = useState(false);
   const [tv, setTv] = useState(false);
   const [ac, setAc] = useState(false);
@@ -43,9 +45,9 @@ const SmartHomeFacadeDemo = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">Smart Home Controller (Facade)</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('facade.demo.title')}</h3>
         <p className="text-sm text-gray-400 mb-6">
-           Instead of toggling each switch manually, the Facade provides simple "Macro" buttons that orchestrate everything.
+           {t('facade.demo.description')}
         </p>
 
         <div className="grid grid-cols-1 gap-3">
@@ -55,8 +57,8 @@ const SmartHomeFacadeDemo = () => {
           >
             <Sun size={24} /> 
             <div className="text-left">
-               <div className="font-bold">Good Morning</div>
-               <div className="text-xs opacity-70">Open curtains, Music on, Lights on</div>
+               <div className="font-bold">{t('facade.demo.goodMorning')}</div>
+               <div className="text-xs opacity-70">{t('facade.demo.goodMorningDesc')}</div>
             </div>
           </button>
 
@@ -66,8 +68,8 @@ const SmartHomeFacadeDemo = () => {
           >
             <Tv size={24} /> 
             <div className="text-left">
-               <div className="font-bold">Movie Night</div>
-               <div className="text-xs opacity-70">Dim lights, TV on, AC on, Close curtains</div>
+               <div className="font-bold">{t('facade.demo.movieNight')}</div>
+               <div className="text-xs opacity-70">{t('facade.demo.movieNightDesc')}</div>
             </div>
           </button>
 
@@ -77,22 +79,22 @@ const SmartHomeFacadeDemo = () => {
           >
             <Moon size={24} /> 
             <div className="text-left">
-               <div className="font-bold">Good Night</div>
-               <div className="text-xs opacity-70">All off, AC on, Lock doors</div>
+               <div className="font-bold">{t('facade.demo.goodNight')}</div>
+               <div className="text-xs opacity-70">{t('facade.demo.goodNightDesc')}</div>
             </div>
           </button>
         </div>
       </div>
 
       <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
-         <h4 className="text-gray-400 uppercase tracking-wider text-xs mb-4">System State</h4>
+         <h4 className="text-gray-400 uppercase tracking-wider text-xs mb-4">{t('facade.demo.systemState')}</h4>
          
          <div className="grid grid-cols-2 gap-4">
-            <StatusItem icon={Sun} label="Lights" isOn={lights} color="text-yellow-400" />
-            <StatusItem icon={Tv} label="TV" isOn={tv} color="text-blue-400" />
-            <StatusItem icon={Wind} label="AC" isOn={ac} color="text-cyan-400" />
-            <StatusItem icon={Lock} label="Curtains" isOn={!curtains} onLabel="Closed" offLabel="Open" color="text-red-400" />
-            <StatusItem icon={Music} label="Music" isOn={music} color="text-green-400" />
+            <StatusItem icon={Sun} label={t('facade.demo.lights')} isOn={lights} color="text-yellow-400" />
+            <StatusItem icon={Tv} label={t('facade.demo.tv')} isOn={tv} color="text-blue-400" />
+            <StatusItem icon={Wind} label={t('facade.demo.ac')} isOn={ac} color="text-cyan-400" />
+            <StatusItem icon={Lock} label={t('facade.demo.curtains')} isOn={!curtains} onLabel={t('facade.demo.closed')} offLabel={t('facade.demo.open')} color="text-red-400" />
+            <StatusItem icon={Music} label={t('facade.demo.music')} isOn={music} color="text-green-400" />
          </div>
       </div>
     </div>

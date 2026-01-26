@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Folder, File, ChevronRight, ChevronDown, Plus } from 'lucide-react';
+import { Folder, File, ChevronRight, ChevronDown } from 'lucide-react';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 // Component Interface
 interface FileSystemItem {
@@ -92,15 +93,15 @@ const FileSystemNode = ({ item, level = 0, onCalculateSize }: { item: FileSystem
 };
 
 const CompositeDemo = () => {
+  const { t } = useTranslation();
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">File System Tree</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('composite.demo.title')}</h3>
         <p className="text-sm text-gray-400 mb-4">
-          Click any folder to calculate its total size recursively.
-          The client treats Files and Folders uniformly.
+          {t('composite.demo.instruction')}
         </p>
         
         <div className="bg-gray-950 rounded-lg p-4 border border-gray-800">
@@ -109,7 +110,7 @@ const CompositeDemo = () => {
       </div>
 
       <div className="bg-gray-900 rounded-xl p-6 border border-gray-800 flex flex-col items-center justify-center">
-         <h4 className="text-gray-400 uppercase tracking-wider text-xs mb-2">Selected Item Size</h4>
+         <h4 className="text-gray-400 uppercase tracking-wider text-xs mb-2">{t('composite.demo.selectedSize')}</h4>
          <div className="text-6xl font-bold text-white font-mono">
             {selectedSize !== null ? (
                <span>{selectedSize} <span className="text-2xl text-gray-500">KB</span></span>
@@ -119,8 +120,8 @@ const CompositeDemo = () => {
          </div>
          <p className="text-gray-500 text-xs mt-4 max-w-xs text-center">
             {selectedSize !== null 
-              ? "Calculated using the Composite pattern: getSize() is called recursively on all children."
-              : "Select a node to see calculation"}
+              ? t('composite.demo.calculated')
+              : t('composite.demo.selectNode')}
          </p>
       </div>
     </div>

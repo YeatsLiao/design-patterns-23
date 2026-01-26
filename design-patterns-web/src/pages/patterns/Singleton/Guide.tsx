@@ -1,23 +1,24 @@
 import React from 'react';
 import { Lightbulb, AlertTriangle, CheckCircle } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const SingletonGuide = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-8 max-w-3xl">
       {/* 1. Concept Section */}
       <section>
         <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
           <Lightbulb className="text-yellow-400" />
-          Concept
+          {t('common.concept')}
         </h2>
         <div className="prose prose-invert text-gray-300">
           <p>
-            Imagine a country having a government. A country can have only <strong>one</strong> official government. 
-            Regardless of the personal identities of the individuals who form the government, 
-            the title, "The Government of X", is a global point of access that identifies the group of people in charge.
+            <Trans i18nKey="singleton.concept.analogy" />
           </p>
           <p className="mt-4">
-            The <strong>Singleton Pattern</strong> ensures that a class has only one instance and provides a global point of access to it.
+            <Trans i18nKey="singleton.concept.definition" />
           </p>
         </div>
       </section>
@@ -28,7 +29,7 @@ const SingletonGuide = () => {
         <div className="bg-gray-950 rounded-lg p-4 border border-red-900/30">
           <h3 className="text-red-400 font-semibold mb-2 flex items-center gap-2">
             <AlertTriangle size={18} />
-            Naive Implementation
+            {t('common.naiveImplementation')}
           </h3>
           <pre className="text-xs text-gray-400 overflow-x-auto font-mono">
 {`class Database {
@@ -51,7 +52,7 @@ console.log(db1 === db2);
         <div className="bg-gray-950 rounded-lg p-4 border border-green-900/30">
           <h3 className="text-green-400 font-semibold mb-2 flex items-center gap-2">
             <CheckCircle size={18} />
-            Singleton Implementation
+            {t('common.goodImplementation')}
           </h3>
           <pre className="text-xs text-gray-400 overflow-x-auto font-mono">
 {`class Database {
@@ -79,10 +80,10 @@ console.log(db1 === db2);
 
       {/* 3. When to use */}
       <section>
-        <h3 className="text-xl font-semibold text-white mb-3">When to use?</h3>
+        <h3 className="text-xl font-semibold text-white mb-3">{t('common.whenToUse')}</h3>
         <ul className="list-disc list-inside space-y-2 text-gray-300">
-          <li>Use the Singleton pattern when a class in your program should have just a single instance available to all clients; for example, a single database object shared by different parts of the program.</li>
-          <li>Use the Singleton pattern when you need stricter control over global variables.</li>
+          <li>{t('singleton.usage.point1')}</li>
+          <li>{t('singleton.usage.point2')}</li>
         </ul>
       </section>
     </div>

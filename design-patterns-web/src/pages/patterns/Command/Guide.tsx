@@ -1,23 +1,23 @@
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const CommandGuide = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-8 max-w-3xl">
       <section>
-        <h2 className="text-2xl font-bold text-white mb-4">Concept</h2>
+        <h2 className="text-2xl font-bold text-white mb-4">{t('common.concept')}</h2>
         <p className="text-gray-300">
-          The <strong>Command</strong> pattern turns a request into a stand-alone object that contains all information about the request. 
-          This transformation lets you parameterize methods with different requests, delay or queue a request's execution, and support undoable operations.
+          <Trans i18nKey="command.concept.definition" />
         </p>
         <p className="text-gray-300 mt-2">
-          It's like ordering food at a restaurant. You (Client) give an order (Command) to the waiter (Invoker). 
-          The waiter doesn't cook; he passes the order to the chef (Receiver). 
-          Because the order is an object, it can be queued, modified, or cancelled.
+          <Trans i18nKey="command.concept.analogy" />
         </p>
       </section>
 
       <section className="bg-gray-950 rounded-lg p-4 border border-gray-800">
-         <h3 className="text-blue-400 font-semibold mb-2">Code Example</h3>
+         <h3 className="text-blue-400 font-semibold mb-2">{t('common.codeExample')}</h3>
          <pre className="text-xs text-gray-400 overflow-x-auto font-mono">
 {`interface Command {
   execute(): void;

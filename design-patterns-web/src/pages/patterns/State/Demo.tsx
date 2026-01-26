@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Play, Pause, Square, Music } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 // State Interface
 interface AudioState {
@@ -12,41 +13,41 @@ interface AudioState {
 
 // Concrete States
 class PlayingState implements AudioState {
-  constructor(private player: AudioPlayer) {}
-  play() { return "Already playing..."; }
+  constructor(private player: AudioPlayer, private t: (key: string) => string) {}
+  play() { return this.t('state.demo.alreadyPlaying'); }
   pause() { 
     this.player.setState(this.player.pausedState); 
-    return "Paused."; 
+    return this.t('state.demo.paused'); 
   }
   stop() { 
     this.player.setState(this.player.stoppedState); 
-    return "Stopped."; 
+    return this.t('state.demo.stopped'); 
   }
   getName() { return "Playing"; }
 }
 
 class PausedState implements AudioState {
-  constructor(private player: AudioPlayer) {}
+  constructor(private player: AudioPlayer, private t: (key: string) => string) {}
   play() { 
     this.player.setState(this.player.playingState); 
-    return "Resuming..."; 
+    return this.t('state.demo.resuming'); 
   }
-  pause() { return "Already paused..."; }
+  pause() { return this.t('state.demo.alreadyPaused'); }
   stop() { 
     this.player.setState(this.player.stoppedState); 
-    return "Stopped."; 
+    return this.t('state.demo.stopped'); 
   }
   getName() { return "Paused"; }
 }
 
 class StoppedState implements AudioState {
-  constructor(private player: AudioPlayer) {}
+  constructor(private player: AudioPlayer, private t: (key: string) => string) {}
   play() { 
     this.player.setState(this.player.playingState); 
-    return "Starting playback..."; 
+    return this.t('state.demo.startingPlayback'); 
   }
-  pause() { return "Can't pause. Player is stopped."; }
-  stop() { return "Already stopped."; }
+  pause() { return this.t('state.demo.cantPause'); }
+  stop() { return this.t('state.demo.alreadyStopped'); }
   getName() { return "Stopped"; }
 }
 
@@ -58,10 +59,10 @@ class AudioPlayer {
   
   private currentState: AudioState;
 
-  constructor(private onStateChange: (s: string) => void) {
-    this.playingState = new PlayingState(this);
-    this.pausedState = new PausedState(this);
-    this.stoppedState = new StoppedState(this);
+  constructor(private onStateChange: (s: string) => void, t: (key: string) => string) {
+    this.playingState = new PlayingState(this, t);
+    this.pausedState = new PausedState(this, t);
+    this.stoppedState = new StoppedState(this, t);
     this.currentState = this.stoppedState;
   }
 
@@ -78,11 +79,12 @@ class AudioPlayer {
 }
 
 const StateDemo = () => {
+  const { t } = useTranslation();
   const [status, setStatus] = useState("Stopped");
-  const [log, setLog] = useState("Ready");
+  const [log, setLog] = useState(t('state.demo.ready'));
   
   // Create player only once
-  const [player] = useState(() => new AudioPlayer(setStatus));
+  const [player] = useState(() => new AudioPlayer(setStatus, t));
 
   const handlePlay = () => setLog(player.play());
   const handlePause = () => setLog(player.pause());
@@ -91,7 +93,7 @@ const StateDemo = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">Music Player State Machine</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('state.demo.title')}</h3>
         
         <div className="flex justify-center gap-6 mb-8">
            <button onClick={handlePlay} className="p-4 bg-green-600 rounded-full hover:bg-green-500 shadow-lg text-white">
@@ -122,7 +124,7 @@ const StateDemo = () => {
               status === 'Paused' ? "text-yellow-400" : "text-gray-600"
             )} />
          </div>
-         <h4 className="mt-6 text-2xl font-bold text-white uppercase tracking-widest">{status}</h4>
+         <h4 className="mt-6 text-2xl font-bold text-white uppercase tracking-widest">{t('state.demo.status' + status)}</h4>
       </div>
     </div>
   );

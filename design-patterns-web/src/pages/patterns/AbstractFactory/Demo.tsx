@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Smartphone, Monitor, Watch, Package, RefreshCw, AlertCircle } from 'lucide-react';
+import { Smartphone, Monitor, Watch, Package, AlertCircle } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 // Types
 type Ecosystem = 'apple' | 'samsung';
@@ -15,6 +16,7 @@ interface Product {
 }
 
 const AbstractFactoryDemo = () => {
+  const { t } = useTranslation();
   // Bad Practice: Mixing ecosystems randomly
   const [mixedProducts, setMixedProducts] = useState<Product[]>([]);
   
@@ -82,14 +84,14 @@ const AbstractFactoryDemo = () => {
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-red-400 flex items-center gap-2">
             <AlertCircle size={20} />
-            Inconsistent Families
+            {t('abstractFactory.demo.inconsistentFamilies')}
           </h3>
-          <button onClick={() => setMixedProducts([])} className="text-xs text-gray-500 hover:text-white">Clear</button>
+          <button onClick={() => setMixedProducts([])} className="text-xs text-gray-500 hover:text-white">{t('common.clear')}</button>
         </div>
 
         <div className="mb-6 p-4 bg-gray-900/50 rounded-lg border border-red-900/20">
           <p className="text-sm text-gray-400 mb-3">
-            Without Abstract Factory, you might accidentally mix products that don't work well together.
+            {t('abstractFactory.demo.inconsistentFamiliesDesc')}
           </p>
           <div className="flex gap-2">
             <button onClick={() => createRandomProduct('phone')} className="px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm text-white flex items-center gap-2">
@@ -118,7 +120,7 @@ const AbstractFactoryDemo = () => {
                 </motion.div>
               ))}
             </AnimatePresence>
-            {mixedProducts.length === 0 && <span className="text-gray-700 text-xs w-full text-center mt-10">Empty desk...</span>}
+            {mixedProducts.length === 0 && <span className="text-gray-700 text-xs w-full text-center mt-10">{t('abstractFactory.demo.emptyDesk')}</span>}
         </div>
         
         {/* Warning about mixing */}
@@ -129,7 +131,7 @@ const AbstractFactoryDemo = () => {
             className="mt-4 p-3 bg-red-900/20 border border-red-500/30 rounded text-red-300 text-xs flex items-center gap-2"
           >
             <AlertCircle size={14} />
-            Warning: Incompatible ecosystems detected! AirDrop won't work!
+            {t('abstractFactory.demo.warning')}
           </motion.div>
         )}
       </div>
@@ -139,14 +141,14 @@ const AbstractFactoryDemo = () => {
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-purple-400 flex items-center gap-2">
             <Package size={20} />
-            Abstract Factory
+            {t('abstractFactory.demo.abstractFactory')}
           </h3>
-          <button onClick={() => setEcosystemProducts([])} className="text-xs text-gray-500 hover:text-white">Clear</button>
+          <button onClick={() => setEcosystemProducts([])} className="text-xs text-gray-500 hover:text-white">{t('common.clear')}</button>
         </div>
 
         <div className="mb-6 p-4 bg-gray-900/50 rounded-lg border border-purple-900/20">
           <p className="text-sm text-gray-400 mb-3">
-            Select a Factory. It guarantees all created products belong to the same family.
+            {t('abstractFactory.demo.abstractFactoryDesc')}
           </p>
           
           <div className="flex items-center justify-between bg-gray-950 p-2 rounded-lg mb-4">
@@ -158,7 +160,7 @@ const AbstractFactoryDemo = () => {
                   currentFactory === 'apple' ? "bg-gray-200 text-gray-900 font-bold" : "text-gray-400 hover:bg-gray-800"
                 )}
               >
-                Apple Factory
+                {t('abstractFactory.demo.appleFactory')}
               </button>
               <button
                 onClick={() => setCurrentFactory('samsung')}
@@ -167,20 +169,20 @@ const AbstractFactoryDemo = () => {
                   currentFactory === 'samsung' ? "bg-blue-900 text-white font-bold" : "text-gray-400 hover:bg-gray-800"
                 )}
               >
-                Samsung Factory
+                {t('abstractFactory.demo.samsungFactory')}
               </button>
             </div>
             <div className="text-xs text-gray-500 uppercase tracking-wider font-mono">
-              Active
+              {t('abstractFactory.demo.active')}
             </div>
           </div>
 
           <div className="flex gap-2">
             <button onClick={() => createFamilyProduct('phone')} className="flex-1 px-3 py-2 bg-purple-600 hover:bg-purple-500 rounded text-sm text-white flex justify-center items-center gap-2">
-              <Smartphone size={16} /> Create Phone
+              <Smartphone size={16} /> {t('abstractFactory.demo.createPhone')}
             </button>
             <button onClick={() => createFamilyProduct('laptop')} className="flex-1 px-3 py-2 bg-purple-600 hover:bg-purple-500 rounded text-sm text-white flex justify-center items-center gap-2">
-              <Monitor size={16} /> Create Laptop
+              <Monitor size={16} /> {t('abstractFactory.demo.createLaptop')}
             </button>
           </div>
         </div>
@@ -207,7 +209,7 @@ const AbstractFactoryDemo = () => {
                 </motion.div>
               ))}
             </AnimatePresence>
-            {ecosystemProducts.length === 0 && <span className="text-gray-700 text-xs w-full text-center my-auto">Production line empty...</span>}
+            {ecosystemProducts.length === 0 && <span className="text-gray-700 text-xs w-full text-center my-auto">{t('abstractFactory.demo.productionLineEmpty')}</span>}
         </div>
       </div>
     </div>

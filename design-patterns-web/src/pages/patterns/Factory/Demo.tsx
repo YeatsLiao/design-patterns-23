@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Truck, Car, Bike, Package, Settings, AlertCircle, ShoppingCart } from 'lucide-react';
+import { Truck, Car, Bike, Settings, AlertCircle, ShoppingCart } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation, Trans } from 'react-i18next';
 
 // Types of products
 type ProductType = 'car' | 'truck' | 'bike';
@@ -13,6 +14,7 @@ interface Product {
 }
 
 const FactoryDemo = () => {
+  const { t } = useTranslation();
   // --- Bad Practice State ---
   const [badProducts, setBadProducts] = useState<Product[]>([]);
   
@@ -76,15 +78,14 @@ const FactoryDemo = () => {
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-red-400 flex items-center gap-2">
             <AlertCircle size={20} />
-            Tight Coupling
+            {t('factory.demo.tightCoupling')}
           </h3>
-          <button onClick={clearAll} className="text-xs text-gray-500 hover:text-white">Clear All</button>
+          <button onClick={clearAll} className="text-xs text-gray-500 hover:text-white">{t('common.clearAll')}</button>
         </div>
 
         <div className="mb-6 p-4 bg-gray-900/50 rounded-lg border border-red-900/20">
           <p className="text-sm text-gray-400 mb-3">
-            Client code must import and instantiate each class directly. 
-            If product logic changes, you have to update code <strong>everywhere</strong>.
+             <Trans i18nKey="factory.demo.tightCouplingDesc" />
           </p>
           <div className="flex flex-wrap gap-2">
             <button onClick={createCarManually} className="flex items-center gap-2 px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded text-sm text-blue-300">
@@ -112,7 +113,7 @@ const FactoryDemo = () => {
                 </motion.div>
               ))}
             </AnimatePresence>
-            {badProducts.length === 0 && <span className="text-gray-700 text-xs w-full text-center mt-10">No messy objects created yet...</span>}
+            {badProducts.length === 0 && <span className="text-gray-700 text-xs w-full text-center mt-10">{t('factory.demo.noMessyObjects')}</span>}
         </div>
       </div>
 
@@ -121,19 +122,18 @@ const FactoryDemo = () => {
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-blue-400 flex items-center gap-2">
             <Settings size={20} />
-            Factory Pattern
+            {t('factory.demo.factoryPattern')}
           </h3>
         </div>
 
         <div className="mb-6 p-4 bg-gray-900/50 rounded-lg border border-blue-900/20">
           <p className="text-sm text-gray-400 mb-3">
-            Client just asks the <strong>Factory</strong> for a product. 
-            The creation logic is encapsulated inside the factory.
+             <Trans i18nKey="factory.demo.factoryPatternDesc" />
           </p>
           
           <div className="flex items-center gap-4 bg-gray-950 p-3 rounded-lg border border-gray-700">
             <div className="flex-1">
-              <label className="text-xs text-gray-500 block mb-1">Select Logistics Type</label>
+              <label className="text-xs text-gray-500 block mb-1">{t('factory.demo.selectLogistics')}</label>
               <div className="flex gap-2">
                 {(['car', 'truck', 'bike'] as ProductType[]).map(type => (
                   <button
@@ -157,7 +157,7 @@ const FactoryDemo = () => {
               className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-lg shadow-lg transition-all active:scale-95"
             >
               <ShoppingCart size={18} />
-              <span>Order</span>
+              <span>{t('factory.demo.order')}</span>
             </button>
           </div>
         </div>
@@ -183,7 +183,7 @@ const FactoryDemo = () => {
                   </motion.div>
                 ))}
               </AnimatePresence>
-              {factoryProducts.length === 0 && <span className="text-gray-600 text-xs absolute top-2 left-2">Assembly line empty...</span>}
+              {factoryProducts.length === 0 && <span className="text-gray-600 text-xs absolute top-2 left-2">{t('factory.demo.assemblyLineEmpty')}</span>}
             </div>
         </div>
       </div>

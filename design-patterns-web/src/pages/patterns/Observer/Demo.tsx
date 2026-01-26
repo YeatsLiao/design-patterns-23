@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, User, Video, Send, Trash2, Heart } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 interface Subscriber {
   id: string;
@@ -16,6 +17,7 @@ interface Notification {
 }
 
 const ObserverDemo = () => {
+  const { t } = useTranslation();
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [videoTitle, setVideoTitle] = useState("New Tutorial: React Hooks");
@@ -57,7 +59,7 @@ const ObserverDemo = () => {
       const newNotifications = subscribers.map(sub => ({
         id: Math.random().toString(36),
         subscriberId: sub.id,
-        message: `New Video Uploaded: "${videoTitle}"`
+        message: t('observer.demo.newVideo', { title: videoTitle })
       }));
       
       setNotifications(prev => [...newNotifications, ...prev].slice(0, 20)); // Keep last 20
@@ -71,16 +73,16 @@ const ObserverDemo = () => {
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-red-400 flex items-center gap-2">
             <Video size={20} />
-            Publisher (Subject)
+            {t('observer.demo.titlePublisher')}
           </h3>
           <span className="text-xs font-mono bg-red-900/50 px-2 py-1 rounded text-red-200">
-            {subscribers.length} Subscribers
+            {t('observer.demo.subscribers', { count: subscribers.length })}
           </span>
         </div>
 
         <div className="bg-gray-900/50 p-6 rounded-xl flex flex-col gap-4 items-center justify-center min-h-[200px]">
           <div className="w-full max-w-xs">
-            <label className="text-xs text-gray-500 mb-1 block">Video Title</label>
+            <label className="text-xs text-gray-500 mb-1 block">{t('observer.demo.videoTitle')}</label>
             <input 
               type="text" 
               value={videoTitle}
@@ -104,27 +106,27 @@ const ObserverDemo = () => {
             {isUploading ? (
               <>
                 <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                Uploading...
+                {t('observer.demo.uploading')}
               </>
             ) : (
               <>
                 <Send size={18} />
-                Upload & Notify
+                {t('observer.demo.upload')}
               </>
             )}
           </button>
           
           {subscribers.length === 0 && (
-            <p className="text-xs text-red-400 mt-2">No subscribers to notify!</p>
+            <p className="text-xs text-red-400 mt-2">{t('observer.demo.noSubscribers')}</p>
           )}
         </div>
 
         {/* Subscriber Management */}
         <div className="mt-6">
           <div className="flex justify-between items-center mb-2">
-            <h4 className="text-sm font-semibold text-gray-400">Subscribers List</h4>
+            <h4 className="text-sm font-semibold text-gray-400">{t('observer.demo.subscribersList')}</h4>
             <button onClick={subscribe} className="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded text-white transition-colors">
-              + Add Subscriber
+              {t('observer.demo.addSubscriber')}
             </button>
           </div>
           <div className="flex flex-wrap gap-2 min-h-[50px]">
@@ -150,7 +152,7 @@ const ObserverDemo = () => {
                 </motion.div>
               ))}
             </AnimatePresence>
-            {subscribers.length === 0 && <span className="text-gray-600 text-xs italic">List is empty. Add some fans!</span>}
+            {subscribers.length === 0 && <span className="text-gray-600 text-xs italic">{t('observer.demo.emptyList')}</span>}
           </div>
         </div>
       </div>
@@ -160,9 +162,9 @@ const ObserverDemo = () => {
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-semibold text-blue-400 flex items-center gap-2">
             <Bell size={20} />
-            Observers (Notifications)
+            {t('observer.demo.titleObservers')}
           </h3>
-          <button onClick={() => setNotifications([])} className="text-xs text-gray-500 hover:text-white">Clear</button>
+          <button onClick={() => setNotifications([])} className="text-xs text-gray-500 hover:text-white">{t('observer.demo.clear')}</button>
         </div>
 
         <div className="bg-gray-950 rounded-xl p-4 h-[400px] overflow-y-auto custom-scrollbar relative">
@@ -185,7 +187,7 @@ const ObserverDemo = () => {
                   </div>
                   <div>
                     <div className="text-xs text-gray-400 flex items-center gap-1">
-                      {sub ? sub.name : "Former Subscriber"} received:
+                      {t('observer.demo.received', { name: sub ? sub.name : t('observer.demo.formerSubscriber') })}
                     </div>
                     <div className="text-sm text-white font-medium">{notif.message}</div>
                   </div>
@@ -198,7 +200,7 @@ const ObserverDemo = () => {
           {notifications.length === 0 && (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-700 opacity-50">
               <Bell size={48} className="mb-2" />
-              <p>No notifications yet</p>
+              <p>{t('observer.demo.noNotifications')}</p>
             </div>
           )}
         </div>

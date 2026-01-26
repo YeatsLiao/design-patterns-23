@@ -4,6 +4,8 @@ import { LayoutDashboard, Box, Layers, Zap, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const SidebarItem = ({ to, icon: Icon, label, active }: { to: string; icon: any; label: string; active: boolean }) => (
   <Link
@@ -37,6 +39,7 @@ const SubMenuLink = ({ to, label, active }: { to: string; label: string; active:
 const Layout = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
@@ -61,55 +64,59 @@ const Layout = () => {
         <div className="p-6 border-b border-gray-800 flex-shrink-0">
           <div className="flex items-center gap-2 text-blue-500">
             <Box size={28} />
-            <h1 className="text-xl font-bold text-white">Design Patterns</h1>
+            <h1 className="text-xl font-bold text-white">{t('common.patterns')}</h1>
           </div>
-          <p className="text-xs text-gray-500 mt-2">Interactive Learning Platform</p>
+          <p className="text-xs text-gray-500 mt-2">{t('common.interactiveLearning')}</p>
         </div>
 
         <nav className="p-4 overflow-y-auto flex-1 custom-scrollbar">
-          <SidebarItem to="/" icon={LayoutDashboard} label="Dashboard" active={isActive('/')} />
+          <SidebarItem to="/" icon={LayoutDashboard} label={t('common.dashboard')} active={isActive('/')} />
           
           <div className="mt-6 mb-2 px-4 text-xs font-semibold text-blue-400 uppercase tracking-wider flex items-center gap-2">
-            <Box size={14} /> Creational
+            <Box size={14} /> {t('common.creational')}
           </div>
           <div className="space-y-0.5 mb-4">
-            <SubMenuLink to="/patterns/singleton" label="Singleton" active={location.pathname === '/patterns/singleton'} />
-            <SubMenuLink to="/patterns/factory" label="Factory Method" active={location.pathname === '/patterns/factory'} />
-            <SubMenuLink to="/patterns/abstract-factory" label="Abstract Factory" active={location.pathname === '/patterns/abstract-factory'} />
-            <SubMenuLink to="/patterns/builder" label="Builder" active={location.pathname === '/patterns/builder'} />
-            <SubMenuLink to="/patterns/prototype" label="Prototype" active={location.pathname === '/patterns/prototype'} />
+            <SubMenuLink to="/patterns/singleton" label={t('patterns.singleton')} active={location.pathname === '/patterns/singleton'} />
+            <SubMenuLink to="/patterns/factory" label={t('patterns.factory')} active={location.pathname === '/patterns/factory'} />
+            <SubMenuLink to="/patterns/abstract-factory" label={t('patterns.abstractFactory')} active={location.pathname === '/patterns/abstract-factory'} />
+            <SubMenuLink to="/patterns/builder" label={t('patterns.builder')} active={location.pathname === '/patterns/builder'} />
+            <SubMenuLink to="/patterns/prototype" label={t('patterns.prototype')} active={location.pathname === '/patterns/prototype'} />
           </div>
 
           <div className="mt-6 mb-2 px-4 text-xs font-semibold text-green-400 uppercase tracking-wider flex items-center gap-2">
-            <Layers size={14} /> Structural
+            <Layers size={14} /> {t('common.structural')}
           </div>
           <div className="space-y-0.5 mb-4">
-            <SubMenuLink to="/patterns/adapter" label="Adapter" active={location.pathname === '/patterns/adapter'} />
-            <SubMenuLink to="/patterns/bridge" label="Bridge" active={location.pathname === '/patterns/bridge'} />
-            <SubMenuLink to="/patterns/composite" label="Composite" active={location.pathname === '/patterns/composite'} />
-            <SubMenuLink to="/patterns/decorator" label="Decorator" active={location.pathname === '/patterns/decorator'} />
-            <SubMenuLink to="/patterns/facade" label="Facade" active={location.pathname === '/patterns/facade'} />
-            <SubMenuLink to="/patterns/flyweight" label="Flyweight" active={location.pathname === '/patterns/flyweight'} />
-            <SubMenuLink to="/patterns/proxy" label="Proxy" active={location.pathname === '/patterns/proxy'} />
+            <SubMenuLink to="/patterns/adapter" label={t('patterns.adapter')} active={location.pathname === '/patterns/adapter'} />
+            <SubMenuLink to="/patterns/bridge" label={t('patterns.bridge')} active={location.pathname === '/patterns/bridge'} />
+            <SubMenuLink to="/patterns/composite" label={t('patterns.composite')} active={location.pathname === '/patterns/composite'} />
+            <SubMenuLink to="/patterns/decorator" label={t('patterns.decorator')} active={location.pathname === '/patterns/decorator'} />
+            <SubMenuLink to="/patterns/facade" label={t('patterns.facade')} active={location.pathname === '/patterns/facade'} />
+            <SubMenuLink to="/patterns/flyweight" label={t('patterns.flyweight')} active={location.pathname === '/patterns/flyweight'} />
+            <SubMenuLink to="/patterns/proxy" label={t('patterns.proxy')} active={location.pathname === '/patterns/proxy'} />
           </div>
 
           <div className="mt-6 mb-2 px-4 text-xs font-semibold text-yellow-400 uppercase tracking-wider flex items-center gap-2">
-            <Zap size={14} /> Behavioral
+            <Zap size={14} /> {t('common.behavioral')}
           </div>
           <div className="space-y-0.5 mb-10">
-            <SubMenuLink to="/patterns/chain-of-responsibility" label="Chain of Resp." active={location.pathname === '/patterns/chain-of-responsibility'} />
-            <SubMenuLink to="/patterns/command" label="Command" active={location.pathname === '/patterns/command'} />
-            <SubMenuLink to="/patterns/interpreter" label="Interpreter" active={location.pathname === '/patterns/interpreter'} />
-            <SubMenuLink to="/patterns/iterator" label="Iterator" active={location.pathname === '/patterns/iterator'} />
-            <SubMenuLink to="/patterns/mediator" label="Mediator" active={location.pathname === '/patterns/mediator'} />
-            <SubMenuLink to="/patterns/memento" label="Memento" active={location.pathname === '/patterns/memento'} />
-            <SubMenuLink to="/patterns/observer" label="Observer" active={location.pathname === '/patterns/observer'} />
-            <SubMenuLink to="/patterns/state" label="State" active={location.pathname === '/patterns/state'} />
-            <SubMenuLink to="/patterns/strategy" label="Strategy" active={location.pathname === '/patterns/strategy'} />
-            <SubMenuLink to="/patterns/template-method" label="Template Method" active={location.pathname === '/patterns/template-method'} />
-            <SubMenuLink to="/patterns/visitor" label="Visitor" active={location.pathname === '/patterns/visitor'} />
+            <SubMenuLink to="/patterns/chain-of-responsibility" label={t('patterns.chainOfResponsibility')} active={location.pathname === '/patterns/chain-of-responsibility'} />
+            <SubMenuLink to="/patterns/command" label={t('patterns.command')} active={location.pathname === '/patterns/command'} />
+            <SubMenuLink to="/patterns/interpreter" label={t('patterns.interpreter')} active={location.pathname === '/patterns/interpreter'} />
+            <SubMenuLink to="/patterns/iterator" label={t('patterns.iterator')} active={location.pathname === '/patterns/iterator'} />
+            <SubMenuLink to="/patterns/mediator" label={t('patterns.mediator')} active={location.pathname === '/patterns/mediator'} />
+            <SubMenuLink to="/patterns/memento" label={t('patterns.memento')} active={location.pathname === '/patterns/memento'} />
+            <SubMenuLink to="/patterns/observer" label={t('patterns.observer')} active={location.pathname === '/patterns/observer'} />
+            <SubMenuLink to="/patterns/state" label={t('patterns.state')} active={location.pathname === '/patterns/state'} />
+            <SubMenuLink to="/patterns/strategy" label={t('patterns.strategy')} active={location.pathname === '/patterns/strategy'} />
+            <SubMenuLink to="/patterns/template-method" label={t('patterns.templateMethod')} active={location.pathname === '/patterns/template-method'} />
+            <SubMenuLink to="/patterns/visitor" label={t('patterns.visitor')} active={location.pathname === '/patterns/visitor'} />
           </div>
         </nav>
+        
+        <div className="p-4 border-t border-gray-800">
+           <LanguageSwitcher />
+        </div>
       </aside>
 
       {/* Main Content */}

@@ -1,23 +1,22 @@
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const BuilderGuide = () => {
+  const { t } = useTranslation();
   return (
     <div className="space-y-8 max-w-3xl">
       <section>
-        <h2 className="text-2xl font-bold text-white mb-4">Concept</h2>
+        <h2 className="text-2xl font-bold text-white mb-4">{t('common.concept')}</h2>
         <p className="text-gray-300">
-          The <strong>Builder</strong> pattern lets you construct complex objects step by step. 
-          The pattern allows you to produce different types and representations of an object using the same construction code.
+          <Trans i18nKey="builder.concept.definition" />
         </p>
         <p className="text-gray-300 mt-2">
-          Imagine a burger restaurant. Some customers want cheese, some want no lettuce, some want double patties. 
-          Instead of creating separate classes for <code>CheeseBurger</code>, <code>NoLettuceBurger</code>, etc., 
-          you use a builder to assemble the burger according to specific preferences.
+          <Trans i18nKey="builder.concept.analogy" />
         </p>
       </section>
       
       <section className="bg-gray-950 rounded-lg p-4 border border-gray-800">
-         <h3 className="text-blue-400 font-semibold mb-2">Code Example</h3>
+         <h3 className="text-blue-400 font-semibold mb-2">{t('common.codeExample')}</h3>
          <pre className="text-xs text-gray-400 overflow-x-auto font-mono">
 {`class BurgerBuilder {
   private burger: Burger;

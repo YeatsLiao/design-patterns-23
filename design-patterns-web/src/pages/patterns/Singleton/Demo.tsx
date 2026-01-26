@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Database, Plus, RefreshCw, Trash2 } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 // Type definition for our "Database Instance"
 interface DBInstance {
@@ -13,6 +14,8 @@ interface DBInstance {
 const COLORS = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-purple-500', 'bg-pink-500'];
 
 const SingletonDemo = () => {
+  const { t } = useTranslation();
+  
   // State for "Bad Practice" (Multiple Instances)
   const [multipleInstances, setMultipleInstances] = useState<DBInstance[]>([]);
   
@@ -44,9 +47,9 @@ const SingletonDemo = () => {
         createdAt: Date.now(),
       };
       setSingletonInstance(newInstance);
-      logAccess("Instance Created");
+      logAccess(t('singleton.demo.logCreated'));
     } else {
-      logAccess("Existing Instance Returned");
+      logAccess(t('singleton.demo.logExisting'));
     }
   };
 
@@ -64,13 +67,13 @@ const SingletonDemo = () => {
       {/* LEFT: Bad Practice (No Singleton) */}
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-red-400">🚫 Without Singleton</h3>
+          <h3 className="text-xl font-semibold text-red-400">{t('singleton.demo.withoutSingleton')}</h3>
           <div className="flex gap-2">
             <button 
               onClick={createNewInstance}
               className="flex items-center gap-2 px-3 py-1.5 bg-red-500/20 text-red-400 hover:bg-red-500/30 rounded-lg transition-colors text-sm font-medium"
             >
-              <Plus size={16} /> New Instance
+              <Plus size={16} /> {t('singleton.demo.newInstance')}
             </button>
             <button 
               onClick={clearMultipleInstances}
@@ -83,7 +86,7 @@ const SingletonDemo = () => {
 
         <div className="min-h-[200px] bg-gray-900/50 rounded-lg p-4 mb-4 relative overflow-hidden">
           <p className="text-sm text-gray-500 mb-4 text-center">
-            Click "New Instance" multiple times. Notice how a new object is created every time.
+            {t('singleton.demo.instructionBad')}
           </p>
           <div className="flex flex-wrap gap-3 justify-center content-start">
             <AnimatePresence>
@@ -106,20 +109,20 @@ const SingletonDemo = () => {
           </div>
         </div>
         <div className="text-xs text-gray-400 font-mono bg-gray-950 p-3 rounded">
-          Instances created: {multipleInstances.length}
+          {t('singleton.demo.instancesCreated')}: {multipleInstances.length}
         </div>
       </div>
 
       {/* RIGHT: Singleton Pattern */}
       <div className="bg-gray-800 rounded-xl p-6 border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-semibold text-blue-400">✅ Singleton Pattern</h3>
+          <h3 className="text-xl font-semibold text-blue-400">{t('singleton.demo.withSingleton')}</h3>
           <div className="flex gap-2">
             <button 
               onClick={getSingletonInstance}
               className="flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white hover:bg-blue-500 rounded-lg transition-colors text-sm font-medium shadow-lg shadow-blue-900/20"
             >
-              <RefreshCw size={16} /> Get Instance
+              <RefreshCw size={16} /> {t('singleton.demo.getInstance')}
             </button>
             <button 
               onClick={resetSingleton}
@@ -133,7 +136,7 @@ const SingletonDemo = () => {
 
         <div className="min-h-[200px] bg-gray-900/50 rounded-lg p-4 mb-4 flex flex-col items-center justify-center relative">
           <p className="text-sm text-gray-500 mb-4 absolute top-4 w-full text-center px-4">
-            Click "Get Instance" multiple times. It always returns the SAME object.
+            {t('singleton.demo.instructionGood')}
           </p>
           
           <AnimatePresence mode='wait'>
@@ -156,7 +159,7 @@ const SingletonDemo = () => {
         </div>
 
         <div className="h-32 bg-gray-950 p-3 rounded overflow-hidden font-mono text-xs">
-          <div className="text-gray-500 mb-1 border-b border-gray-800 pb-1">Access Log:</div>
+          <div className="text-gray-500 mb-1 border-b border-gray-800 pb-1">{t('singleton.demo.accessLog')}:</div>
           <div className="flex flex-col gap-1">
             {accessLog.map((log, i) => (
               <motion.div 
@@ -168,7 +171,7 @@ const SingletonDemo = () => {
                 &gt; {log}
               </motion.div>
             ))}
-            {accessLog.length === 0 && <span className="text-gray-700 italic">No access yet...</span>}
+            {accessLog.length === 0 && <span className="text-gray-700 italic">{t('singleton.demo.noAccess')}</span>}
           </div>
         </div>
       </div>

@@ -1,22 +1,22 @@
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const PrototypeGuide = () => {
+  const { t } = useTranslation();
   return (
     <div className="space-y-8 max-w-3xl">
       <section>
-        <h2 className="text-2xl font-bold text-white mb-4">Concept</h2>
+        <h2 className="text-2xl font-bold text-white mb-4">{t('common.concept')}</h2>
         <p className="text-gray-300">
-          The <strong>Prototype</strong> pattern lets you copy existing objects without making your code dependent on their classes.
+          <Trans i18nKey="prototype.concept.definition" />
         </p>
         <p className="text-gray-300 mt-2">
-          It delegates the cloning process to the actual objects that are being cloned. 
-          The pattern declares a common interface for all objects that support cloning. 
-          This interface usually lets you clone an object without coupling your code to the class of that object.
+          <Trans i18nKey="prototype.concept.analogy" />
         </p>
       </section>
 
       <section className="bg-gray-950 rounded-lg p-4 border border-gray-800">
-         <h3 className="text-blue-400 font-semibold mb-2">Code Example</h3>
+         <h3 className="text-blue-400 font-semibold mb-2">{t('common.codeExample')}</h3>
          <pre className="text-xs text-gray-400 overflow-x-auto font-mono">
 {`interface Prototype {
   clone(): Prototype;

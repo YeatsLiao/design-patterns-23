@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, RefreshCw, Trash2, Circle, Square } from 'lucide-react';
+import { Copy, Trash2, Circle, Square } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 interface Shape {
   id: string;
@@ -12,6 +13,7 @@ interface Shape {
 }
 
 const PrototypeDemo = () => {
+  const { t } = useTranslation();
   const [shapes, setShapes] = useState<Shape[]>([
     { id: 'orig-1', type: 'circle', color: 'bg-red-500', x: 20, y: 20 },
     { id: 'orig-2', type: 'square', color: 'bg-blue-500', x: 80, y: 20 }
@@ -35,15 +37,14 @@ const PrototypeDemo = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
         <div className="flex justify-between items-center mb-6">
-           <h3 className="text-xl font-semibold text-white">Prototype / Cloner</h3>
+           <h3 className="text-xl font-semibold text-white">{t('prototype.demo.title')}</h3>
            <button onClick={clearClones} className="text-xs text-gray-400 hover:text-white flex items-center gap-1">
-             <Trash2 size={12} /> Clear Clones
+             <Trash2 size={12} /> {t('prototype.demo.clearClones')}
            </button>
         </div>
         
         <p className="text-sm text-gray-400 mb-4">
-          Click the copy button on any shape to create an exact clone (Prototype).
-          Notice how the clone inherits the properties (color, shape) of the original.
+          {t('prototype.demo.instruction')}
         </p>
 
         <div className="space-y-2">
@@ -56,7 +57,7 @@ const PrototypeDemo = () => {
                <button 
                  onClick={() => cloneShape(shape)}
                  className="p-2 bg-gray-800 hover:bg-gray-700 rounded-md text-blue-400 transition-colors"
-                 title="Clone this object"
+                 title={t('prototype.demo.cloneTooltip')}
                >
                  <Copy size={16} />
                </button>
@@ -67,7 +68,7 @@ const PrototypeDemo = () => {
 
       {/* Visualization Canvas */}
       <div className="bg-gray-900 rounded-xl border border-gray-800 relative min-h-[400px] overflow-hidden">
-        <div className="absolute top-4 left-4 text-xs text-gray-600 font-mono">Canvas</div>
+        <div className="absolute top-4 left-4 text-xs text-gray-600 font-mono">{t('prototype.demo.canvas')}</div>
         <AnimatePresence>
           {shapes.map((shape) => (
             <motion.div

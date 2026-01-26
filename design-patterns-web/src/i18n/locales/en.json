@@ -1,0 +1,499 @@
+{
+  "common": {
+    "dashboard": "Dashboard",
+    "creational": "Creational",
+    "structural": "Structural",
+    "behavioral": "Behavioral",
+    "patterns": "Patterns",
+    "interactiveLearning": "Interactive Learning Platform",
+    "masterPatterns": "Master Design Patterns",
+    "subtitle": "Interactive visualizations, real-world examples, and side-by-side code comparisons. Learn the 23 GoF design patterns the modern way.",
+    "selectPattern": "Select a pattern to start learning",
+    "startLearning": "Start Learning",
+    "concept": "Concept",
+    "codeExample": "Code Example",
+    "demo": "Interactive Demo",
+    "whenToUse": "When to use?",
+    "naiveImplementation": "Naive Implementation",
+    "goodImplementation": "Factory Method",
+    "clearAll": "Clear All",
+    "clear": "Clear"
+  },
+  "patterns": {
+    "singleton": "Singleton",
+    "factory": "Factory Method",
+    "abstractFactory": "Abstract Factory",
+    "builder": "Builder",
+    "prototype": "Prototype",
+    "adapter": "Adapter",
+    "bridge": "Bridge",
+    "composite": "Composite",
+    "decorator": "Decorator",
+    "facade": "Facade",
+    "flyweight": "Flyweight",
+    "proxy": "Proxy",
+    "chainOfResponsibility": "Chain of Responsibility",
+    "command": "Command",
+    "interpreter": "Interpreter",
+    "iterator": "Iterator",
+    "mediator": "Mediator",
+    "memento": "Memento",
+    "observer": "Observer",
+    "state": "State",
+    "strategy": "Strategy",
+    "templateMethod": "Template Method",
+    "visitor": "Visitor"
+  },
+  "singleton": {
+    "concept": {
+      "analogy": "Imagine a country having a government. A country can have only <strong>one</strong> official government. Regardless of the personal identities of the individuals who form the government, the title, 'The Government of X', is a global point of access that identifies the group of people in charge.",
+      "definition": "The <strong>Singleton Pattern</strong> ensures that a class has only one instance and provides a global point of access to it."
+    },
+    "usage": {
+      "point1": "Use the Singleton pattern when a class in your program should have just a single instance available to all clients; for example, a single database object shared by different parts of the program.",
+      "point2": "Use the Singleton pattern when you need stricter control over global variables."
+    },
+    "demo": {
+      "withoutSingleton": "🚫 Without Singleton",
+      "withSingleton": "✅ Singleton Pattern",
+      "newInstance": "New Instance",
+      "getInstance": "Get Instance",
+      "reset": "Reset",
+      "instructionBad": "Click \"New Instance\" multiple times. Notice how a new object is created every time.",
+      "instructionGood": "Click \"Get Instance\" multiple times. It always returns the SAME object.",
+      "instancesCreated": "Instances created",
+      "accessLog": "Access Log",
+      "logCreated": "Instance Created",
+      "logExisting": "Existing Instance Returned",
+      "noAccess": "No access yet..."
+    },
+    "title": "Singleton Pattern",
+    "description": "The Singleton Pattern ensures that a class has only one instance and provides a global point of access to it."
+  },
+  "factory": {
+    "concept": {
+      "analogy": "Imagine you are building a logistics management application. Initially, your app only handles transportation by <strong>Trucks</strong>. Later, your app becomes popular, and you need to add <strong>Ships</strong> for sea logistics.",
+      "definition": "If your code is tightly coupled to the <code>Truck</code> class, adding <code>Ship</code> would require changing the entire codebase. The <strong>Factory Method</strong> pattern solves this by defining an interface for creating objects in a superclass, but allowing subclasses to alter the type of objects that will be created."
+    },
+    "usage": {
+      "point1": "Use the Factory Method when you don't know beforehand the exact types and dependencies of the objects your code should work with.",
+      "point2": "Use it when you want to provide users of your library or framework with a way to extend its internal components.",
+      "point3": "Use it when you want to save system resources by reusing existing objects instead of rebuilding them each time."
+    },
+    "demo": {
+      "tightCoupling": "Tight Coupling",
+      "tightCouplingDesc": "Client code must import and instantiate each class directly. If product logic changes, you have to update code <strong>everywhere</strong>.",
+      "factoryPattern": "Factory Pattern",
+      "factoryPatternDesc": "Client just asks the <strong>Factory</strong> for a product. The creation logic is encapsulated inside the factory.",
+      "selectLogistics": "Select Logistics Type",
+      "order": "Order",
+      "assemblyLineEmpty": "Assembly line empty...",
+      "noMessyObjects": "No messy objects created yet..."
+    },
+    "title": "Factory Method Pattern",
+    "description": "If your code is tightly coupled to the Truck class, adding Ship would require changing the entire codebase. The Factory Method pattern solves this by defining an interface for creating objects in a superclass, but allowing subclasses to alter the type of objects that will be created."
+  },
+  "abstractFactory": {
+    "concept": {
+      "analogy": "Think of it like buying furniture. You might want a <strong>Modern</strong> Sofa and a <strong>Modern</strong> Chair. Or a <strong>Victorian</strong> Sofa and a <strong>Victorian</strong> Chair. You usually don't want to mix a Victorian Sofa with Modern Chairs. The Abstract Factory ensures you get a matching set.",
+      "definition": "The <strong>Abstract Factory</strong> pattern lets you produce families of related objects without specifying their concrete classes."
+    },
+    "usage": {
+      "point1": "Use Abstract Factory when your code needs to work with various families of related products (e.g. Apple vs Samsung, LightTheme vs DarkTheme UI components).",
+      "point2": "Use it when you want to enforce that products from the same factory are used together."
+    },
+    "demo": {
+      "inconsistentFamilies": "Inconsistent Families",
+      "inconsistentFamiliesDesc": "Without Abstract Factory, you might accidentally mix products that don't work well together.",
+      "abstractFactory": "Abstract Factory",
+      "abstractFactoryDesc": "Select a Factory. It guarantees all created products belong to the same family.",
+      "warning": "Warning: Incompatible ecosystems detected! AirDrop won't work!",
+      "active": "Active",
+      "createPhone": "Create Phone",
+      "createLaptop": "Create Laptop",
+      "productionLineEmpty": "Production line empty...",
+      "emptyDesk": "Empty desk...",
+      "appleFactory": "Apple Factory",
+      "samsungFactory": "Samsung Factory"
+    },
+    "title": "Abstract Factory Pattern",
+    "description": "The Abstract Factory pattern lets you produce families of related objects without specifying their concrete classes."
+  },
+  "builder": {
+    "concept": {
+      "analogy": "Imagine a burger restaurant. Some customers want cheese, some want no lettuce, some want double patties. Instead of creating separate classes for <code>CheeseBurger</code>, <code>NoLettuceBurger</code>, etc., you use a builder to assemble the burger according to specific preferences.",
+      "definition": "The <strong>Builder</strong> pattern lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code."
+    },
+    "demo": {
+      "title": "Burger Builder",
+      "step1": "Step 1: Add Ingredients",
+      "step2": "Step 2: Finish",
+      "complete": "Complete Burger (Add Top Bun)",
+      "reset": "Reset",
+      "yourBurger": "Your Custom Burger",
+      "layers": "layers"
+    },
+    "title": "Builder Pattern",
+    "description": "The Builder pattern lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code."
+  },
+  "prototype": {
+    "concept": {
+      "analogy": "It delegates the cloning process to the actual objects that are being cloned. The pattern declares a common interface for all objects that support cloning. This interface usually lets you clone an object without coupling your code to the class of that object.",
+      "definition": "The <strong>Prototype</strong> pattern lets you copy existing objects without making your code dependent on their classes."
+    },
+    "demo": {
+      "title": "Prototype / Cloner",
+      "clearClones": "Clear Clones",
+      "instruction": "Click the copy button on any shape to create an exact clone (Prototype). Notice how the clone inherits the properties (color, shape) of the original.",
+      "cloneTooltip": "Clone this object",
+      "canvas": "Canvas"
+    },
+    "title": "Prototype Pattern",
+    "description": "The Prototype pattern lets you copy existing objects without making your code dependent on their classes."
+  },
+  "adapter": {
+    "concept": {
+      "analogy": "It acts as a wrapper between two objects. It catches calls for one object and transforms them to format and interface recognizable by the second object. Just like a travel power adapter converts your plug shape to fit into the foreign wall socket.",
+      "definition": "The <strong>Adapter</strong> pattern allows objects with incompatible interfaces to collaborate."
+    },
+    "demo": {
+      "title": "Travel Adapter",
+      "devicePlug": "Your Device Plug",
+      "usPlug": "US Plug (Flat II)",
+      "euPlug": "EU Plug (Round ••)",
+      "inventory": "Inventory",
+      "adapterName": "US-to-EU Adapter",
+      "device": "Device",
+      "adapt": "Adapt",
+      "powerConnected": "Power Connected!",
+      "incompatible": "Incompatible!"
+    },
+    "title": "Adapter Pattern",
+    "description": "The Adapter pattern allows objects with incompatible interfaces to collaborate."
+  },
+  "bridge": {
+    "concept": {
+      "analogy": "In the demo, the <strong>Remote</strong> (Abstraction) is separated from the <strong>Device</strong> (Implementation). You can create new types of Remotes (AdvancedRemote) without changing the Devices, and new Devices without changing the Remote code.",
+      "definition": "The <strong>Bridge</strong> pattern lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently."
+    },
+    "demo": {
+      "title": "Universal Remote",
+      "controlTV": "Control TV",
+      "controlRadio": "Control Radio",
+      "smartTV": "Smart TV",
+      "homeRadio": "Home Radio"
+    },
+    "title": "Bridge Pattern",
+    "description": "The Bridge pattern lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently."
+  },
+  "composite": {
+    "concept": {
+      "analogy": "It's perfect for hierarchical structures like file systems, menus, or organization charts. The client code can treat a simple element (File) and a complex container (Folder) in the same way (e.g., calling <code>getSize()</code>).",
+      "definition": "The <strong>Composite</strong> pattern lets you compose objects into tree structures and then work with these structures as if they were individual objects."
+    },
+    "demo": {
+      "title": "File System Tree",
+      "instruction": "Click any folder to calculate its total size recursively. The client treats Files and Folders uniformly.",
+      "selectedSize": "Selected Item Size",
+      "calculated": "Calculated using the Composite pattern: getSize() is called recursively on all children.",
+      "selectNode": "Select a node to see calculation"
+    },
+    "title": "Composite Pattern",
+    "description": "The Composite pattern lets you compose objects into tree structures and then work with these structures as if they were individual objects."
+  },
+  "decorator": {
+    "concept": {
+      "analogy": "It's an alternative to subclassing. Instead of creating <code>MilkCoffee</code>, <code>SugarCoffee</code>, <code>MilkSugarCoffee</code>, you create a <code>Coffee</code> object and \"wrap\" it with <code>MilkDecorator</code> and then <code>SugarDecorator</code>.",
+      "definition": "The <strong>Decorator</strong> pattern lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors."
+    },
+    "demo": {
+      "title": "Starbuzz Coffee",
+      "addMilk": "Add Milk",
+      "addSugar": "Add Sugar",
+      "addWhip": "Add Whip",
+      "startOver": "Start Over"
+    },
+    "title": "Decorator Pattern",
+    "description": "The Decorator pattern lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors."
+  },
+  "facade": {
+    "concept": {
+      "analogy": "It doesn't hide the subsystem completely but provides a convenient entry point for the most common features. Like a smart home panel: pressing \"Movie Mode\" does 10 different things behind the scenes, but you only interact with one button.",
+      "definition": "The <strong>Facade</strong> pattern provides a simplified interface to a library, a framework, or any other complex set of classes."
+    },
+    "demo": {
+      "title": "Smart Home Controller (Facade)",
+      "description": "Instead of toggling each switch manually, the Facade provides simple \"Macro\" buttons that orchestrate everything.",
+      "goodMorning": "Good Morning",
+      "goodMorningDesc": "Open curtains, Music on, Lights on",
+      "movieNight": "Movie Night",
+      "movieNightDesc": "Dim lights, TV on, AC on, Close curtains",
+      "goodNight": "Good Night",
+      "goodNightDesc": "All off, AC on, Lock doors",
+      "systemState": "System State",
+      "lights": "Lights",
+      "tv": "TV",
+      "ac": "AC",
+      "curtains": "Curtains",
+      "music": "Music",
+      "closed": "Closed",
+      "open": "Open"
+    },
+    "title": "Facade Pattern",
+    "description": "The Facade pattern provides a simplified interface to a library, a framework, or any other complex set of classes."
+  },
+  "flyweight": {
+    "concept": {
+      "analogy": "In a forest game, each tree has a position (unique) and a texture/model (shared). Instead of loading the texture 1,000 times for 1,000 trees, you load it once and have all 1,000 trees reference that single texture object.",
+      "definition": "The <strong>Flyweight</strong> pattern lets you fit more objects into the available amount of RAM by sharing common parts of state between multiple objects instead of keeping all of the data in each object."
+    },
+    "demo": {
+      "title": "Forest Renderer",
+      "plant10": "Plant 10 Trees",
+      "plant100": "Plant 100 Trees",
+      "plant1000": "Plant 1,000 Trees",
+      "clear": "Clear Forest",
+      "totalTrees": "Total Trees:",
+      "estMemoryNaive": "Est. Memory (Naive):",
+      "estMemoryFlyweight": "Est. Memory (Flyweight):",
+      "savings": "Savings:",
+      "renderingCapped": "Rendering capped at 500 (DOM limitation),<br/>but {count} objects exist in memory!"
+    },
+    "title": "Flyweight Pattern",
+    "description": "The Flyweight pattern lets you fit more objects into the available amount of RAM by sharing common parts of state between multiple objects instead of keeping all of the data in each object."
+  },
+  "proxy": {
+    "concept": {
+      "analogy": "Common uses include: <ul className=\"list-disc list-inside mt-2 ml-2\"><li><strong>Caching Proxy</strong>: Save results of expensive operations.</li><li><strong>Protection Proxy</strong>: Check permissions before access.</li><li><strong>Virtual Proxy</strong>: Delay initialization of heavy objects.</li></ul>",
+      "definition": "The <strong>Proxy</strong> pattern provides a substitute or placeholder for another object. A proxy controls access to the original object, allowing you to perform something either before or after the request gets through to the original object."
+    },
+    "demo": {
+      "title": "Cached Video Proxy",
+      "downloadVid1": "Download Video #1",
+      "downloadVid2": "Download Video #2",
+      "client": "Client",
+      "proxyCache": "Proxy (Cache)",
+      "realServer": "Real Server",
+      "logRequest": "Client: Requesting video {id}...",
+      "logCacheHit": "Proxy: Cache HIT! Returning saved data for {id}.",
+      "logCacheMiss": "Proxy: Cache MISS. Sending request to RealSubject...",
+      "logReceived": "Proxy: Received data. Saved to cache."
+    },
+    "title": "Proxy Pattern",
+    "description": "The Proxy pattern provides a substitute or placeholder for another object. A proxy controls access to the original object, allowing you to perform something either before or after the request gets through to the original object."
+  },
+  "chainOfResponsibility": {
+    "concept": {
+      "analogy": "It's like calling customer support. First, you get a robot (Handler 1). If it can't help, it passes you to a human agent (Handler 2). If the issue is critical, the agent passes you to a manager (Handler 3).",
+      "definition": "The <strong>Chain of Responsibility</strong> pattern lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain."
+    },
+    "demo": {
+      "title": "Support Ticket System",
+      "simpleQuery": "Simple Query",
+      "simpleQueryDesc": "e.g., \"Reset Password\"",
+      "complexIssue": "Complex Issue",
+      "complexIssueDesc": "e.g., \"Billing Dispute\"",
+      "criticalFailure": "Critical Failure",
+      "criticalFailureDesc": "e.g., \"System Down\"",
+      "resolutionLog": "Resolution Log",
+      "botReply": "🤖 Bot: I can help with \"{request}\". Here is a link to the FAQ.",
+      "agentReply": "👨‍💼 Agent: I see you have a complex issue \"{request}\". I'll resolve it manually.",
+      "managerReply": "🤵 Manager: Critical issue \"{request}\" escalated to me. Investigating ASAP.",
+      "noHandler": "No handler found"
+    },
+    "title": "Chain of Responsibility Pattern",
+    "description": "The Chain of Responsibility pattern lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain."
+  },
+  "command": {
+    "concept": {
+      "analogy": "It's like ordering food at a restaurant. You (Client) give an order (Command) to the waiter (Invoker). The waiter doesn't cook; he passes the order to the chef (Receiver). Because the order is an object, it can be queued, modified, or cancelled.",
+      "definition": "The <strong>Command</strong> pattern turns a request into a stand-alone object that contains all information about the request. This transformation lets you parameterize methods with different requests, delay or queue a request's execution, and support undoable operations."
+    },
+    "demo": {
+      "title": "Smart Remote (History Aware)",
+      "on": "ON",
+      "off": "OFF",
+      "red": "Red",
+      "blue": "Blue",
+      "undo": "Undo Last Action ({count})"
+    },
+    "title": "Command Pattern",
+    "description": "The Command pattern turns a request into a stand-alone object that contains all information about the request. This transformation lets you parameterize methods with different requests, delay or queue a request's execution, and support undoable operations."
+  },
+  "interpreter": {
+    "concept": {
+      "analogy": "It's rarely used for general-purpose programming languages (too complex) but great for simple domain-specific languages (DSL), like math expressions, SQL parsers, or regular expressions.",
+      "definition": "The <strong>Interpreter</strong> pattern is used to define a grammatical representation for a language and an interpreter to interpret the grammar."
+    },
+    "demo": {
+      "title": "Math Interpreter",
+      "label": "Enter Expression (space separated)",
+      "interpret": "Interpret",
+      "supported": "Supported: +, - (e.g., \"10 + 5 - 2\")",
+      "result": "Interpretation Result",
+      "waiting": "Waiting for input...",
+      "success": "Expression Tree Built successfully.",
+      "error": "Invalid Expression format. Use space separated: '1 + 2'"
+    },
+    "title": "Interpreter Pattern",
+    "description": "The Interpreter pattern is used to define a grammatical representation for a language and an interpreter to interpret the grammar."
+  },
+  "iterator": {
+    "concept": {
+      "analogy": "It decouples the traversal algorithms from the collection objects. You can have different iterators (Forward, Backward, Shuffle) for the same collection without changing the collection code.",
+      "definition": "The <strong>Iterator</strong> pattern lets you traverse elements of a collection without exposing its underlying representation (list, stack, tree, etc.)."
+    },
+    "demo": {
+      "title": "Music Playlist Iterator",
+      "nowPlaying": "Now Playing",
+      "stopped": "Stopped",
+      "endOfPlaylist": "End of Playlist"
+    },
+    "title": "Iterator Pattern",
+    "description": "The Iterator pattern lets you traverse elements of a collection without exposing its underlying representation (list, stack, tree, etc.)."
+  },
+  "mediator": {
+    "concept": {
+      "analogy": "Instead of Alice sending a message directly to Bob and Charlie (Many-to-Many dependency), Alice sends it to the ChatRoom (Mediator), and the ChatRoom distributes it. This reduces coupling: components don't need to know about each other, only about the Mediator.",
+      "definition": "The <strong>Mediator</strong> pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object."
+    },
+    "demo": {
+      "title": "Chat Room (Mediator)",
+      "noMessages": "No messages yet...",
+      "saySomething": "Say something...",
+      "userControl": "User Control"
+    },
+    "title": "Mediator Pattern",
+    "description": "The Mediator pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object."
+  },
+  "memento": {
+    "concept": {
+      "analogy": "It's commonly used for \"Undo\" mechanisms. The \"Originator\" (Editor) creates a \"Memento\" (Snapshot) containing its state. The \"Caretaker\" (History List) stores the memento but cannot read/tamper with it.",
+      "definition": "The <strong>Memento</strong> pattern lets you save and restore the previous state of an object without revealing the details of its implementation."
+    },
+    "demo": {
+      "title": "Text Editor (Snapshot)",
+      "placeholder": "Type something here...",
+      "save": "Save Snapshot",
+      "undo": "Undo ({count})",
+      "snapshotStored": "Snapshots stored in Memento objects.",
+      "caretakerDesc": "The \"Caretaker\" (HistoryManager) holds the stack but never modifies the contents."
+    },
+    "title": "Memento Pattern",
+    "description": "The Memento pattern lets you save and restore the previous state of an object without revealing the details of its implementation."
+  },
+  "observer": {
+    "concept": {
+      "analogy": "Think of <strong>YouTube</strong> or <strong>Newsletters</strong>. You (the Observer) subscribe to a Channel (the Subject). When the Channel uploads a new video, it notifies all its subscribers automatically. You don't need to check the channel every 5 minutes to see if there's new content.",
+      "definition": "The <strong>Observer</strong> pattern defines a subscription mechanism to notify multiple objects about any events that happen to the object they're observing."
+    },
+    "demo": {
+      "titlePublisher": "Publisher (Subject)",
+      "subscribers": "{count} Subscribers",
+      "videoTitle": "Video Title",
+      "upload": "Upload & Notify",
+      "uploading": "Uploading...",
+      "noSubscribers": "No subscribers to notify!",
+      "subscribersList": "Subscribers List",
+      "addSubscriber": "+ Add Subscriber",
+      "emptyList": "List is empty. Add some fans!",
+      "titleObservers": "Observers (Notifications)",
+      "clear": "Clear",
+      "received": "{name} received:",
+      "formerSubscriber": "Former Subscriber",
+      "noNotifications": "No notifications yet",
+      "newVideo": "New Video Uploaded: \"{title}\""
+    },
+    "title": "Observer Pattern",
+    "description": "The Observer pattern defines a subscription mechanism to notify multiple objects about any events that happen to the object they're observing."
+  },
+  "state": {
+    "concept": {
+      "analogy": "Instead of massive <code>switch</code> statements inside a <code>click()</code> method (e.g., <code>if state == playing then pause else if state == stopped then play</code>), you delegate the execution to a state object.",
+      "definition": "The <strong>State</strong> pattern lets an object alter its behavior when its internal state changes. It appears as if the object changed its class."
+    },
+    "demo": {
+      "title": "Music Player State Machine",
+      "ready": "Ready",
+      "alreadyPlaying": "Already playing...",
+      "paused": "Paused.",
+      "stopped": "Stopped.",
+      "resuming": "Resuming...",
+      "alreadyPaused": "Already paused...",
+      "startingPlayback": "Starting playback...",
+      "cantPause": "Can't pause. Player is stopped.",
+      "alreadyStopped": "Already stopped.",
+      "statusPlaying": "Playing",
+      "statusPaused": "Paused",
+      "statusStopped": "Stopped"
+    },
+    "title": "State Pattern",
+    "description": "The State pattern lets an object alter its behavior when its internal state changes. It appears as if the object changed its class."
+  },
+  "strategy": {
+    "concept": {
+      "analogy": "Imagine navigating to the airport. You can choose a <strong>Bus</strong> strategy, a <strong>Taxi</strong> strategy, or a <strong>Bike</strong> strategy. They all accomplish the same goal (getting to the airport), but the algorithm (cost, time, route) is different. The client (traveler) can swap strategies at runtime based on their needs (budget vs speed).",
+      "definition": "The <strong>Strategy</strong> pattern defines a family of algorithms, puts each of them into a separate class, and makes their objects interchangeable."
+    },
+    "demo": {
+      "title": "Checkout (Context)",
+      "totalAmount": "Total Amount",
+      "selectStrategy": "Select Payment Strategy:",
+      "creditCard": "Card",
+      "paypal": "PayPal",
+      "bank": "Bank",
+      "payNow": "Pay ${amount} Now",
+      "processing": "Processing Strategy...",
+      "executionTitle": "Strategy Execution",
+      "context": "Current Strategy Context",
+      "requiresCard": "Requires 16-digit number + CVV.",
+      "redirectPayPal": "You will be redirected to PayPal",
+      "bankProcessing": "Processing takes 3-5 business days.",
+      "success": "Payment Successful!",
+      "reset": "Click to reset",
+      "logs": "System Logs:",
+      "waiting": "Waiting for transaction...",
+      "delegating": "Context: Delegating payment to {strategy} strategy...",
+      "ccCharged": "Credit Card Strategy: Charged ${amount} (Fee: 2.5%)",
+      "paypalPaid": "PayPal Strategy: Redirecting... Paid ${amount} successfully.",
+      "bankInvoice": "Bank Transfer Strategy: Created invoice for ${amount}. Pending approval."
+    },
+    "title": "Strategy Pattern",
+    "description": "The Strategy pattern defines a family of algorithms, puts each of them into a separate class, and makes their objects interchangeable."
+  },
+  "templateMethod": {
+    "concept": {
+      "analogy": "Think of a recipe. The general steps are \"Prep -> Cook -> Serve\". The abstract class defines this flow. A <code>PastaDish</code> subclass implements \"Boil Water\" for Cook. A <code>SteakDish</code> subclass implements \"Grill\" for Cook. The order remains the same.",
+      "definition": "The <strong>Template Method</strong> pattern defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure."
+    },
+    "demo": {
+      "title": "Data Mining Pipeline",
+      "processPDF": "Process PDF",
+      "processCSV": "Process CSV",
+      "executionSteps": "Execution Steps",
+      "pdfOpen": "PDF: Opening PDF Viewer...",
+      "pdfExtract": "PDF: OCR Scanning text layers...",
+      "pdfParse": "PDF: Converting raw text to JSON...",
+      "csvOpen": "CSV: Opening File Stream...",
+      "csvExtract": "CSV: Reading comma-separated lines...",
+      "csvParse": "CSV: Splitting columns to JSON...",
+      "commonClose": "Common: Closing File handle."
+    },
+    "title": "Template Method Pattern",
+    "description": "The Template Method pattern defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure."
+  },
+  "visitor": {
+    "concept": {
+      "analogy": "Imagine you have a graph of Shape objects. You want to export them to XML. Instead of adding an <code>exportXML()</code> method to every Shape class (and cluttering them), you create a separate <code>XmlExportVisitor</code> class. The shapes just \"accept\" the visitor.",
+      "definition": "The <strong>Visitor</strong> pattern lets you separate algorithms from the objects on which they operate."
+    },
+    "demo": {
+      "title": "Shape Exporter",
+      "exportXML": "Export XML",
+      "exportJSON": "Export JSON",
+      "placeholder": "// Click export to see result..."
+    },
+    "title": "Visitor Pattern",
+    "description": "The Visitor pattern lets you separate algorithms from the objects on which they operate."
+  }
+}

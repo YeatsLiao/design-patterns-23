@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Layout from './components/Layout';
+import { useTranslation } from 'react-i18next';
 
 import SingletonPage from './pages/patterns/Singleton';
 import FactoryPage from './pages/patterns/Factory';
@@ -27,70 +28,75 @@ import TemplateMethodPage from './pages/patterns/TemplateMethod';
 import VisitorPage from './pages/patterns/Visitor';
 
 // Placeholder components
-const Dashboard = () => (
-  <div className="space-y-6">
-    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white">
-      <h1 className="text-4xl font-bold mb-4">Master Design Patterns</h1>
-      <p className="text-lg opacity-90 max-w-2xl">
-        Interactive visualizations, real-world examples, and side-by-side code comparisons.
-        Learn the 23 GoF design patterns the modern way.
-      </p>
+const Dashboard = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="space-y-6">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white">
+        <h1 className="text-4xl font-bold mb-4">{t('common.masterPatterns')}</h1>
+        <p className="text-lg opacity-90 max-w-2xl">
+          {t('common.subtitle')}
+        </p>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-blue-500 transition-colors group cursor-pointer">
+          <h3 className="text-xl font-semibold text-blue-400 mb-2 group-hover:text-blue-300">{t('common.creational')}</h3>
+          <p className="text-gray-400 text-sm mb-4">Object creation mechanisms.</p>
+          <ul className="space-y-2">
+            <li>
+              <Link to="/patterns/singleton" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
+                {t('patterns.singleton')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/factory" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
+                {t('patterns.factory')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/abstract-factory" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
+                {t('patterns.abstractFactory')}
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
+          <h3 className="text-xl font-semibold text-green-400 mb-2">{t('common.structural')}</h3>
+          <p className="text-gray-400 text-sm">Relationships between entities.</p>
+        </div>
+        <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-yellow-500 transition-colors group cursor-pointer">
+          <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300">{t('common.behavioral')}</h3>
+          <p className="text-gray-400 text-sm mb-4">Communication patterns.</p>
+          <ul className="space-y-2">
+            <li>
+              <Link to="/patterns/observer" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
+                {t('patterns.observer')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/strategy" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
+                {t('patterns.strategy')}
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-blue-500 transition-colors group cursor-pointer">
-        <h3 className="text-xl font-semibold text-blue-400 mb-2 group-hover:text-blue-300">Creational</h3>
-        <p className="text-gray-400 text-sm mb-4">Object creation mechanisms.</p>
-        <ul className="space-y-2">
-          <li>
-            <a href="/patterns/singleton" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
-              Singleton
-            </a>
-          </li>
-          <li>
-            <a href="/patterns/factory" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
-              Factory Method
-            </a>
-          </li>
-          <li>
-            <a href="/patterns/abstract-factory" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
-              Abstract Factory
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
-        <h3 className="text-xl font-semibold text-green-400 mb-2">Structural</h3>
-        <p className="text-gray-400 text-sm">Relationships between entities.</p>
-      </div>
-      <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-yellow-500 transition-colors group cursor-pointer">
-        <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300">Behavioral</h3>
-        <p className="text-gray-400 text-sm mb-4">Communication patterns.</p>
-        <ul className="space-y-2">
-          <li>
-            <a href="/patterns/observer" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
-              Observer
-            </a>
-          </li>
-          <li>
-            <a href="/patterns/strategy" className="block p-2 rounded bg-gray-900 hover:bg-gray-700 text-gray-300 text-sm transition-colors">
-              Strategy
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
-const CategoryPage = ({ title }: { title: string }) => (
-  <div>
-    <h2 className="text-3xl font-bold text-white mb-6">{title} Patterns</h2>
-    <div className="bg-gray-800 rounded-xl p-10 text-center border border-gray-700 border-dashed">
-      <p className="text-gray-400">Select a pattern to start learning</p>
+const CategoryPage = ({ title }: { title: string }) => {
+  const { t } = useTranslation();
+  return (
+    <div>
+      <h2 className="text-3xl font-bold text-white mb-6">{title} Patterns</h2>
+      <div className="bg-gray-800 rounded-xl p-10 text-center border border-gray-700 border-dashed">
+        <p className="text-gray-400">{t('common.selectPattern')}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 function App() {
   return (

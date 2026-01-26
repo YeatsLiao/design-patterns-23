@@ -1,23 +1,23 @@
 import React from 'react';
-import { Lightbulb, AlertTriangle, CheckCircle, Truck } from 'lucide-react';
+import { Lightbulb, AlertTriangle, CheckCircle } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const FactoryGuide = () => {
+  const { t } = useTranslation();
   return (
     <div className="space-y-8 max-w-3xl">
       {/* 1. Concept Section */}
       <section>
         <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
           <Lightbulb className="text-yellow-400" />
-          Concept
+          {t('common.concept')}
         </h2>
         <div className="prose prose-invert text-gray-300">
           <p>
-            Imagine you are building a logistics management application. Initially, your app only handles transportation by <strong>Trucks</strong>.
-            Later, your app becomes popular, and you need to add <strong>Ships</strong> for sea logistics.
+             <Trans i18nKey="factory.concept.analogy" />
           </p>
           <p className="mt-4">
-            If your code is tightly coupled to the <code>Truck</code> class, adding <code>Ship</code> would require changing the entire codebase.
-            The <strong>Factory Method</strong> pattern solves this by defining an interface for creating objects in a superclass, but allowing subclasses to alter the type of objects that will be created.
+             <Trans i18nKey="factory.concept.definition" />
           </p>
         </div>
       </section>
@@ -28,7 +28,7 @@ const FactoryGuide = () => {
         <div className="bg-gray-950 rounded-lg p-4 border border-red-900/30">
           <h3 className="text-red-400 font-semibold mb-2 flex items-center gap-2">
             <AlertTriangle size={18} />
-            Coupled Code
+            {t('common.naiveImplementation')}
           </h3>
           <pre className="text-xs text-gray-400 overflow-x-auto font-mono">
 {`// Client code needs to know everything
@@ -52,7 +52,7 @@ function deliver(type) {
         <div className="bg-gray-950 rounded-lg p-4 border border-green-900/30">
           <h3 className="text-green-400 font-semibold mb-2 flex items-center gap-2">
             <CheckCircle size={18} />
-            Factory Method
+            {t('common.goodImplementation')}
           </h3>
           <pre className="text-xs text-gray-400 overflow-x-auto font-mono">
 {`// Client works with the interface
@@ -77,11 +77,11 @@ new RoadLogistics().planDelivery();`}
 
       {/* 3. When to use */}
       <section>
-        <h3 className="text-xl font-semibold text-white mb-3">When to use?</h3>
+        <h3 className="text-xl font-semibold text-white mb-3">{t('common.whenToUse')}</h3>
         <ul className="list-disc list-inside space-y-2 text-gray-300">
-          <li>Use the Factory Method when you don't know beforehand the exact types and dependencies of the objects your code should work with.</li>
-          <li>Use it when you want to provide users of your library or framework with a way to extend its internal components.</li>
-          <li>Use it when you want to save system resources by reusing existing objects instead of rebuilding them each time (similar to Object Pool).</li>
+          <li>{t('factory.usage.point1')}</li>
+          <li>{t('factory.usage.point2')}</li>
+          <li>{t('factory.usage.point3')}</li>
         </ul>
       </section>
     </div>

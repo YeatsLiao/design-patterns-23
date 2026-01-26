@@ -1,24 +1,24 @@
 import React from 'react';
 import { Lightbulb, Radio, PlayCircle } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const ObserverGuide = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-8 max-w-3xl">
       {/* 1. Concept Section */}
       <section>
         <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
           <Lightbulb className="text-yellow-400" />
-          Concept
+          {t('common.concept')}
         </h2>
         <div className="prose prose-invert text-gray-300">
           <p>
-            The <strong>Observer</strong> pattern defines a subscription mechanism to notify multiple objects about any events that happen to the object they're observing.
+            <Trans i18nKey="observer.concept.definition" />
           </p>
           <p className="mt-4">
-            Think of <strong>YouTube</strong> or <strong>Newsletters</strong>. 
-            You (the Observer) subscribe to a Channel (the Subject). 
-            When the Channel uploads a new video, it notifies all its subscribers automatically. 
-            You don't need to check the channel every 5 minutes to see if there's new content.
+            <Trans i18nKey="observer.concept.analogy" />
           </p>
         </div>
       </section>
@@ -81,7 +81,7 @@ channel.notify("New Video!");`}
 
       {/* 3. When to use */}
       <section>
-        <h3 className="text-xl font-semibold text-white mb-3">When to use?</h3>
+        <h3 className="text-xl font-semibold text-white mb-3">{t('common.whenToUse')}</h3>
         <ul className="list-disc list-inside space-y-2 text-gray-300">
           <li>Use the Observer pattern when changes to the state of one object may require changing other objects, and the actual set of objects is unknown or changes dynamically.</li>
           <li>Use the pattern when some objects in your app must observe others, but only for a limited time or in specific cases.</li>

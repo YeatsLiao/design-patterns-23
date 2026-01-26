@@ -1,0 +1,499 @@
+{
+  "common": {
+    "dashboard": "仪表盘",
+    "creational": "创建型",
+    "structural": "结构型",
+    "behavioral": "行为型",
+    "patterns": "设计模式",
+    "interactiveLearning": "交互式学习平台",
+    "masterPatterns": "精通设计模式",
+    "subtitle": "交互式可视化演示、真实世界案例以及代码对比。以现代化的方式学习 GoF 的 23 种设计模式。",
+    "selectPattern": "选择一个模式开始学习",
+    "startLearning": "开始学习",
+    "concept": "核心概念",
+    "codeExample": "代码示例",
+    "demo": "交互演示",
+    "whenToUse": "适用场景",
+    "naiveImplementation": "普通实现 (问题)",
+    "goodImplementation": "正确实现",
+    "clearAll": "清空所有",
+    "clear": "清空"
+  },
+  "patterns": {
+    "singleton": "单例模式 (Singleton)",
+    "factory": "工厂方法 (Factory Method)",
+    "abstractFactory": "抽象工厂 (Abstract Factory)",
+    "builder": "建造者模式 (Builder)",
+    "prototype": "原型模式 (Prototype)",
+    "adapter": "适配器模式 (Adapter)",
+    "bridge": "桥接模式 (Bridge)",
+    "composite": "组合模式 (Composite)",
+    "decorator": "装饰器模式 (Decorator)",
+    "facade": "外观模式 (Facade)",
+    "flyweight": "享元模式 (Flyweight)",
+    "proxy": "代理模式 (Proxy)",
+    "chainOfResponsibility": "责任链模式 (Chain of Resp.)",
+    "command": "命令模式 (Command)",
+    "interpreter": "解释器模式 (Interpreter)",
+    "iterator": "迭代器模式 (Iterator)",
+    "mediator": "中介者模式 (Mediator)",
+    "memento": "备忘录模式 (Memento)",
+    "observer": "观察者模式 (Observer)",
+    "state": "状态模式 (State)",
+    "strategy": "策略模式 (Strategy)",
+    "templateMethod": "模板方法 (Template Method)",
+    "visitor": "访问者模式 (Visitor)"
+  },
+  "singleton": {
+    "concept": {
+      "analogy": "想象一下一个国家只能有一个政府。无论组成政府的具体个人是谁，“某国政府”这个头衔是唯一的全局访问点，用来标识这个掌权群体。",
+      "definition": "<strong>单例模式</strong> 确保一个类只有一个实例，并提供一个访问该实例的全局节点。"
+    },
+    "usage": {
+      "point1": "当你的程序中的某个类对于所有客户端来说都只能有一个可用的实例时，可以使用单例模式；例如，一个共享的数据库对象。",
+      "point2": "当你需要对全局变量进行更严格的控制时，可以使用单例模式。"
+    },
+    "demo": {
+      "withoutSingleton": "🚫 普通模式 (非单例)",
+      "withSingleton": "✅ 单例模式",
+      "newInstance": "创建新实例",
+      "getInstance": "获取实例",
+      "reset": "重置",
+      "instructionBad": "多次点击“创建新实例”。注意每次都会创建一个全新的对象。",
+      "instructionGood": "多次点击“获取实例”。注意它总是返回同一个对象。",
+      "instancesCreated": "已创建实例数",
+      "accessLog": "访问日志",
+      "logCreated": "实例已创建",
+      "logExisting": "返回现有实例",
+      "noAccess": "暂无访问..."
+    },
+    "title": "单例模式 (Singleton)",
+    "description": "单例模式 确保一个类只有一个实例，并提供一个访问该实例的全局节点。"
+  },
+  "factory": {
+    "concept": {
+      "analogy": "想象一下你正在开发一个物流管理应用。最初，你的应用只处理<strong>卡车</strong>运输。后来，你的应用变得流行起来，你需要添加<strong>轮船</strong>进行海上物流。",
+      "definition": "如果你的代码与 <code>Truck</code> 类紧密耦合，添加 <code>Ship</code> 将需要修改整个代码库。<strong>工厂方法</strong>模式通过在父类中定义创建对象的接口，但允许子类修改将要创建的对象类型来解决这个问题。"
+    },
+    "usage": {
+      "point1": "当你在编写代码时，不知道代码需要处理的确切对象类型和依赖关系时，请使用工厂方法。",
+      "point2": "当你希望为库或框架的用户提供扩展其内部组件的方法时，请使用它。",
+      "point3": "当你希望通过重用现有对象而不是每次都重建它们来节省系统资源时，请使用它。"
+    },
+    "demo": {
+      "tightCoupling": "紧密耦合",
+      "tightCouplingDesc": "客户端代码必须直接导入和实例化每个类。如果产品逻辑发生变化，你必须<strong>到处</strong>更新代码。",
+      "factoryPattern": "工厂模式",
+      "factoryPatternDesc": "客户端只需向<strong>工厂</strong>请求产品。创建逻辑封装在工厂内部。",
+      "selectLogistics": "选择物流类型",
+      "order": "下单",
+      "assemblyLineEmpty": "流水线为空...",
+      "noMessyObjects": "还没有创建杂乱的对象..."
+    },
+    "title": "工厂方法 (Factory Method)",
+    "description": "如果你的代码与 Truck 类紧密耦合，添加 Ship 将需要修改整个代码库。工厂方法模式通过在父类中定义创建对象的接口，但允许子类修改将要创建的对象类型来解决这个问题。"
+  },
+  "abstractFactory": {
+    "concept": {
+      "analogy": "这就好比购买家具。你可能想要一个<strong>现代风格</strong>的沙发和一个<strong>现代风格</strong>的椅子。或者一个<strong>维多利亚风格</strong>的沙发和一个<strong>维多利亚风格</strong>的椅子。你通常不想把维多利亚风格的沙发和现代风格的椅子混在一起。抽象工厂确保你得到一套匹配的家具。",
+      "definition": "<strong>抽象工厂</strong>模式允许你生产一系列相关的对象，而无需指定它们的具体类。"
+    },
+    "usage": {
+      "point1": "当你的代码需要与多个不同系列的相关产品（例如 Apple vs Samsung，浅色主题 vs 深色主题 UI 组件）一起工作时，请使用抽象工厂。",
+      "point2": "当你希望强制同一工厂的产品一起使用时，请使用它。"
+    },
+    "demo": {
+      "inconsistentFamilies": "不一致的产品族",
+      "inconsistentFamiliesDesc": "没有抽象工厂，你可能会意外地混合使用不兼容的产品。",
+      "abstractFactory": "抽象工厂",
+      "abstractFactoryDesc": "选择一个工厂。它保证所有创建的产品属于同一个系列。",
+      "warning": "警告：检测到不兼容的生态系统！AirDrop 将无法工作！",
+      "active": "当前激活",
+      "createPhone": "生产手机",
+      "createLaptop": "生产电脑",
+      "productionLineEmpty": "生产线为空...",
+      "emptyDesk": "空桌子...",
+      "appleFactory": "苹果工厂",
+      "samsungFactory": "三星工厂"
+    },
+    "title": "抽象工厂 (Abstract Factory)",
+    "description": "抽象工厂模式允许你生产一系列相关的对象，而无需指定它们的具体类。"
+  },
+  "builder": {
+    "concept": {
+      "analogy": "想象一家汉堡店。有些顾客想要芝士，有些不想要生菜，有些想要双层肉饼。你不是为 <code>CheeseBurger</code>、<code>NoLettuceBurger</code> 等创建单独的类，而是使用建造者根据特定的偏好来组装汉堡。",
+      "definition": "<strong>建造者</strong>模式允许你一步一步地构建复杂的对象。该模式允许你使用相同的构建代码生成不同类型和表示形式的对象。"
+    },
+    "demo": {
+      "title": "汉堡建造者",
+      "step1": "第一步：添加配料",
+      "step2": "第二步：完成",
+      "complete": "完成汉堡 (添加顶层面包)",
+      "reset": "重置",
+      "yourBurger": "你的定制汉堡",
+      "layers": "层"
+    },
+    "title": "建造者模式 (Builder)",
+    "description": "建造者模式允许你一步一步地构建复杂的对象。该模式允许你使用相同的构建代码生成不同类型和表示形式的对象。"
+  },
+  "prototype": {
+    "concept": {
+      "analogy": "它将克隆过程委托给被克隆的实际对象。该模式为所有支持克隆的对象声明了一个通用接口。该接口通常允许你在不将代码耦合到对象类的情况下克隆对象。",
+      "definition": "<strong>原型</strong>模式允许你复制现有对象，而无需使你的代码依赖于它们的类。"
+    },
+    "demo": {
+      "title": "原型 / 克隆器",
+      "clearClones": "清除克隆",
+      "instruction": "点击任何形状上的复制按钮以创建一个精确的克隆（原型）。注意克隆如何继承原始对象的属性（颜色、形状）。",
+      "cloneTooltip": "克隆此对象",
+      "canvas": "画布"
+    },
+    "title": "原型模式 (Prototype)",
+    "description": "原型模式允许你复制现有对象，而无需使你的代码依赖于它们的类。"
+  },
+  "adapter": {
+    "concept": {
+      "analogy": "它作为一个包装器，将一个对象的调用转换为另一个对象可以识别的格式和接口。就像旅行电源适配器将你的插头形状转换为适应外国墙壁插座一样。",
+      "definition": "<strong>适配器</strong>模式允许接口不兼容的对象相互合作。"
+    },
+    "demo": {
+      "title": "旅行适配器",
+      "devicePlug": "你的设备插头",
+      "usPlug": "美国插头 (扁平 II)",
+      "euPlug": "欧洲插头 (圆形 ••)",
+      "inventory": "库存",
+      "adapterName": "美标转欧标适配器",
+      "device": "设备",
+      "adapt": "适配",
+      "powerConnected": "电源已连接！",
+      "incompatible": "不兼容！"
+    },
+    "title": "适配器模式 (Adapter)",
+    "description": "适配器模式允许接口不兼容的对象相互合作。"
+  },
+  "bridge": {
+    "concept": {
+      "analogy": "在演示中，<strong>遥控器</strong>（抽象部分）与<strong>设备</strong>（实现部分）是分离的。你可以创建新类型的遥控器（高级遥控器）而无需更改设备代码，也可以创建新设备而无需更改遥控器代码。",
+      "definition": "<strong>桥接</strong>模式允许你将一个大类或一组紧密相关的类拆分为两个独立的层次结构——抽象和实现——从而可以独立开发。"
+    },
+    "demo": {
+      "title": "万能遥控器",
+      "controlTV": "控制电视",
+      "controlRadio": "控制收音机",
+      "smartTV": "智能电视",
+      "homeRadio": "家庭收音机"
+    },
+    "title": "桥接模式 (Bridge)",
+    "description": "桥接模式允许你将一个大类或一组紧密相关的类拆分为两个独立的层次结构——抽象和实现——从而可以独立开发。"
+  },
+  "composite": {
+    "concept": {
+      "analogy": "它非常适合像文件系统、菜单或组织结构图这样的层次结构。客户端代码可以以相同的方式对待简单元素（文件）和复杂容器（文件夹）（例如，调用 <code>getSize()</code>）。",
+      "definition": "<strong>组合</strong>模式允许你将对象组合成树形结构，然后像使用单个对象一样使用这些结构。"
+    },
+    "demo": {
+      "title": "文件系统树",
+      "instruction": "点击任意文件夹以递归计算其总大小。客户端统一对待文件和文件夹。",
+      "selectedSize": "选中项大小",
+      "calculated": "使用组合模式计算：getSize() 在所有子项上递归调用。",
+      "selectNode": "选择一个节点查看计算结果"
+    },
+    "title": "组合模式 (Composite)",
+    "description": "组合模式允许你将对象组合成树形结构，然后像使用单个对象一样使用这些结构。"
+  },
+  "decorator": {
+    "concept": {
+      "analogy": "它是子类化的替代方案。与其创建 <code>MilkCoffee</code>、<code>SugarCoffee</code>、<code>MilkSugarCoffee</code>，不如创建一个 <code>Coffee</code> 对象，并用 <code>MilkDecorator</code> 然后用 <code>SugarDecorator</code> 来“包装”它。",
+      "definition": "<strong>装饰器</strong>模式允许你通过将对象放入包含行为的特殊封装对象中来为对象附加新行为。"
+    },
+    "demo": {
+      "title": "星巴兹咖啡",
+      "addMilk": "加奶",
+      "addSugar": "加糖",
+      "addWhip": "加奶泡",
+      "startOver": "重新开始"
+    },
+    "title": "装饰器模式 (Decorator)",
+    "description": "装饰器模式允许你通过将对象放入包含行为的特殊封装对象中来为对象附加新行为。"
+  },
+  "facade": {
+    "concept": {
+      "analogy": "它不会完全隐藏子系统，而是为最常见的功能提供一个方便的入口点。就像智能家居面板：按下“电影模式”会在后台做 10 件不同的事情，但你只与一个按钮交互。",
+      "definition": "<strong>外观</strong>模式为库、框架或其他复杂的类集提供了一个简化的接口。"
+    },
+    "demo": {
+      "title": "智能家居控制器 (外观)",
+      "description": "外观模式提供简单的“宏”按钮来编排一切，而不是手动切换每个开关。",
+      "goodMorning": "早安",
+      "goodMorningDesc": "打开窗帘，播放音乐，开灯",
+      "movieNight": "电影之夜",
+      "movieNightDesc": "调暗灯光，开电视，开空调，关窗帘",
+      "goodNight": "晚安",
+      "goodNightDesc": "全部关闭，开空调，锁门",
+      "systemState": "系统状态",
+      "lights": "灯光",
+      "tv": "电视",
+      "ac": "空调",
+      "curtains": "窗帘",
+      "music": "音乐",
+      "closed": "已关",
+      "open": "已开"
+    },
+    "title": "外观模式 (Facade)",
+    "description": "外观模式为库、框架或其他复杂的类集提供了一个简化的接口。"
+  },
+  "flyweight": {
+    "concept": {
+      "analogy": "在一个森林游戏中，每棵树都有一个位置（唯一的）和一个纹理/模型（共享的）。与其为 1,000 棵树加载 1,000 次纹理，不如加载一次，并让所有 1,000 棵树引用该单个纹理对象。",
+      "definition": "<strong>享元</strong>模式允许你通过在多个对象之间共享状态的公共部分，而不是在每个对象中保留所有数据，从而在可用的 RAM 中容纳更多对象。"
+    },
+    "demo": {
+      "title": "森林渲染器",
+      "plant10": "种植 10 棵树",
+      "plant100": "种植 100 棵树",
+      "plant1000": "种植 1,000 棵树",
+      "clear": "清除森林",
+      "totalTrees": "树木总数：",
+      "estMemoryNaive": "预估内存 (普通)：",
+      "estMemoryFlyweight": "预估内存 (享元)：",
+      "savings": "节省：",
+      "renderingCapped": "渲染上限为 500 (DOM 限制)，<br/>但内存中存在 {count} 个对象！"
+    },
+    "title": "享元模式 (Flyweight)",
+    "description": "享元模式允许你通过在多个对象之间共享状态的公共部分，而不是在每个对象中保留所有数据，从而在可用的 RAM 中容纳更多对象。"
+  },
+  "proxy": {
+    "concept": {
+      "analogy": "常见用途包括：<ul className=\"list-disc list-inside mt-2 ml-2\"><li><strong>缓存代理</strong>：保存昂贵操作的结果。</li><li><strong>保护代理</strong>：在访问之前检查权限。</li><li><strong>虚拟代理</strong>：延迟初始化重对象。</li></ul>",
+      "definition": "<strong>代理</strong>模式为另一个对象提供替代品或占位符。代理控制对原始对象的访问，允许你在请求到达原始对象之前或之后执行某些操作。"
+    },
+    "demo": {
+      "title": "视频缓存代理",
+      "downloadVid1": "下载视频 #1",
+      "downloadVid2": "下载视频 #2",
+      "client": "客户端",
+      "proxyCache": "代理 (缓存)",
+      "realServer": "真实服务器",
+      "logRequest": "客户端：请求视频 {id}...",
+      "logCacheHit": "代理：缓存命中！返回 {id} 的保存数据。",
+      "logCacheMiss": "代理：缓存未命中。向真实主体发送请求...",
+      "logReceived": "代理：接收到数据。保存到缓存。"
+    },
+    "title": "代理模式 (Proxy)",
+    "description": "代理模式为另一个对象提供替代品或占位符。代理控制对原始对象的访问，允许你在请求到达原始对象之前或之后执行某些操作。"
+  },
+  "chainOfResponsibility": {
+    "concept": {
+      "analogy": "这就像打客服电话。首先，你遇到一个机器人（处理者 1）。如果它不能提供帮助，它会把你转接给人工客服（处理者 2）。如果问题很严重，客服会把你转接给经理（处理者 3）。",
+      "definition": "<strong>责任链</strong>模式允许你将请求沿着处理者链进行发送。收到请求后，每个处理者均可对请求进行处理，或将其传递给链上的下个处理者。"
+    },
+    "demo": {
+      "title": "工单支持系统",
+      "simpleQuery": "简单查询",
+      "simpleQueryDesc": "例如：“重置密码”",
+      "complexIssue": "复杂问题",
+      "complexIssueDesc": "例如：“账单纠纷”",
+      "criticalFailure": "严重故障",
+      "criticalFailureDesc": "例如：“系统宕机”",
+      "resolutionLog": "处理日志",
+      "botReply": "🤖 机器人：我可以帮您处理“{request}”。这是常见问题解答的链接。",
+      "agentReply": "👨‍💼 客服：我看到您有一个复杂问题“{request}”。我将人工解决它。",
+      "managerReply": "🤵 经理：严重问题“{request}”已升级给我。正在尽快调查。",
+      "noHandler": "未找到处理者"
+    },
+    "title": "责任链模式 (Chain of Resp.)",
+    "description": "责任链模式允许你将请求沿着处理者链进行发送。收到请求后，每个处理者均可对请求进行处理，或将其传递给链上的下个处理者。"
+  },
+  "command": {
+    "concept": {
+      "analogy": "这就像在餐厅点餐。你（客户端）给服务员（调用者）下订单（命令）。服务员不负责做饭；他把订单传给厨师（接收者）。因为订单是一个对象，所以它可以被排队、修改或取消。",
+      "definition": "<strong>命令</strong>模式将请求转换为一个包含该请求所有信息的独立对象。该转换让你能根据不同的请求将方法参数化、延迟请求执行或将其放入队列中，且能实现可撤销操作。"
+    },
+    "demo": {
+      "title": "智能遥控器 (支持历史记录)",
+      "on": "开",
+      "off": "关",
+      "red": "红",
+      "blue": "蓝",
+      "undo": "撤销上一步 ({count})"
+    },
+    "title": "命令模式 (Command)",
+    "description": "命令模式将请求转换为一个包含该请求所有信息的独立对象。该转换让你能根据不同的请求将方法参数化、延迟请求执行或将其放入队列中，且能实现可撤销操作。"
+  },
+  "interpreter": {
+    "concept": {
+      "analogy": "它很少用于通用编程语言（太复杂），但非常适合简单的领域特定语言（DSL），如数学表达式、SQL 解析器或正则表达式。",
+      "definition": "<strong>解释器</strong>模式用于定义语言的文法表示以及解释器来解释该文法。"
+    },
+    "demo": {
+      "title": "数学解释器",
+      "label": "输入表达式 (空格分隔)",
+      "interpret": "解释",
+      "supported": "支持：+, - (例如：“10 + 5 - 2”)",
+      "result": "解释结果",
+      "waiting": "等待输入...",
+      "success": "表达式树构建成功。",
+      "error": "无效的表达式格式。使用空格分隔：'1 + 2'"
+    },
+    "title": "解释器模式 (Interpreter)",
+    "description": "解释器模式用于定义语言的文法表示以及解释器来解释该文法。"
+  },
+  "iterator": {
+    "concept": {
+      "analogy": "它将遍历算法与集合对象解耦。你可以为同一个集合使用不同的迭代器（前向、后向、随机），而无需更改集合代码。",
+      "definition": "<strong>迭代器</strong>模式允许你在不暴露集合底层表现形式（列表、栈、树等）的情况下遍历集合的元素。"
+    },
+    "demo": {
+      "title": "音乐播放列表迭代器",
+      "nowPlaying": "正在播放",
+      "stopped": "已停止",
+      "endOfPlaylist": "播放列表结束"
+    },
+    "title": "迭代器模式 (Iterator)",
+    "description": "迭代器模式允许你在不暴露集合底层表现形式（列表、栈、树等）的情况下遍历集合的元素。"
+  },
+  "mediator": {
+    "concept": {
+      "analogy": "Alice 不是直接发送消息给 Bob 和 Charlie（多对多依赖），而是发送给聊天室（中介者），聊天室再进行分发。这减少了耦合：组件不需要彼此了解，只需要了解中介者。",
+      "definition": "<strong>中介者</strong>模式限制了对象之间的直接通信，并强制它们仅通过中介者对象进行协作。"
+    },
+    "demo": {
+      "title": "聊天室 (中介者)",
+      "noMessages": "暂无消息...",
+      "saySomething": "说点什么...",
+      "userControl": "用户控制"
+    },
+    "title": "中介者模式 (Mediator)",
+    "description": "中介者模式限制了对象之间的直接通信，并强制它们仅通过中介者对象进行协作。"
+  },
+  "memento": {
+    "concept": {
+      "analogy": "它通常用于“撤销”机制。“原发器”（编辑器）创建一个包含其状态的“备忘录”（快照）。“负责人”（历史列表）存储备忘录，但不能读取/篡改它。",
+      "definition": "<strong>备忘录</strong>模式允许你在不暴露对象实现细节的情况下保存和恢复对象的先前状态。"
+    },
+    "demo": {
+      "title": "文本编辑器 (快照)",
+      "placeholder": "在这里输入...",
+      "save": "保存快照",
+      "undo": "撤销 ({count})",
+      "snapshotStored": "快照存储在备忘录对象中。",
+      "caretakerDesc": "“负责人”（HistoryManager）持有堆栈，但从不修改内容。"
+    },
+    "title": "备忘录模式 (Memento)",
+    "description": "备忘录模式允许你在不暴露对象实现细节的情况下保存和恢复对象的先前状态。"
+  },
+  "observer": {
+    "concept": {
+      "analogy": "想想 <strong>YouTube</strong> 或 <strong>时事通讯</strong>。你（观察者）订阅了一个频道（主题）。当频道上传新视频时，它会自动通知所有订阅者。你不需要每 5 分钟检查一次频道是否有新内容。",
+      "definition": "<strong>观察者</strong>模式定义了一种订阅机制，以便在对象发生任何事件时通知多个观察该对象的对象。"
+    },
+    "demo": {
+      "titlePublisher": "发布者 (主题)",
+      "subscribers": "{count} 订阅者",
+      "videoTitle": "视频标题",
+      "upload": "上传并通知",
+      "uploading": "上传中...",
+      "noSubscribers": "没有订阅者可通知！",
+      "subscribersList": "订阅者列表",
+      "addSubscriber": "+ 添加订阅者",
+      "emptyList": "列表为空。加点粉丝！",
+      "titleObservers": "观察者 (通知)",
+      "clear": "清空",
+      "received": "{name} 收到：",
+      "formerSubscriber": "前订阅者",
+      "noNotifications": "暂无通知",
+      "newVideo": "新视频已上传：“{title}”"
+    },
+    "title": "观察者模式 (Observer)",
+    "description": "观察者模式定义了一种订阅机制，以便在对象发生任何事件时通知多个观察该对象的对象。"
+  },
+  "state": {
+    "concept": {
+      "analogy": "与其在 <code>click()</code> 方法中使用大量的 <code>switch</code> 语句（例如，<code>if state == playing then pause else if state == stopped then play</code>），不如将执行委托给状态对象。",
+      "definition": "<strong>状态</strong>模式允许对象在其内部状态改变时改变其行为。看起来好像对象改变了它的类。"
+    },
+    "demo": {
+      "title": "音乐播放器状态机",
+      "ready": "就绪",
+      "alreadyPlaying": "已经在播放...",
+      "paused": "已暂停。",
+      "stopped": "已停止。",
+      "resuming": "恢复播放...",
+      "alreadyPaused": "已经暂停...",
+      "startingPlayback": "开始播放...",
+      "cantPause": "无法暂停。播放器已停止。",
+      "alreadyStopped": "已经停止。",
+      "statusPlaying": "播放中",
+      "statusPaused": "暂停",
+      "statusStopped": "停止"
+    },
+    "title": "状态模式 (State)",
+    "description": "状态模式允许对象在其内部状态改变时改变其行为。看起来好像对象改变了它的类。"
+  },
+  "strategy": {
+    "concept": {
+      "analogy": "想象一下去机场。你可以选择<strong>巴士</strong>策略、<strong>出租车</strong>策略或<strong>自行车</strong>策略。它们都完成相同的目标（到达机场），但算法（成本、时间、路线）不同。客户端（旅行者）可以根据他们的需求（预算 vs 速度）在运行时交换策略。",
+      "definition": "<strong>策略</strong>模式定义了一系列算法，并将每个算法封装在一个单独的类中，使它们的对象可以互换。"
+    },
+    "demo": {
+      "title": "收银台 (上下文)",
+      "totalAmount": "总金额",
+      "selectStrategy": "选择支付策略：",
+      "creditCard": "信用卡",
+      "paypal": "PayPal",
+      "bank": "银行",
+      "payNow": "立即支付 ${amount}",
+      "processing": "正在处理策略...",
+      "executionTitle": "策略执行",
+      "context": "当前策略上下文",
+      "requiresCard": "需要 16 位数字 + CVV。",
+      "redirectPayPal": "你将被重定向到 PayPal",
+      "bankProcessing": "处理需要 3-5 个工作日。",
+      "success": "支付成功！",
+      "reset": "点击重置",
+      "logs": "系统日志：",
+      "waiting": "等待交易...",
+      "delegating": "上下文：将支付委托给 {strategy} 策略...",
+      "ccCharged": "信用卡策略：扣款 ${amount} (手续费: 2.5%)",
+      "paypalPaid": "PayPal 策略：重定向中... 成功支付 ${amount}。",
+      "bankInvoice": "银行转账策略：已创建 ${amount} 的发票。等待批准。"
+    },
+    "title": "策略模式 (Strategy)",
+    "description": "策略模式定义了一系列算法，并将每个算法封装在一个单独的类中，使它们的对象可以互换。"
+  },
+  "templateMethod": {
+    "concept": {
+      "analogy": "想想食谱。一般的步骤是“准备 -> 烹饪 -> 上菜”。抽象类定义了这个流程。<code>PastaDish</code> 子类为烹饪实现“烧水”。<code>SteakDish</code> 子类为烹饪实现“烧烤”。顺序保持不变。",
+      "definition": "<strong>模板方法</strong>模式在超类中定义了算法的骨架，但允许子类在不改变结构的情况下重写算法的特定步骤。"
+    },
+    "demo": {
+      "title": "数据挖掘流水线",
+      "processPDF": "处理 PDF",
+      "processCSV": "处理 CSV",
+      "executionSteps": "执行步骤",
+      "pdfOpen": "PDF：打开 PDF 查看器...",
+      "pdfExtract": "PDF：OCR 扫描文本层...",
+      "pdfParse": "PDF：将原始文本转换为 JSON...",
+      "csvOpen": "CSV：打开文件流...",
+      "csvExtract": "CSV：读取逗号分隔的行...",
+      "csvParse": "CSV：拆分列到 JSON...",
+      "commonClose": "通用：关闭文件句柄。"
+    },
+    "title": "模板方法 (Template Method)",
+    "description": "模板方法模式在超类中定义了算法的骨架，但允许子类在不改变结构的情况下重写算法的特定步骤。"
+  },
+  "visitor": {
+    "concept": {
+      "analogy": "想象一下你有一个形状对象的图。你想把它们导出为 XML。与其向每个 Shape 类添加 <code>exportXML()</code> 方法（并使它们混乱），不如创建一个单独的 <code>XmlExportVisitor</code> 类。形状只是“接受”访问者。",
+      "definition": "<strong>访问者</strong>模式允许你将算法与它们操作的对象分离开来。"
+    },
+    "demo": {
+      "title": "形状导出器",
+      "exportXML": "导出 XML",
+      "exportJSON": "导出 JSON",
+      "placeholder": "// 点击导出查看结果..."
+    },
+    "title": "访问者模式 (Visitor)",
+    "description": "访问者模式允许你将算法与它们操作的对象分离开来。"
+  }
+}

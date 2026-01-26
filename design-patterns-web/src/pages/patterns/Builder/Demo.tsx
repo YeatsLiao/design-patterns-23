@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Plus, Minus, RotateCcw } from 'lucide-react';
+import { Check, Plus, RotateCcw } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 // The "Product"
 interface Burger {
@@ -9,6 +10,7 @@ interface Burger {
 }
 
 const BuilderDemo = () => {
+  const { t } = useTranslation();
   const [burger, setBurger] = useState<Burger>({ layers: ['bottom-bun'] });
   
   // Builder Methods
@@ -38,10 +40,10 @@ const BuilderDemo = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Builder Controls */}
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">Burger Builder</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('builder.demo.title')}</h3>
         
         <div className="space-y-3 mb-6">
-          <p className="text-sm text-gray-400">Step 1: Add Ingredients</p>
+          <p className="text-sm text-gray-400">{t('builder.demo.step1')}</p>
           <div className="grid grid-cols-2 gap-2">
             {ingredients.map(ing => (
               <button
@@ -57,18 +59,18 @@ const BuilderDemo = () => {
         </div>
 
         <div className="space-y-3">
-           <p className="text-sm text-gray-400">Step 2: Finish</p>
+           <p className="text-sm text-gray-400">{t('builder.demo.step2')}</p>
            <button 
              onClick={finish}
              className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg flex items-center justify-center gap-2"
            >
-             <Check size={18} /> Complete Burger (Add Top Bun)
+             <Check size={18} /> {t('builder.demo.complete')}
            </button>
            <button 
              onClick={reset}
              className="w-full py-3 bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-lg flex items-center justify-center gap-2"
            >
-             <RotateCcw size={18} /> Reset
+             <RotateCcw size={18} /> {t('builder.demo.reset')}
            </button>
         </div>
       </div>
@@ -113,8 +115,8 @@ const BuilderDemo = () => {
           </AnimatePresence>
         </div>
         <div className="mt-8 text-center">
-            <h4 className="text-white font-bold text-lg">Your Custom Burger</h4>
-            <p className="text-gray-500 text-xs">{burger.layers.length} layers</p>
+            <h4 className="text-white font-bold text-lg">{t('builder.demo.yourBurger')}</h4>
+            <p className="text-gray-500 text-xs">{burger.layers.length} {t('builder.demo.layers')}</p>
         </div>
       </div>
     </div>

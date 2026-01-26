@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Lightbulb, RotateCcw, Play } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 // Command Interface
 interface Command {
@@ -39,6 +40,7 @@ class ChangeColorCommand implements Command {
 }
 
 const CommandDemo = () => {
+  const { t } = useTranslation();
   const [lightState, setLightState] = useState({ isOn: false, color: 'text-gray-600' });
   const [history, setHistory] = useState<Command[]>([]);
 
@@ -63,13 +65,13 @@ const CommandDemo = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">Smart Remote (History Aware)</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('command.demo.title')}</h3>
         
         <div className="grid grid-cols-2 gap-4 mb-6">
-           <button onClick={() => executeCommand(new TurnOnCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-white font-medium">ON</button>
-           <button onClick={() => executeCommand(new TurnOffCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-white font-medium">OFF</button>
-           <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-red-500'))} className="p-3 bg-red-900/30 text-red-400 border border-red-900 rounded hover:bg-red-900/50">Red</button>
-           <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-blue-500'))} className="p-3 bg-blue-900/30 text-blue-400 border border-blue-900 rounded hover:bg-blue-900/50">Blue</button>
+           <button onClick={() => executeCommand(new TurnOnCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-white font-medium">{t('command.demo.on')}</button>
+           <button onClick={() => executeCommand(new TurnOffCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-white font-medium">{t('command.demo.off')}</button>
+           <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-red-500'))} className="p-3 bg-red-900/30 text-red-400 border border-red-900 rounded hover:bg-red-900/50">{t('command.demo.red')}</button>
+           <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-blue-500'))} className="p-3 bg-blue-900/30 text-blue-400 border border-blue-900 rounded hover:bg-blue-900/50">{t('command.demo.blue')}</button>
         </div>
 
         <button 
@@ -77,7 +79,7 @@ const CommandDemo = () => {
           disabled={history.length === 0}
           className="w-full py-3 bg-yellow-600 hover:bg-yellow-500 disabled:bg-gray-700 disabled:text-gray-500 text-white rounded-lg flex items-center justify-center gap-2 transition-colors"
         >
-          <RotateCcw size={18} /> Undo Last Action ({history.length})
+          <RotateCcw size={18} /> {t('command.demo.undo', { count: history.length })}
         </button>
       </div>
 

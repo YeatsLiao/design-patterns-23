@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Play, SkipForward, SkipBack, Music, Repeat } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 // Iterator Interface
 interface Iterator<T> {
@@ -55,6 +56,7 @@ class OrderIterator implements Iterator<string> {
 }
 
 const IteratorDemo = () => {
+  const { t } = useTranslation();
   const songs = ["Song A - Intro", "Song B - Verse", "Song C - Chorus", "Song D - Outro"];
   const playlist = new Playlist(songs);
   const [iterator, setIterator] = useState<OrderIterator>(new OrderIterator(playlist));
@@ -75,7 +77,7 @@ const IteratorDemo = () => {
       setCurrentSong(iterator.current());
     } else {
       setIsPlaying(false);
-      setCurrentSong("End of Playlist");
+      setCurrentSong(t('iterator.demo.endOfPlaylist'));
       iterator.rewind(); // Reset for next play
     }
   };
@@ -83,7 +85,7 @@ const IteratorDemo = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-        <h3 className="text-xl font-semibold text-white mb-6">Music Playlist Iterator</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('iterator.demo.title')}</h3>
         
         <div className="space-y-2 mb-6">
            {songs.map((song, i) => (
@@ -110,10 +112,10 @@ const IteratorDemo = () => {
                  <motion.div key={currentSong} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                    <Music size={32} className="mx-auto mb-2 text-blue-400" />
                    <div className="text-sm font-bold text-white">{currentSong}</div>
-                   <div className="text-xs text-gray-500">Now Playing</div>
+                   <div className="text-xs text-gray-500">{t('iterator.demo.nowPlaying')}</div>
                  </motion.div>
                ) : (
-                 <span className="text-gray-600">Stopped</span>
+                 <span className="text-gray-600">{t('iterator.demo.stopped')}</span>
                )}
             </div>
          </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCard, Wallet, Landmark, CheckCircle, ShoppingBag, ArrowRight } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 // Strategy Interface Idea: 
 // pay(amount)
@@ -9,6 +10,7 @@ import clsx from 'clsx';
 type PaymentMethod = 'credit-card' | 'paypal' | 'bank-transfer';
 
 const StrategyDemo = () => {
+  const { t } = useTranslation();
   const [selectedStrategy, setSelectedStrategy] = useState<PaymentMethod>('credit-card');
   const [amount, setAmount] = useState(100);
   const [processing, setProcessing] = useState(false);
@@ -19,20 +21,20 @@ const StrategyDemo = () => {
   const processPayment = () => {
     setProcessing(true);
     setStatus('idle');
-    addLog(`Context: Delegating payment to ${selectedStrategy} strategy...`);
+    addLog(t('strategy.demo.delegating', { strategy: selectedStrategy }));
 
     // Simulate different strategies having different processing times/logic
     setTimeout(() => {
       let message = "";
       switch (selectedStrategy) {
         case 'credit-card':
-          message = `Credit Card Strategy: Charged $${amount} (Fee: 2.5%)`;
+          message = t('strategy.demo.ccCharged', { amount });
           break;
         case 'paypal':
-          message = `PayPal Strategy: Redirecting... Paid $${amount} successfully.`;
+          message = t('strategy.demo.paypalPaid', { amount });
           break;
         case 'bank-transfer':
-          message = `Bank Transfer Strategy: Created invoice for $${amount}. Pending approval.`;
+          message = t('strategy.demo.bankInvoice', { amount });
           break;
       }
       addLog(message);
@@ -61,7 +63,7 @@ const StrategyDemo = () => {
                 <span>12/25</span>
               </div>
             </div>
-            <p className="text-xs text-gray-400">Requires 16-digit number + CVV.</p>
+            <p className="text-xs text-gray-400">{t('strategy.demo.requiresCard')}</p>
           </motion.div>
         );
       case 'paypal':
@@ -70,7 +72,7 @@ const StrategyDemo = () => {
             <div className="bg-blue-900/30 p-4 rounded-full inline-block mb-2">
               <Wallet size={32} className="text-blue-400" />
             </div>
-            <p className="text-sm text-blue-300">You will be redirected to PayPal</p>
+            <p className="text-sm text-blue-300">{t('strategy.demo.redirectPayPal')}</p>
           </motion.div>
         );
       case 'bank-transfer':
@@ -87,7 +89,7 @@ const StrategyDemo = () => {
                    <span>Routing:</span> <span className="font-mono">021***</span>
                 </div>
              </div>
-             <p className="text-xs text-yellow-500/80">Processing takes 3-5 business days.</p>
+             <p className="text-xs text-yellow-500/80">{t('strategy.demo.bankProcessing')}</p>
           </motion.div>
         );
     }
@@ -99,17 +101,17 @@ const StrategyDemo = () => {
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
         <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
           <ShoppingBag size={20} className="text-green-400" />
-          Checkout (Context)
+          {t('strategy.demo.title')}
         </h3>
 
         <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
           <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-800">
-            <span className="text-gray-400">Total Amount</span>
+            <span className="text-gray-400">{t('strategy.demo.totalAmount')}</span>
             <span className="text-2xl font-bold text-white">${amount}.00</span>
           </div>
 
           <div className="space-y-4">
-            <label className="text-sm text-gray-400">Select Payment Strategy:</label>
+            <label className="text-sm text-gray-400">{t('strategy.demo.selectStrategy')}</label>
             <div className="grid grid-cols-3 gap-2">
               <button 
                 onClick={() => setSelectedStrategy('credit-card')}
@@ -119,7 +121,7 @@ const StrategyDemo = () => {
                 )}
               >
                 <CreditCard size={20} />
-                <span className="text-xs">Card</span>
+                <span className="text-xs">{t('strategy.demo.creditCard')}</span>
               </button>
               <button 
                 onClick={() => setSelectedStrategy('paypal')}
@@ -129,7 +131,7 @@ const StrategyDemo = () => {
                 )}
               >
                 <Wallet size={20} />
-                <span className="text-xs">PayPal</span>
+                <span className="text-xs">{t('strategy.demo.paypal')}</span>
               </button>
               <button 
                 onClick={() => setSelectedStrategy('bank-transfer')}
@@ -139,7 +141,7 @@ const StrategyDemo = () => {
                 )}
               >
                 <Landmark size={20} />
-                <span className="text-xs">Bank</span>
+                <span className="text-xs">{t('strategy.demo.bank')}</span>
               </button>
             </div>
           </div>
@@ -150,7 +152,7 @@ const StrategyDemo = () => {
               disabled={processing}
               className="w-full py-3 bg-green-600 hover:bg-green-500 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold rounded-lg shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
             >
-              {processing ? "Processing Strategy..." : `Pay $${amount} Now`}
+              {processing ? t('strategy.demo.processing') : t('strategy.demo.payNow', { amount })}
               {!processing && <ArrowRight size={18} />}
             </button>
           </div>
@@ -159,11 +161,11 @@ const StrategyDemo = () => {
 
       {/* RIGHT: Strategy Execution & Logs */}
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 flex flex-col">
-        <h3 className="text-xl font-semibold text-white mb-6">Strategy Execution</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('strategy.demo.executionTitle')}</h3>
 
         {/* Dynamic Form Area */}
         <div className="bg-gray-950 rounded-lg p-6 mb-6 min-h-[160px] flex items-center justify-center border border-gray-800 relative overflow-hidden">
-           <div className="absolute top-2 left-3 text-xs text-gray-600 font-mono">Current Strategy Context</div>
+           <div className="absolute top-2 left-3 text-xs text-gray-600 font-mono">{t('strategy.demo.context')}</div>
            {renderStrategyForm()}
            
            <AnimatePresence>
@@ -176,8 +178,8 @@ const StrategyDemo = () => {
                  onClick={() => setStatus('idle')} // Click to dismiss
                >
                  <CheckCircle size={48} className="mb-2 text-green-400" />
-                 <span className="font-bold">Payment Successful!</span>
-                 <span className="text-xs text-green-300 mt-2">Click to reset</span>
+                 <span className="font-bold">{t('strategy.demo.success')}</span>
+                 <span className="text-xs text-green-300 mt-2">{t('strategy.demo.reset')}</span>
                </motion.div>
              )}
            </AnimatePresence>
@@ -185,8 +187,8 @@ const StrategyDemo = () => {
 
         {/* Logs */}
         <div className="flex-1 bg-black rounded-lg p-4 font-mono text-xs overflow-y-auto max-h-[300px] border border-gray-800">
-          <div className="text-gray-500 mb-2 border-b border-gray-800 pb-1">System Logs:</div>
-          {logs.length === 0 && <span className="text-gray-700 italic">Waiting for transaction...</span>}
+          <div className="text-gray-500 mb-2 border-b border-gray-800 pb-1">{t('strategy.demo.logs')}</div>
+          {logs.length === 0 && <span className="text-gray-700 italic">{t('strategy.demo.waiting')}</span>}
           {logs.map((log, i) => (
             <div key={i} className="mb-1 text-green-400">
               <span className="opacity-50 mr-2">&gt;</span>{log}

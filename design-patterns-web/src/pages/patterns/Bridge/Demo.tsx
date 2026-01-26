@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Tv, Speaker, Power, Volume2 } from 'lucide-react';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 // Abstraction: Remote Control
 // Implementation: Device (TV, Radio)
@@ -13,8 +14,9 @@ interface Device {
 }
 
 const BridgeDemo = () => {
-  const [tv, setTv] = useState<Device>({ id: 'tv', name: 'Smart TV', isOn: false, volume: 10 });
-  const [radio, setRadio] = useState<Device>({ id: 'radio', name: 'Home Radio', isOn: false, volume: 30 });
+  const { t } = useTranslation();
+  const [tv, setTv] = useState<Device>({ id: 'tv', name: t('bridge.demo.smartTV'), isOn: false, volume: 10 });
+  const [radio, setRadio] = useState<Device>({ id: 'radio', name: t('bridge.demo.homeRadio'), isOn: false, volume: 30 });
   
   const [selectedDevice, setSelectedDevice] = useState<'tv' | 'radio'>('tv');
 
@@ -41,20 +43,20 @@ const BridgeDemo = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Remote Control (Abstraction) */}
       <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 flex flex-col items-center">
-        <h3 className="text-xl font-semibold text-white mb-6">Universal Remote</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">{t('bridge.demo.title')}</h3>
         
         <div className="mb-6 flex gap-2 bg-gray-900 p-1 rounded-lg">
            <button 
              onClick={() => setSelectedDevice('tv')}
              className={clsx("px-4 py-2 rounded text-sm transition-colors", selectedDevice === 'tv' ? "bg-blue-600 text-white" : "text-gray-400 hover:text-white")}
            >
-             Control TV
+             {t('bridge.demo.controlTV')}
            </button>
            <button 
              onClick={() => setSelectedDevice('radio')}
              className={clsx("px-4 py-2 rounded text-sm transition-colors", selectedDevice === 'radio' ? "bg-blue-600 text-white" : "text-gray-400 hover:text-white")}
            >
-             Control Radio
+             {t('bridge.demo.controlRadio')}
            </button>
         </div>
 
@@ -81,7 +83,7 @@ const BridgeDemo = () => {
            <div className="flex justify-between items-start mb-4">
              <div className="flex items-center gap-3">
                <Tv size={32} className={tv.isOn ? "text-blue-400" : "text-gray-600"} />
-               <h4 className="text-lg font-bold text-white">Smart TV</h4>
+               <h4 className="text-lg font-bold text-white">{t('bridge.demo.smartTV')}</h4>
              </div>
              <div className={clsx("w-3 h-3 rounded-full", tv.isOn ? "bg-green-500 shadow-[0_0_5px_lime]" : "bg-red-900")} />
            </div>
@@ -97,7 +99,7 @@ const BridgeDemo = () => {
            <div className="flex justify-between items-start mb-4">
              <div className="flex items-center gap-3">
                <Speaker size={32} className={radio.isOn ? "text-orange-400" : "text-gray-600"} />
-               <h4 className="text-lg font-bold text-white">Home Radio</h4>
+               <h4 className="text-lg font-bold text-white">{t('bridge.demo.homeRadio')}</h4>
              </div>
              <div className={clsx("w-3 h-3 rounded-full", radio.isOn ? "bg-green-500 shadow-[0_0_5px_lime]" : "bg-red-900")} />
            </div>

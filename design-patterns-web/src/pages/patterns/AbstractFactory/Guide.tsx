@@ -1,24 +1,23 @@
 import React from 'react';
-import { Lightbulb, Layers, ShieldCheck } from 'lucide-react';
+import { Lightbulb, Layers } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const AbstractFactoryGuide = () => {
+  const { t } = useTranslation();
   return (
     <div className="space-y-8 max-w-3xl">
       {/* 1. Concept Section */}
       <section>
         <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
           <Lightbulb className="text-yellow-400" />
-          Concept
+          {t('common.concept')}
         </h2>
         <div className="prose prose-invert text-gray-300">
           <p>
-            The <strong>Abstract Factory</strong> pattern lets you produce families of related objects without specifying their concrete classes.
+            <Trans i18nKey="abstractFactory.concept.definition" />
           </p>
           <p className="mt-4">
-            Think of it like buying furniture. You might want a <strong>Modern</strong> Sofa and a <strong>Modern</strong> Chair. 
-            Or a <strong>Victorian</strong> Sofa and a <strong>Victorian</strong> Chair. 
-            You usually don't want to mix a Victorian Sofa with Modern Chairs. 
-            The Abstract Factory ensures you get a matching set.
+            <Trans i18nKey="abstractFactory.concept.analogy" />
           </p>
         </div>
       </section>
@@ -54,10 +53,10 @@ class SamsungFactory implements ElectronicsFactory {
 
       {/* 3. When to use */}
       <section>
-        <h3 className="text-xl font-semibold text-white mb-3">When to use?</h3>
+        <h3 className="text-xl font-semibold text-white mb-3">{t('common.whenToUse')}</h3>
         <ul className="list-disc list-inside space-y-2 text-gray-300">
-          <li>Use Abstract Factory when your code needs to work with various families of related products (e.g. Apple vs Samsung, LightTheme vs DarkTheme UI components).</li>
-          <li>Use it when you want to enforce that products from the same factory are used together.</li>
+          <li>{t('abstractFactory.usage.point1')}</li>
+          <li>{t('abstractFactory.usage.point2')}</li>
         </ul>
       </section>
     </div>

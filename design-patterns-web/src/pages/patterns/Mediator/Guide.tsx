@@ -1,21 +1,23 @@
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const MediatorGuide = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-8 max-w-3xl">
       <section>
-        <h2 className="text-2xl font-bold text-white mb-4">Concept</h2>
+        <h2 className="text-2xl font-bold text-white mb-4">{t('common.concept')}</h2>
         <p className="text-gray-300">
-          The <strong>Mediator</strong> pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object.
+          <Trans i18nKey="mediator.concept.definition" />
         </p>
         <p className="text-gray-300 mt-2">
-          Instead of Alice sending a message directly to Bob and Charlie (Many-to-Many dependency), Alice sends it to the ChatRoom (Mediator), and the ChatRoom distributes it. 
-          This reduces coupling: components don't need to know about each other, only about the Mediator.
+          <Trans i18nKey="mediator.concept.analogy" />
         </p>
       </section>
 
       <section className="bg-gray-950 rounded-lg p-4 border border-gray-800">
-         <h3 className="text-blue-400 font-semibold mb-2">Code Example</h3>
+         <h3 className="text-blue-400 font-semibold mb-2">{t('common.codeExample')}</h3>
          <pre className="text-xs text-gray-400 overflow-x-auto font-mono">
 {`interface Mediator {
   notify(sender: object, event: string): void;

@@ -1,21 +1,22 @@
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const BridgeGuide = () => {
+  const { t } = useTranslation();
   return (
     <div className="space-y-8 max-w-3xl">
       <section>
-        <h2 className="text-2xl font-bold text-white mb-4">Concept</h2>
+        <h2 className="text-2xl font-bold text-white mb-4">{t('common.concept')}</h2>
         <p className="text-gray-300">
-          The <strong>Bridge</strong> pattern lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently.
+          <Trans i18nKey="bridge.concept.definition" />
         </p>
         <p className="text-gray-300 mt-2">
-          In the demo, the <strong>Remote</strong> (Abstraction) is separated from the <strong>Device</strong> (Implementation).
-          You can create new types of Remotes (AdvancedRemote) without changing the Devices, and new Devices without changing the Remote code.
+          <Trans i18nKey="bridge.concept.analogy" />
         </p>
       </section>
 
       <section className="bg-gray-950 rounded-lg p-4 border border-gray-800">
-         <h3 className="text-blue-400 font-semibold mb-2">Code Example</h3>
+         <h3 className="text-blue-400 font-semibold mb-2">{t('common.codeExample')}</h3>
          <pre className="text-xs text-gray-400 overflow-x-auto font-mono">
 {`// Implementation
 interface Device {

@@ -1,23 +1,24 @@
 import React from 'react';
 import { Lightbulb, Shuffle, MousePointerClick } from 'lucide-react';
+import { useTranslation, Trans } from 'react-i18next';
 
 const StrategyGuide = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-8 max-w-3xl">
       {/* 1. Concept Section */}
       <section>
         <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
           <Lightbulb className="text-yellow-400" />
-          Concept
+          {t('common.concept')}
         </h2>
         <div className="prose prose-invert text-gray-300">
           <p>
-            The <strong>Strategy</strong> pattern defines a family of algorithms, puts each of them into a separate class, and makes their objects interchangeable.
+            <Trans i18nKey="strategy.concept.definition" />
           </p>
           <p className="mt-4">
-            Imagine navigating to the airport. You can choose a <strong>Bus</strong> strategy, a <strong>Taxi</strong> strategy, or a <strong>Bike</strong> strategy.
-            They all accomplish the same goal (getting to the airport), but the algorithm (cost, time, route) is different.
-            The client (traveler) can swap strategies at runtime based on their needs (budget vs speed).
+            <Trans i18nKey="strategy.concept.analogy" />
           </p>
         </div>
       </section>
@@ -82,7 +83,7 @@ class Checkout {
 
       {/* 3. When to use */}
       <section>
-        <h3 className="text-xl font-semibold text-white mb-3">When to use?</h3>
+        <h3 className="text-xl font-semibold text-white mb-3">{t('common.whenToUse')}</h3>
         <ul className="list-disc list-inside space-y-2 text-gray-300">
           <li>Use the Strategy pattern when you want to use different variants of an algorithm within an object and be able to switch from one algorithm to another during runtime.</li>
           <li>Use it when you have a lot of similar classes that only differ in the way they execute some behavior.</li>
