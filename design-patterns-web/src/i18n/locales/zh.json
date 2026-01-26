@@ -73,7 +73,7 @@
   "factory": {
     "concept": {
       "analogy": "想象一下你正在开发一个物流管理应用。最初，你的应用只处理<strong>卡车</strong>运输。后来，你的应用变得流行起来，你需要添加<strong>轮船</strong>进行海上物流。",
-      "definition": "如果你的代码与 <code>Truck</code> 类紧密耦合，添加 <code>Ship</code> 将需要修改整个代码库。<strong>工厂方法</strong>模式通过在父类中定义创建对象的接口，但允许子类修改将要创建的对象类型来解决这个问题。"
+      "definition": "如果你的代码与 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">Truck</code> 类紧密耦合，添加 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">Ship</code> 将需要修改整个代码库。<strong>工厂方法</strong>模式通过在父类中定义创建对象的接口，但允许子类修改将要创建的对象类型来解决这个问题。"
     },
     "usage": {
       "point1": "当你在编写代码时，不知道代码需要处理的确切对象类型和依赖关系时，请使用工厂方法。",
@@ -121,7 +121,7 @@
   },
   "builder": {
     "concept": {
-      "analogy": "想象一家汉堡店。有些顾客想要芝士，有些不想要生菜，有些想要双层肉饼。你不是为 <code>CheeseBurger</code>、<code>NoLettuceBurger</code> 等创建单独的类，而是使用建造者根据特定的偏好来组装汉堡。",
+      "analogy": "想象一下一家汉堡店。有些顾客想要芝士，有些不想要生菜，有些想要双层肉饼。你不是为 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">CheeseBurger</code>、<code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">NoLettuceBurger</code> 等创建单独的类，而是使用建造者根据特定的偏好来组装汉堡。",
       "definition": "<strong>建造者</strong>模式允许你一步一步地构建复杂的对象。该模式允许你使用相同的构建代码生成不同类型和表示形式的对象。"
     },
     "demo": {
@@ -188,7 +188,7 @@
   },
   "composite": {
     "concept": {
-      "analogy": "它非常适合像文件系统、菜单或组织结构图这样的层次结构。客户端代码可以以相同的方式对待简单元素（文件）和复杂容器（文件夹）（例如，调用 <code>getSize()</code>）。",
+      "analogy": "它非常适合像文件系统、菜单或组织结构图这样的层次结构。客户端代码可以以相同的方式对待简单元素（文件）和复杂容器（文件夹）（例如，调用 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">getSize()</code>）。",
       "definition": "<strong>组合</strong>模式允许你将对象组合成树形结构，然后像使用单个对象一样使用这些结构。"
     },
     "demo": {
@@ -203,7 +203,7 @@
   },
   "decorator": {
     "concept": {
-      "analogy": "它是子类化的替代方案。与其创建 <code>MilkCoffee</code>、<code>SugarCoffee</code>、<code>MilkSugarCoffee</code>，不如创建一个 <code>Coffee</code> 对象，并用 <code>MilkDecorator</code> 然后用 <code>SugarDecorator</code> 来“包装”它。",
+      "analogy": "它是子类化的替代方案。与其创建 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">MilkCoffee</code>、<code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">SugarCoffee</code>、<code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">MilkSugarCoffee</code>，不如创建一个 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">Coffee</code> 对象，并用 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">MilkDecorator</code> 然后用 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">SugarDecorator</code> 来“包装”它。",
       "definition": "<strong>装饰器</strong>模式允许你通过将对象放入包含行为的特殊封装对象中来为对象附加新行为。"
     },
     "demo": {
@@ -409,7 +409,7 @@
   },
   "state": {
     "concept": {
-      "analogy": "与其在 <code>click()</code> 方法中使用大量的 <code>switch</code> 语句（例如，<code>if state == playing then pause else if state == stopped then play</code>），不如将执行委托给状态对象。",
+      "analogy": "与其在 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">click()</code> 方法中使用大量的 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">switch</code> 语句（例如，<code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">if state == playing then pause else if state == stopped then play</code>），不如将执行委托给状态对象。",
       "definition": "<strong>状态</strong>模式允许对象在其内部状态改变时改变其行为。看起来好像对象改变了它的类。"
     },
     "demo": {
@@ -463,7 +463,7 @@
   },
   "templateMethod": {
     "concept": {
-      "analogy": "想想食谱。一般的步骤是“准备 -> 烹饪 -> 上菜”。抽象类定义了这个流程。<code>PastaDish</code> 子类为烹饪实现“烧水”。<code>SteakDish</code> 子类为烹饪实现“烧烤”。顺序保持不变。",
+      "analogy": "想想食谱。一般的步骤是“准备 -> 烹饪 -> 上菜”。抽象类定义了这个流程。<code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">PastaDish</code> 子类为烹饪实现“烧水”。<code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">SteakDish</code> 子类为烹饪实现“烧烤”。顺序保持不变。",
       "definition": "<strong>模板方法</strong>模式在超类中定义了算法的骨架，但允许子类在不改变结构的情况下重写算法的特定步骤。"
     },
     "demo": {
@@ -484,7 +484,7 @@
   },
   "visitor": {
     "concept": {
-      "analogy": "想象一下你有一个形状对象的图。你想把它们导出为 XML。与其向每个 Shape 类添加 <code>exportXML()</code> 方法（并使它们混乱），不如创建一个单独的 <code>XmlExportVisitor</code> 类。形状只是“接受”访问者。",
+      "analogy": "想象一下你有一个形状对象的图。你想把它们导出为 XML。与其向每个 Shape 类添加 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">exportXML()</code> 方法（并使它们混乱），不如创建一个单独的 <code class=\"bg-gray-200 dark:bg-gray-700 px-1 rounded\">XmlExportVisitor</code> 类。形状只是“接受”访问者。",
       "definition": "<strong>访问者</strong>模式允许你将算法与它们操作的对象分离开来。"
     },
     "demo": {

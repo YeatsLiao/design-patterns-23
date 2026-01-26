@@ -49,7 +49,7 @@ const BuilderDemo = () => {
               <button
                 key={ing.id}
                 onClick={() => addLayer(ing.id)}
-                className="flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm text-gray-900 dark:text-white transition-colors"
+                className="flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg text-sm text-gray-900 dark:text-white transition-colors border border-gray-200 dark:border-gray-600"
               >
                 <span>{ing.label}</span>
                 <Plus size={16} />
@@ -62,13 +62,13 @@ const BuilderDemo = () => {
            <p className="text-sm text-gray-600 dark:text-gray-400">{t('builder.demo.step2')}</p>
            <button 
              onClick={finish}
-             className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-gray-900 dark:text-white font-bold rounded-lg flex items-center justify-center gap-2"
+             className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95"
            >
              <Check size={18} /> {t('builder.demo.complete')}
            </button>
            <button 
              onClick={reset}
-             className="w-full py-3 bg-gray-700 hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg flex items-center justify-center gap-2"
+             className="w-full py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg flex items-center justify-center gap-2 transition-all border border-gray-200 dark:border-gray-600"
            >
              <RotateCcw size={18} /> {t('builder.demo.reset')}
            </button>
@@ -77,7 +77,7 @@ const BuilderDemo = () => {
 
       {/* Product Visualization */}
       <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-end min-h-[400px] relative overflow-hidden">
-        <div className="flex flex-col-reverse items-center w-48 gap-1">
+        <div className="flex flex-col items-center w-48 gap-1">
           <AnimatePresence>
             {burger.layers.map((layer, index) => {
               const ing = ingredients.find(i => i.id === layer);
@@ -105,7 +105,7 @@ const BuilderDemo = () => {
                   animate={{ y: 0, opacity: 1, scale: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
                   className={clsx(
-                    "w-full rounded-sm shadow-sm border-black/10 border",
+                    "w-full rounded-sm shadow-sm border border-black/10 dark:border-white/10",
                     ing?.color,
                     ing?.h
                   )}

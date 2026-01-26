@@ -14,10 +14,10 @@ const FactoryGuide = () => {
         </h2>
         <div className="prose prose-invert text-gray-700 dark:text-gray-300">
           <p>
-             <Trans i18nKey="factory.concept.analogy" />
+             <Trans i18nKey="factory.concept.analogy" components={{ strong: <strong />, code: <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded" /> }} />
           </p>
           <p className="mt-4">
-             <Trans i18nKey="factory.concept.definition" />
+             <Trans i18nKey="factory.concept.definition" components={{ strong: <strong />, code: <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded" /> }} />
           </p>
         </div>
       </section>
