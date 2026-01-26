@@ -55,7 +55,7 @@ const FileSystemNode = ({ item, level = 0, onCalculateSize }: { item: FileSystem
     <div className="select-none">
       <div 
         className={clsx(
-           "flex items-center gap-2 py-1 px-2 hover:bg-white dark:bg-gray-800 rounded cursor-pointer transition-colors",
+           "flex items-center gap-2 py-1 px-2 hover:bg-gray-200 dark:bg-gray-800 rounded cursor-pointer transition-colors",
            level === 0 && "font-bold text-blue-400"
         )}
         style={{ paddingLeft: `${level * 20 + 8}px` }}
@@ -65,12 +65,12 @@ const FileSystemNode = ({ item, level = 0, onCalculateSize }: { item: FileSystem
         }}
       >
         {item.type === 'folder' && (
-          <span className="text-gray-500 dark:text-gray-500">
+          <span className="text-gray-500 dark:text-gray-400">
              {isOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
           </span>
         )}
         {item.type === 'folder' ? <Folder size={16} className="text-blue-500" /> : <File size={16} className="text-gray-600 dark:text-gray-400" />}
-        <span className="text-sm text-gray-200">{item.name}</span>
+        <span className="text-sm text-gray-700 dark:text-gray-200">{item.name}</span>
         <span className="ml-auto text-xs text-gray-600 font-mono">{mySize} KB</span>
       </div>
 
@@ -113,12 +113,12 @@ const CompositeDemo = () => {
          <h4 className="text-gray-600 dark:text-gray-400 uppercase tracking-wider text-xs mb-2">{t('composite.demo.selectedSize')}</h4>
          <div className="text-6xl font-bold text-gray-900 dark:text-white font-mono">
             {selectedSize !== null ? (
-               <span>{selectedSize} <span className="text-2xl text-gray-500 dark:text-gray-500">KB</span></span>
+               <span>{selectedSize} <span className="text-2xl text-gray-500 dark:text-gray-400">KB</span></span>
             ) : (
                <span className="text-gray-700 text-4xl">--</span>
             )}
          </div>
-         <p className="text-gray-500 dark:text-gray-500 text-xs mt-4 max-w-xs text-center">
+         <p className="text-gray-500 dark:text-gray-400 text-xs mt-4 max-w-xs text-center">
             {selectedSize !== null 
               ? t('composite.demo.calculated')
               : t('composite.demo.selectNode')}

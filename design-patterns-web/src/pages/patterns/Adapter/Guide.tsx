@@ -8,10 +8,10 @@ const AdapterGuide = () => {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('common.concept')}</h2>
         <p className="text-gray-700 dark:text-gray-300">
-          <Trans i18nKey="adapter.concept.definition" />
+          <Trans i18nKey="adapter.concept.definition" components={{ strong: <strong />, code: <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded" /> }} />
         </p>
         <p className="text-gray-700 dark:text-gray-300 mt-2">
-          <Trans i18nKey="adapter.concept.analogy" />
+          <Trans i18nKey="adapter.concept.analogy" components={{ strong: <strong />, code: <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded" /> }} />
         </p>
       </section>
 

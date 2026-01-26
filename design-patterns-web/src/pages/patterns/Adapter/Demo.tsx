@@ -25,13 +25,13 @@ const AdapterDemo = () => {
             <div className="flex gap-2">
               <button 
                 onClick={() => setPlugType('US')}
-                className={clsx("px-4 py-2 rounded border", plugType === 'US' ? "bg-blue-600 border-blue-500 text-gray-900 dark:text-white" : "bg-gray-700 border-gray-600 text-gray-700 dark:text-gray-300")}
+                className={clsx("px-4 py-2 rounded border", plugType === 'US' ? "bg-blue-600 border-blue-500 text-white text-gray-900 dark:text-white" : "bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300")}
               >
                 {t('adapter.demo.usPlug')}
               </button>
               <button 
                 onClick={() => setPlugType('EU')}
-                className={clsx("px-4 py-2 rounded border", plugType === 'EU' ? "bg-blue-600 border-blue-500 text-gray-900 dark:text-white" : "bg-gray-700 border-gray-600 text-gray-700 dark:text-gray-300")}
+                className={clsx("px-4 py-2 rounded border", plugType === 'EU' ? "bg-blue-600 border-blue-500 text-white text-gray-900 dark:text-white" : "bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300")}
               >
                 {t('adapter.demo.euPlug')}
               </button>
@@ -44,7 +44,7 @@ const AdapterDemo = () => {
               onClick={() => setHasAdapter(!hasAdapter)}
               className={clsx(
                 "w-full px-4 py-3 rounded border flex items-center justify-between transition-colors", 
-                hasAdapter ? "bg-green-900/30 border-green-500 text-green-400" : "bg-gray-700 border-gray-600 text-gray-600 dark:text-gray-400"
+                hasAdapter ? "bg-green-100 dark:bg-green-900/30 border-green-500 text-green-700 dark:text-green-400 text-green-400" : "bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400"
               )}
             >
               <span>{t('adapter.demo.adapterName')}</span>

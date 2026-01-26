@@ -257,7 +257,7 @@
       "estMemoryNaive": "Est. Memory (Naive):",
       "estMemoryFlyweight": "Est. Memory (Flyweight):",
       "savings": "Savings:",
-      "renderingCapped": "Rendering capped at 500 (DOM limitation),<br/>but {count} objects exist in memory!"
+      "renderingCapped": "Rendering capped at 2000 (DOM limitation),<br/>but {{count}} objects exist in memory!"
     },
     "title": "Flyweight Pattern",
     "description": "This pattern optimizes memory usage by sharing common data among many objects, such as using a single texture for thousands of trees in a forest."
@@ -274,10 +274,21 @@
       "client": "Client",
       "proxyCache": "Proxy (Cache)",
       "realServer": "Real Server",
-      "logRequest": "Client: Requesting video {id}...",
-      "logCacheHit": "Proxy: Cache HIT! Returning saved data for {id}.",
+      "logRequest": "Client: Requesting video {{id}}...",
+      "logCacheHit": "Proxy: Cache HIT! Returning saved data for {{id}}.",
       "logCacheMiss": "Proxy: Cache MISS. Sending request to RealSubject...",
-      "logReceived": "Proxy: Received data. Saved to cache."
+      "logReceived": "Proxy: Received data. Saved to cache.",
+      "statusIdle": "System Idle",
+      "statusRequesting": "Requesting",
+      "statusChecking": "Checking Cache",
+      "statusFetching": "Fetching Server",
+      "statusReturning": "Returning Data",
+      "explainerIdle": "Click a button to start a request.",
+      "explainerRequesting": "Client sends request for {{id}}...",
+      "explainerChecking": "Proxy checks if data exists in local cache...",
+      "explainerFetching": "Cache miss! Forwarding request to Real Server (slow)...",
+      "explainerReturning": "Data found! Returning results to Client.",
+      "cacheEmpty": "Cache Empty"
     },
     "title": "Proxy Pattern",
     "description": "This pattern acts as a substitute for another object to control access, such as a cache that stores video data to avoid repeated downloads from a slow server."

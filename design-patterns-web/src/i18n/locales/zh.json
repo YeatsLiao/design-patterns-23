@@ -257,7 +257,7 @@
       "estMemoryNaive": "预估内存 (普通)：",
       "estMemoryFlyweight": "预估内存 (享元)：",
       "savings": "节省：",
-      "renderingCapped": "渲染上限为 500 (DOM 限制)，<br/>但内存中存在 {count} 个对象！"
+      "renderingCapped": "渲染上限为 2000 (DOM 限制)，<br/>但内存中存在 {{count}} 个对象！"
     },
     "title": "享元模式 (Flyweight)",
     "description": "通过在多个对象间共享通用数据来优化内存，例如在森林渲染中让成千上万棵树共用同一个纹理模型。"
@@ -274,10 +274,21 @@
       "client": "客户端",
       "proxyCache": "代理 (缓存)",
       "realServer": "真实服务器",
-      "logRequest": "客户端：请求视频 {id}...",
-      "logCacheHit": "代理：缓存命中！返回 {id} 的保存数据。",
+      "logRequest": "客户端：请求视频 {{id}}...",
+      "logCacheHit": "代理：缓存命中！返回 {{id}} 的保存数据。",
       "logCacheMiss": "代理：缓存未命中。向真实主体发送请求...",
-      "logReceived": "代理：接收到数据。保存到缓存。"
+      "logReceived": "代理：接收到数据。保存到缓存。",
+      "statusIdle": "系统空闲",
+      "statusRequesting": "发送请求",
+      "statusChecking": "检查缓存",
+      "statusFetching": "请求服务器",
+      "statusReturning": "返回数据",
+      "explainerIdle": "点击按钮开始请求。",
+      "explainerRequesting": "客户端正在发送 {{id}} 的请求...",
+      "explainerChecking": "代理正在检查本地缓存是否存在数据...",
+      "explainerFetching": "缓存未命中！正在转发请求至真实服务器 (较慢)...",
+      "explainerReturning": "找到数据！正在将结果返回给客户端。",
+      "cacheEmpty": "缓存为空"
     },
     "title": "代理模式 (Proxy)",
     "description": "充当另一个对象的替身以控制对它的访问，例如视频缓存代理存储数据以避免从慢速服务器重复下载。"

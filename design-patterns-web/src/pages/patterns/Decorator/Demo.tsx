@@ -50,19 +50,19 @@ const DecoratorDemo = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+      <div className="bg-gray-400 dark:bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('decorator.demo.title')}</h3>
         
         <div className="space-y-4 mb-8">
-           <button onClick={addMilk} className="w-full flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-gray-900 dark:text-white transition-colors">
-              <span className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-white"></div> {t('decorator.demo.addMilk')}</span>
+           <button onClick={addMilk} className="w-full flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg text-gray-900 dark:text-white transition-colors">
+              <span className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-gray-400 dark:bg-white"></div> {t('decorator.demo.addMilk')}</span>
               <span>+$0.50</span>
            </button>
-           <button onClick={addSugar} className="w-full flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-gray-900 dark:text-white transition-colors">
+           <button onClick={addSugar} className="w-full flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg text-gray-900 dark:text-white transition-colors">
               <span className="flex items-center gap-2"><div className="w-4 h-4 rounded-sm bg-gray-300"></div> {t('decorator.demo.addSugar')}</span>
               <span>+$0.25</span>
            </button>
-           <button onClick={addWhip} className="w-full flex items-center justify-between px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-gray-900 dark:text-white transition-colors">
+           <button onClick={addWhip} className="w-full flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg text-gray-900 dark:text-white transition-colors">
               <span className="flex items-center gap-2"><div className="w-4 h-4 rounded-t-full bg-pink-200"></div> {t('decorator.demo.addWhip')}</span>
               <span>+$1.00</span>
            </button>
@@ -71,7 +71,7 @@ const DecoratorDemo = () => {
         <button onClick={reset} className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white underline w-full text-center">{t('decorator.demo.startOver')}</button>
       </div>
 
-      <div className="bg-[#3e2723] rounded-xl p-6 border border-[#5d4037] flex flex-col items-center justify-center relative overflow-hidden shadow-2xl">
+      <div className="bg-[#4e342e] rounded-xl p-6 border border-[#795548] flex flex-col items-center justify-center relative overflow-hidden shadow-2xl">
          {/* Coffee Cup Visualization */}
          <div className="relative w-40 h-52">
             <div className="absolute inset-x-0 bottom-0 top-8 bg-gray-100 rounded-b-3xl shadow-lg overflow-hidden flex flex-col-reverse">
@@ -84,7 +84,7 @@ const DecoratorDemo = () => {
                       animate={{ height: ing === 'coffee' ? '60%' : '15%' }}
                       className={clsx(
                         "w-full transition-colors border-t border-black/5",
-                        ing === 'coffee' && "bg-[#3e2723]",
+                        ing === 'coffee' && "bg-[#4e342e]",
                         ing === 'milk' && "bg-[#f5f5f5]",
                         ing === 'sugar' && "bg-[#eeeeee]",
                         ing === 'whip' && "bg-[#f8bbd0]"
@@ -97,7 +97,7 @@ const DecoratorDemo = () => {
             <div className="absolute top-12 -right-8 w-10 h-20 border-8 border-gray-100 rounded-r-2xl pointer-events-none"></div>
          </div>
 
-         <div className="mt-8 text-center text-[#d7ccc8]">
+         <div className="mt-8 text-center text-[#efebe9]">
             <h4 className="text-2xl font-bold mb-1">${drink.cost.toFixed(2)}</h4>
             <p className="text-sm opacity-80 max-w-xs mx-auto">{drink.description}</p>
          </div>
