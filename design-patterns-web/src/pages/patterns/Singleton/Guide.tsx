@@ -1,5 +1,6 @@
 import { Lightbulb, AlertTriangle, CheckCircle } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
+import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const SingletonGuide = () => {
   const { t } = useTranslation();
@@ -14,10 +15,10 @@ const SingletonGuide = () => {
         </h2>
         <div className="prose prose-invert text-gray-700 dark:text-gray-300">
           <p>
-            <Trans i18nKey="singleton.concept.analogy" />
+            <MarkdownTrans i18nKey="singleton.concept.analogy" />
           </p>
           <p className="mt-4">
-            <Trans i18nKey="singleton.concept.definition" />
+            <MarkdownTrans i18nKey="singleton.concept.definition" />
           </p>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import { Lightbulb, Shuffle, MousePointerClick } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
+import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const StrategyGuide = () => {
   const { t } = useTranslation();
@@ -14,10 +15,10 @@ const StrategyGuide = () => {
         </h2>
         <div className="prose prose-invert text-gray-700 dark:text-gray-300">
           <div>
-            <Trans i18nKey="strategy.concept.definition" />
+            <MarkdownTrans i18nKey="strategy.concept.definition" />
           </div>
           <div className="mt-4">
-            <Trans i18nKey="strategy.concept.analogy" />
+            <MarkdownTrans i18nKey="strategy.concept.analogy" />
           </div>
         </div>
       </section>
@@ -84,9 +85,9 @@ class Checkout {
       <section>
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t('common.whenToUse')}</h3>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Use the Strategy pattern when you want to use different variants of an algorithm within an object and be able to switch from one algorithm to another during runtime.</li>
-          <li>Use it when you have a lot of similar classes that only differ in the way they execute some behavior.</li>
-          <li>Use it to isolate the business logic of a class from the implementation details of algorithms that may not be as important in the context of that logic.</li>
+          <li>{t('strategy.usage.point1')}</li>
+          <li>{t('strategy.usage.point2')}</li>
+          <li>{t('strategy.usage.point3')}</li>
         </ul>
       </section>
     </div>

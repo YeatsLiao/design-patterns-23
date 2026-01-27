@@ -1,4 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
+import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const InterpreterGuide = () => {
   const { t } = useTranslation();
@@ -8,10 +9,10 @@ const InterpreterGuide = () => {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('common.concept')}</h2>
         <div className="text-gray-700 dark:text-gray-300">
-          <Trans i18nKey="interpreter.concept.definition" />
+          <MarkdownTrans i18nKey="interpreter.concept.definition" />
         </div>
         <div className="text-gray-700 dark:text-gray-300 mt-2">
-          <Trans i18nKey="interpreter.concept.analogy" />
+          <MarkdownTrans i18nKey="interpreter.concept.analogy" />
         </div>
       </section>
 
@@ -38,6 +39,14 @@ class Add implements Expression {
 const tree = new Add(new Number(1), new Number(2));
 console.log(tree.interpret()); // 3`}
          </pre>
+      </section>
+
+      <section>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t('common.whenToUse')}</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li>{t('interpreter.usage.point1')}</li>
+          <li>{t('interpreter.usage.point2')}</li>
+        </ul>
       </section>
     </div>
   );

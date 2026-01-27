@@ -124,7 +124,7 @@ const StateDemo = () => {
            </button>
         </div>
 
-        <div className="bg-black p-4 rounded text-center text-gray-600 dark:text-gray-400 font-mono">
+        <div className="bg-black p-4 rounded text-center text-gray-300 font-mono">
            {log}
         </div>
       </div>

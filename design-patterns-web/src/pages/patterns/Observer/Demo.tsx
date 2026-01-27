@@ -95,7 +95,7 @@ const ObserverDemo = () => {
             onClick={uploadVideo}
             disabled={isUploading || subscribers.length === 0}
             className={clsx(
-              "flex items-center gap-2 px-6 py-3 rounded-full font-bold text-gray-900 dark:text-white shadow-lg transition-all",
+              "flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white shadow-lg transition-all",
               isUploading 
                 ? "bg-gray-600 cursor-not-allowed" 
                 : subscribers.length === 0
@@ -125,7 +125,7 @@ const ObserverDemo = () => {
         <div className="mt-6">
           <div className="flex justify-between items-center mb-2">
             <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400">{t('observer.demo.subscribersList')}</h4>
-            <button onClick={subscribe} className="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded text-gray-900 dark:text-white transition-colors">
+            <button onClick={subscribe} className="text-xs bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded text-white transition-colors">
               {t('observer.demo.addSubscriber')}
             </button>
           </div>

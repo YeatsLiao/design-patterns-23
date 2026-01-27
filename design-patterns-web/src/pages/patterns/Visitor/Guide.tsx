@@ -1,4 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
+import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const VisitorGuide = () => {
   const { t } = useTranslation();
@@ -8,34 +9,38 @@ const VisitorGuide = () => {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('common.concept')}</h2>
         <div className="text-gray-700 dark:text-gray-300">
-          <Trans i18nKey="visitor.concept.definition" />
+          <MarkdownTrans i18nKey="visitor.concept.definition" />
         </div>
         <div className="text-gray-700 dark:text-gray-300 mt-2">
-          <Trans i18nKey="visitor.concept.analogy" />
+          <MarkdownTrans i18nKey="visitor.concept.analogy" />
         </div>
       </section>
 
       <section className="bg-gray-50 dark:bg-gray-950 rounded-lg p-4 border border-gray-800">
          <h3 className="text-blue-400 font-semibold mb-2">{t('common.codeExample')}</h3>
          <pre className="text-xs text-gray-600 dark:text-gray-400 overflow-x-auto font-mono">
-{`interface Visitor {
-  visitDot(d: Dot): void;
-  visitRect(r: Rectangle): void;
+{`interface Shape {
+  accept(v: Visitor): void;
 }
 
-class Dot {
-  accept(v: Visitor) { v.visitDot(this); }
+class Circle implements Shape {
+  accept(v: Visitor) { v.visitCircle(this); }
 }
 
-class ExportVisitor implements Visitor {
-  visitDot(d) { console.log("Exporting dot..."); }
-  visitRect(r) { console.log("Exporting rect..."); }
-}
-
-// Client
-const exportVisitor = new ExportVisitor();
-dot.accept(exportVisitor);`}
+class XmlExportVisitor implements Visitor {
+  visitCircle(c: Circle) {
+    console.log("<circle>");
+  }
+}`}
          </pre>
+      </section>
+
+      <section>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t('common.whenToUse')}</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li>{t('visitor.usage.point1')}</li>
+          <li>{t('visitor.usage.point2')}</li>
+        </ul>
       </section>
     </div>
   );

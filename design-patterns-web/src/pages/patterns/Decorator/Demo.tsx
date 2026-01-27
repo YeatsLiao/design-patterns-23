@@ -71,7 +71,7 @@ const DecoratorDemo = () => {
         <button onClick={reset} className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white underline w-full text-center">{t('decorator.demo.startOver')}</button>
       </div>
 
-      <div className="bg-[#4e342e] rounded-xl p-6 border border-[#795548] flex flex-col items-center justify-center relative overflow-hidden shadow-2xl">
+      <div className="bg-gradient-to-br from-[#5d4037] to-[#3e2723] rounded-xl p-6 border border-[#8d6e63] flex flex-col items-center justify-center relative overflow-hidden shadow-2xl">
          {/* Coffee Cup Visualization */}
          <div className="relative w-40 h-52">
             <div className="absolute inset-x-0 bottom-0 top-8 bg-gray-100 rounded-b-3xl shadow-lg overflow-hidden flex flex-col-reverse">

@@ -1,4 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
+import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const CompositeGuide = () => {
   const { t } = useTranslation();
@@ -7,10 +8,10 @@ const CompositeGuide = () => {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('common.concept')}</h2>
         <p className="text-gray-700 dark:text-gray-300">
-          <Trans i18nKey="composite.concept.definition" components={{ strong: <strong />, code: <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded" /> }} />
+          <MarkdownTrans i18nKey="composite.concept.definition" />
         </p>
         <p className="text-gray-700 dark:text-gray-300 mt-2">
-          <Trans i18nKey="composite.concept.analogy" components={{ strong: <strong />, code: <code className="bg-gray-200 dark:bg-gray-700 px-1 rounded" /> }} />
+          <MarkdownTrans i18nKey="composite.concept.analogy" />
         </p>
       </section>
 
@@ -37,6 +38,14 @@ class Folder implements Component {
   }
 }`}
          </pre>
+      </section>
+
+      <section>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t('common.whenToUse')}</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li>{t('composite.usage.point1')}</li>
+          <li>{t('composite.usage.point2')}</li>
+        </ul>
       </section>
     </div>
   );

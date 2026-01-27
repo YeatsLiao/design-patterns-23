@@ -1,4 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
+import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const IteratorGuide = () => {
   const { t } = useTranslation();
@@ -8,10 +9,10 @@ const IteratorGuide = () => {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('common.concept')}</h2>
         <div className="text-gray-700 dark:text-gray-300">
-          <Trans i18nKey="iterator.concept.definition" />
+          <MarkdownTrans i18nKey="iterator.concept.definition" />
         </div>
         <div className="text-gray-700 dark:text-gray-300 mt-2">
-          <Trans i18nKey="iterator.concept.analogy" />
+          <MarkdownTrans i18nKey="iterator.concept.analogy" />
         </div>
       </section>
 
@@ -40,6 +41,15 @@ while(iter.hasNext()) {
   console.log(iter.next());
 }`}
          </pre>
+      </section>
+
+      <section>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t('common.whenToUse')}</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li>{t('iterator.usage.point1')}</li>
+          <li>{t('iterator.usage.point2')}</li>
+          <li>{t('iterator.usage.point3')}</li>
+        </ul>
       </section>
     </div>
   );

@@ -1,5 +1,6 @@
 import { Lightbulb, Radio, PlayCircle } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
+import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const ObserverGuide = () => {
   const { t } = useTranslation();
@@ -14,10 +15,10 @@ const ObserverGuide = () => {
         </h2>
         <div className="prose prose-invert text-gray-700 dark:text-gray-300">
           <div>
-            <Trans i18nKey="observer.concept.definition" />
+            <MarkdownTrans i18nKey="observer.concept.definition" />
           </div>
           <div className="mt-4">
-            <Trans i18nKey="observer.concept.analogy" />
+            <MarkdownTrans i18nKey="observer.concept.analogy" />
           </div>
         </div>
       </section>
@@ -82,8 +83,8 @@ channel.notify("New Video!");`}
       <section>
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t('common.whenToUse')}</h3>
         <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-          <li>Use the Observer pattern when changes to the state of one object may require changing other objects, and the actual set of objects is unknown or changes dynamically.</li>
-          <li>Use the pattern when some objects in your app must observe others, but only for a limited time or in specific cases.</li>
+          <li>{t('observer.usage.point1')}</li>
+          <li>{t('observer.usage.point2')}</li>
         </ul>
       </section>
     </div>

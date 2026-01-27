@@ -48,13 +48,13 @@ const BridgeDemo = () => {
         <div className="mb-6 flex gap-2 bg-gray-50 dark:bg-gray-900 p-1 rounded-lg">
            <button 
              onClick={() => setSelectedDevice('tv')}
-             className={clsx("px-4 py-2 rounded text-sm transition-colors", selectedDevice === 'tv' ? "bg-blue-600 text-gray-900 dark:text-white" : "text-gray-500 dark:text-gray-400 dark:text-gray-400 hover:text-gray-900 dark:text-white")}
+             className={clsx("px-4 py-2 rounded text-sm transition-colors", selectedDevice === 'tv' ? "bg-blue-600 text-white" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white")}
            >
              {t('bridge.demo.controlTV')}
            </button>
            <button 
              onClick={() => setSelectedDevice('radio')}
-             className={clsx("px-4 py-2 rounded text-sm transition-colors", selectedDevice === 'radio' ? "bg-blue-600 text-gray-900 dark:text-white" : "text-gray-500 dark:text-gray-400 dark:text-gray-400 hover:text-gray-900 dark:text-white")}
+             className={clsx("px-4 py-2 rounded text-sm transition-colors", selectedDevice === 'radio' ? "bg-blue-600 text-white" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white")}
            >
              {t('bridge.demo.controlRadio')}
            </button>
@@ -69,9 +69,9 @@ const BridgeDemo = () => {
            </button>
 
            <div className="flex justify-between items-center bg-white dark:bg-gray-800 rounded-full p-2">
-              <button onClick={volumeDown} className="w-10 h-10 bg-gray-700 rounded-full text-gray-900 dark:text-white hover:bg-gray-600">-</button>
-              <Volume2 size={16} className="text-gray-500 dark:text-gray-400 dark:text-gray-400" />
-              <button onClick={volumeUp} className="w-10 h-10 bg-gray-700 rounded-full text-gray-900 dark:text-white hover:bg-gray-600">+</button>
+              <button onClick={volumeDown} className="w-10 h-10 bg-gray-700 rounded-full text-white dark:text-white hover:bg-gray-600">-</button>
+              <Volume2 size={16} className="text-gray-500 dark:text-gray-400" />
+              <button onClick={volumeUp} className="w-10 h-10 bg-gray-700 rounded-full text-white dark:text-white hover:bg-gray-600">+</button>
            </div>
         </div>
       </div>

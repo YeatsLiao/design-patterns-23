@@ -124,6 +124,11 @@
       "analogy": "Imagine a burger restaurant. Some customers want cheese, some want no lettuce, some want double patties. Instead of creating separate classes for <code>CheeseBurger</code>, <code>NoLettuceBurger</code>, etc., you use a builder to assemble the burger according to specific preferences.",
       "definition": "The <strong>Builder</strong> pattern lets you construct complex objects step by step. The pattern allows you to produce different types and representations of an object using the same construction code."
     },
+    "usage": {
+      "point1": "Use the Builder pattern to get rid of a \"telescopic constructor\".",
+      "point2": "Use the Builder pattern when you want your code to be able to create different representations of some product (for example, stone and wooden houses).",
+      "point3": "Use the Builder to construct Composite trees or other complex objects."
+    },
     "demo": {
       "title": "Burger Builder",
       "step1": "Step 1: Add Ingredients",
@@ -138,8 +143,12 @@
   },
   "prototype": {
     "concept": {
-      "analogy": "It delegates the cloning process to the actual objects that are being cloned. The pattern declares a common interface for all objects that support cloning. This interface usually lets you clone an object without coupling your code to the class of that object.",
+      "analogy": "It delegates the cloning process to the actual objects that are being cloned. The pattern declares a common interface for all objects that support cloning. This interface lets you clone an object without coupling your code to the class of that object.",
       "definition": "The <strong>Prototype</strong> pattern lets you copy existing objects without making your code dependent on their classes."
+    },
+    "usage": {
+      "point1": "Use the Prototype pattern when your code shouldn't depend on the concrete classes of objects that you need to copy.",
+      "point2": "Use the pattern when you want to reduce the number of subclasses that only differ in the way they initialize their respective objects."
     },
     "demo": {
       "title": "Prototype / Cloner",
@@ -155,6 +164,10 @@
     "concept": {
       "analogy": "It acts as a wrapper between two objects. It catches calls for one object and transforms them to format and interface recognizable by the second object. Just like a travel power adapter converts your plug shape to fit into the foreign wall socket.",
       "definition": "The <strong>Adapter</strong> pattern allows objects with incompatible interfaces to collaborate."
+    },
+    "usage": {
+      "point1": "Use the Adapter class when you want to use some existing class, but its interface isn't compatible with the rest of your code.",
+      "point2": "Use the pattern when you want to reuse several existing subclasses that lack some common functionality that can't be added to the superclass."
     },
     "demo": {
       "title": "Travel Adapter",
@@ -176,6 +189,10 @@
       "analogy": "In the demo, the <strong>Remote</strong> (Abstraction) is separated from the <strong>Device</strong> (Implementation). You can create new types of Remotes (AdvancedRemote) without changing the Devices, and new Devices without changing the Remote code.",
       "definition": "The <strong>Bridge</strong> pattern lets you split a large class or a set of closely related classes into two separate hierarchies—abstraction and implementation—which can be developed independently."
     },
+    "usage": {
+      "point1": "Use the Bridge pattern when you want to divide and organize a monolithic class that has several variants of some functionality.",
+      "point2": "Use the pattern when you need to extend a class in several orthogonal (independent) dimensions."
+    },
     "demo": {
       "title": "Universal Remote",
       "controlTV": "Control TV",
@@ -190,6 +207,10 @@
     "concept": {
       "analogy": "It's perfect for hierarchical structures like file systems, menus, or organization charts. The client code can treat a simple element (File) and a complex container (Folder) in the same way (e.g., calling <code>getSize()</code>).",
       "definition": "The <strong>Composite</strong> pattern lets you compose objects into tree structures and then work with these structures as if they were individual objects."
+    },
+    "usage": {
+      "point1": "Use the Composite pattern when you want to represent part-whole hierarchies of objects.",
+      "point2": "Use it when you want clients to be able to ignore the difference between compositions of objects and individual objects."
     },
     "demo": {
       "title": "File System Tree",
@@ -206,6 +227,10 @@
       "analogy": "It's an alternative to subclassing. Instead of creating <code>MilkCoffee</code>, <code>SugarCoffee</code>, <code>MilkSugarCoffee</code>, you create a <code>Coffee</code> object and \"wrap\" it with <code>MilkDecorator</code> and then <code>SugarDecorator</code>.",
       "definition": "The <strong>Decorator</strong> pattern lets you attach new behaviors to objects by placing these objects inside special wrapper objects that contain the behaviors."
     },
+    "usage": {
+      "point1": "Use the Decorator pattern when you need to be able to assign extra behaviors to objects at runtime without breaking the code that uses these objects.",
+      "point2": "Use the pattern when it's awkward or impossible to extend an object's behavior using inheritance."
+    },
     "demo": {
       "title": "Starbuzz Coffee",
       "addMilk": "Add Milk",
@@ -218,8 +243,12 @@
   },
   "facade": {
     "concept": {
-      "analogy": "It doesn't hide the subsystem completely but provides a convenient entry point for the most common features. Like a smart home panel: pressing \"Movie Mode\" does 10 different things behind the scenes, but you only interact with one button.",
+      "analogy": "A home theater system is complex (Amp, DVD, Projector, Screen, Lights). A <strong>Facade</strong> would be a remote with a single \"Watch Movie\" button that turns everything on and sets the right inputs.",
       "definition": "The <strong>Facade</strong> pattern provides a simplified interface to a library, a framework, or any other complex set of classes."
+    },
+    "usage": {
+      "point1": "Use the Facade pattern when you need to have a limited but straightforward interface to a complex subsystem.",
+      "point2": "Use the Facade when you want to structure a subsystem into layers."
     },
     "demo": {
       "title": "Smart Home Controller (Facade)",
@@ -247,6 +276,10 @@
       "analogy": "In a forest game, each tree has a position (unique) and a texture/model (shared). Instead of loading the texture 1,000 times for 1,000 trees, you load it once and have all 1,000 trees reference that single texture object.",
       "definition": "The <strong>Flyweight</strong> pattern lets you fit more objects into the available amount of RAM by sharing common parts of state between multiple objects instead of keeping all of the data in each object."
     },
+    "usage": {
+      "point1": "Use the Flyweight pattern only when your program must support a huge number of objects which barely fit into available RAM.",
+      "point2": "Use it when the objects contain duplicate states which can be extracted and shared between multiple objects."
+    },
     "demo": {
       "title": "Forest Renderer",
       "plant10": "Plant 10 Trees",
@@ -264,8 +297,15 @@
   },
   "proxy": {
     "concept": {
-      "analogy": "Common uses include: <ul className=\"list-disc list-inside mt-2 ml-2\"><li><strong>Caching Proxy</strong>: Save results of expensive operations.</li><li><strong>Protection Proxy</strong>: Check permissions before access.</li><li><strong>Virtual Proxy</strong>: Delay initialization of heavy objects.</li></ul>",
-      "definition": "The <strong>Proxy</strong> pattern provides a substitute or placeholder for another object. A proxy controls access to the original object, allowing you to perform something either before or after the request gets through to the original object."
+      "analogy": "A credit card is a proxy for a bank account (or cash). You can use it to pay, and the money gets transferred later. It controls access to your funds.",
+      "definition": "The <strong>Proxy</strong> pattern lets you provide a substitute or placeholder for another object. A proxy controls access to the original object, allowing you to perform something either before or after the request gets through to the original object."
+    },
+    "usage": {
+      "point1": "Lazy initialization (virtual proxy). This is when you have a heavyweight service object that wastes system resources by being always up, even though you only need it from time to time.",
+      "point2": "Access control (protection proxy). This is when you want only specific clients to be able to use the service object.",
+      "point3": "Local execution of a remote service (remote proxy). This is when the service object is located on a remote server.",
+      "point4": "Logging requests (logging proxy). This is when you want to keep a history of requests to the service object.",
+      "point5": "Caching request results (caching proxy). This is when you need to cache results of client requests and manage the life cycle of this cache."
     },
     "demo": {
       "title": "Cached Video Proxy",
@@ -336,6 +376,10 @@
       "analogy": "It's rarely used for general-purpose programming languages (too complex) but great for simple domain-specific languages (DSL), like math expressions, SQL parsers, or regular expressions.",
       "definition": "The <strong>Interpreter</strong> pattern is used to define a grammatical representation for a language and an interpreter to interpret the grammar."
     },
+    "usage": {
+      "point1": "Use the Interpreter pattern when your problem can be represented as a sentence in a simple language, and you have to interpret it.",
+      "point2": "Use it when the grammar is simple and efficiency is not a critical concern."
+    },
     "demo": {
       "title": "Math Interpreter",
       "label": "Enter Expression (space separated)",
@@ -354,6 +398,11 @@
       "analogy": "It decouples the traversal algorithms from the collection objects. You can have different iterators (Forward, Backward, Shuffle) for the same collection without changing the collection code.",
       "definition": "The <strong>Iterator</strong> pattern lets you traverse elements of a collection without exposing its underlying representation (list, stack, tree, etc.)."
     },
+    "usage": {
+      "point1": "Use the Iterator pattern when your collection has a complex data structure under the hood, but you want to hide its complexity from clients (either for convenience or security reasons).",
+      "point2": "Use the pattern to reduce duplication of the traversal code across your app.",
+      "point3": "Use the Iterator when you want your code to be able to traverse different data structures or when the types of these structures are unknown beforehand."
+    },
     "demo": {
       "title": "Music Playlist Iterator",
       "nowPlaying": "Now Playing",
@@ -367,6 +416,11 @@
     "concept": {
       "analogy": "Instead of Alice sending a message directly to Bob and Charlie (Many-to-Many dependency), Alice sends it to the ChatRoom (Mediator), and the ChatRoom distributes it. This reduces coupling: components don't need to know about each other, only about the Mediator.",
       "definition": "The <strong>Mediator</strong> pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object."
+    },
+    "usage": {
+      "point1": "Use the Mediator pattern when it's hard to change some of the classes because they are tightly coupled to a bunch of other classes.",
+      "point2": "Use the pattern when you can't reuse a component in a different program because it's too dependent on other components.",
+      "point3": "Use the Mediator when you find yourself creating tons of component subclasses just to reuse some basic behavior in various contexts."
     },
     "demo": {
       "title": "Chat Room (Mediator)",
@@ -382,6 +436,10 @@
       "analogy": "It's commonly used for \"Undo\" mechanisms. The \"Originator\" (Editor) creates a \"Memento\" (Snapshot) containing its state. The \"Caretaker\" (History List) stores the memento but cannot read/tamper with it.",
       "definition": "The <strong>Memento</strong> pattern lets you save and restore the previous state of an object without revealing the details of its implementation."
     },
+    "usage": {
+      "point1": "Use the Memento pattern when you want to produce snapshots of the object's state to be able to restore a previous state of the object.",
+      "point2": "Use the pattern when direct access to the object's fields/getters/setters violates its encapsulation."
+    },
     "demo": {
       "title": "Text Editor (Snapshot)",
       "placeholder": "Type something here...",
@@ -395,8 +453,12 @@
   },
   "observer": {
     "concept": {
-      "analogy": "Think of <strong>YouTube</strong> or <strong>Newsletters</strong>. You (the Observer) subscribe to a Channel (the Subject). When the Channel uploads a new video, it notifies all its subscribers automatically. You don't need to check the channel every 5 minutes to see if there's new content.",
+      "analogy": "Think of <strong>YouTube</strong> or a <strong>Newsletter</strong>. You (the Observer) subscribe to a channel (the Subject). When the channel uploads a new video, it automatically notifies all subscribers. You don't have to check the channel every 5 minutes to see if there's something new.",
       "definition": "The <strong>Observer</strong> pattern defines a subscription mechanism to notify multiple objects about any events that happen to the object they're observing."
+    },
+    "usage": {
+      "point1": "Use the Observer pattern when changes to the state of one object may require changing other objects, and the actual set of objects is unknown or changes dynamically.",
+      "point2": "Use the pattern when some objects in your app must observe others, but only for a limited time or in specific cases."
     },
     "demo": {
       "titlePublisher": "Publisher (Subject)",
@@ -423,6 +485,10 @@
       "analogy": "Instead of massive <code>switch</code> statements inside a <code>click()</code> method (e.g., <code>if state == playing then pause else if state == stopped then play</code>), you delegate the execution to a state object.",
       "definition": "The <strong>State</strong> pattern lets an object alter its behavior when its internal state changes. It appears as if the object changed its class."
     },
+    "usage": {
+      "point1": "Use the State pattern when you have an object that behaves differently depending on its current state.",
+      "point2": "Use the pattern when you have a massive switch-case conditional that alters the class behavior according to instance values."
+    },
     "demo": {
       "title": "Music Player State Machine",
       "ready": "Ready",
@@ -446,6 +512,11 @@
       "analogy": "Imagine navigating to the airport. You can choose a <strong>Bus</strong> strategy, a <strong>Taxi</strong> strategy, or a <strong>Bike</strong> strategy. They all accomplish the same goal (getting to the airport), but the algorithm (cost, time, route) is different. The client (traveler) can swap strategies at runtime based on their needs (budget vs speed).",
       "definition": "The <strong>Strategy</strong> pattern defines a family of algorithms, puts each of them into a separate class, and makes their objects interchangeable."
     },
+    "usage": {
+      "point1": "Use the Strategy pattern when you want to use different variants of an algorithm within an object and be able to switch from one algorithm to another during runtime.",
+      "point2": "Use it when you have a lot of similar classes that only differ in the way they execute some behavior.",
+      "point3": "Use it to isolate the business logic of a class from the implementation details of algorithms that may not be as important in the context of that logic."
+    },
     "demo": {
       "title": "Checkout (Context)",
       "totalAmount": "Total Amount",
@@ -453,7 +524,7 @@
       "creditCard": "Card",
       "paypal": "PayPal",
       "bank": "Bank",
-      "payNow": "Pay ${amount} Now",
+      "payNow": "Pay {{amount}} Now",
       "processing": "Processing Strategy...",
       "executionTitle": "Strategy Execution",
       "context": "Current Strategy Context",
@@ -465,9 +536,9 @@
       "logs": "System Logs:",
       "waiting": "Waiting for transaction...",
       "delegating": "Context: Delegating payment to {{strategy}} strategy...",
-      "ccCharged": "Credit Card Strategy: Charged ${amount} (Fee: 2.5%)",
-      "paypalPaid": "PayPal Strategy: Redirecting... Paid ${amount} successfully.",
-      "bankInvoice": "Bank Transfer Strategy: Created invoice for ${amount}. Pending approval."
+      "ccCharged": "Credit Card Strategy: Charged {{amount}} (Fee: 2.5%)",
+      "paypalPaid": "PayPal Strategy: Redirecting... Paid {{amount}} successfully.",
+      "bankInvoice": "Bank Transfer Strategy: Created invoice for {{amount}}. Pending approval."
     },
     "title": "Strategy Pattern",
     "description": "This pattern enables you to select an algorithm at runtime, such as choosing between Credit Card, PayPal, or Bank Transfer for payment, without changing the checkout logic."
@@ -476,6 +547,10 @@
     "concept": {
       "analogy": "Think of a recipe. The general steps are \"Prep -> Cook -> Serve\". The abstract class defines this flow. A <code>PastaDish</code> subclass implements \"Boil Water\" for Cook. A <code>SteakDish</code> subclass implements \"Grill\" for Cook. The order remains the same.",
       "definition": "The <strong>Template Method</strong> pattern defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure."
+    },
+    "usage": {
+      "point1": "Use the Template Method pattern when you want to let clients extend only particular steps of an algorithm, but not the whole algorithm or its structure.",
+      "point2": "Use the pattern when you have several classes that contain almost identical algorithms with some minor differences."
     },
     "demo": {
       "title": "Data Mining Pipeline",
@@ -497,6 +572,10 @@
     "concept": {
       "analogy": "Imagine you have a graph of Shape objects. You want to export them to XML. Instead of adding an <code>exportXML()</code> method to every Shape class (and cluttering them), you create a separate <code>XmlExportVisitor</code> class. The shapes just \"accept\" the visitor.",
       "definition": "The <strong>Visitor</strong> pattern lets you separate algorithms from the objects on which they operate."
+    },
+    "usage": {
+      "point1": "Use the Visitor to clean up the business logic of auxiliary behaviors.",
+      "point2": "Use the pattern when a behavior makes sense only in some classes of a class hierarchy, but not in others."
     },
     "demo": {
       "title": "Shape Exporter",

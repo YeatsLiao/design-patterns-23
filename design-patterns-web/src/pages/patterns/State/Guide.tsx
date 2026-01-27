@@ -1,4 +1,5 @@
 import { useTranslation, Trans } from 'react-i18next';
+import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const StateGuide = () => {
   const { t } = useTranslation();
@@ -8,10 +9,10 @@ const StateGuide = () => {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{t('common.concept')}</h2>
         <div className="text-gray-700 dark:text-gray-300">
-          <Trans i18nKey="state.concept.definition" />
+          <MarkdownTrans i18nKey="state.concept.definition" />
         </div>
         <div className="text-gray-700 dark:text-gray-300 mt-2">
-          <Trans i18nKey="state.concept.analogy" />
+          <MarkdownTrans i18nKey="state.concept.analogy" />
         </div>
       </section>
 
@@ -36,6 +37,14 @@ class Player {
   clickPlay() { this.state.clickPlay(); }
 }`}
          </pre>
+      </section>
+
+      <section>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t('common.whenToUse')}</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <li>{t('state.usage.point1')}</li>
+          <li>{t('state.usage.point2')}</li>
+        </ul>
       </section>
     </div>
   );
