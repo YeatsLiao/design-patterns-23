@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Truck, Car, Bike, Settings, AlertCircle, ShoppingCart, Trash2 } from 'lucide-react';
 import clsx from 'clsx';
@@ -170,7 +170,7 @@ const FactoryDemo = () => {
             
             <div className="flex gap-4 items-center h-full overflow-x-auto px-4 pb-2 relative z-10 custom-scrollbar hide-scrollbar-thumb">
               <AnimatePresence>
-                {factoryProducts.map((p, index) => (
+                {factoryProducts.map((p) => (
                   <motion.div
                     key={p.id}
                     initial={{ x: -50, opacity: 0, rotate: -90 }}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Lightbulb, Radio, PlayCircle } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 
@@ -14,12 +13,12 @@ const ObserverGuide = () => {
           {t('common.concept')}
         </h2>
         <div className="prose prose-invert text-gray-700 dark:text-gray-300">
-          <p>
+          <div>
             <Trans i18nKey="observer.concept.definition" />
-          </p>
-          <p className="mt-4">
+          </div>
+          <div className="mt-4">
             <Trans i18nKey="observer.concept.analogy" />
-          </p>
+          </div>
         </div>
       </section>
 

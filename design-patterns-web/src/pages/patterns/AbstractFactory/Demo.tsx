@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Smartphone, Monitor, Watch, Package, AlertCircle, Trash2 } from 'lucide-react';
 import clsx from 'clsx';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Circle, Square, FileCode, FileJson } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -23,14 +23,14 @@ interface Visitor {
 
 // Concrete Visitor 1: XML
 class XmlExportVisitor implements Visitor {
-  visitDot(d: Dot) { return "<dot></dot>"; }
-  visitRectangle(r: Rectangle) { return "<rectangle></rectangle>"; }
+  visitDot(_d: Dot) { return "<dot></dot>"; }
+  visitRectangle(_r: Rectangle) { return "<rectangle></rectangle>"; }
 }
 
 // Concrete Visitor 2: JSON
 class JsonExportVisitor implements Visitor {
-  visitDot(d: Dot) { return "{ \"shape\": \"dot\" }"; }
-  visitRectangle(r: Rectangle) { return "{ \"shape\": \"rectangle\" }"; }
+  visitDot(_d: Dot) { return "{ \"shape\": \"dot\" }"; }
+  visitRectangle(_r: Rectangle) { return "{ \"shape\": \"rectangle\" }"; }
 }
 
 const VisitorDemo = () => {
@@ -62,16 +62,16 @@ const VisitorDemo = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-           <button onClick={exportXML} className="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg flex flex-col items-center gap-2 text-gray-900 dark:text-white">
+           <button onClick={exportXML} className="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg flex flex-col items-center gap-2 text-white">
              <FileCode size={24} /> {t('visitor.demo.exportXML')}
            </button>
-           <button onClick={exportJSON} className="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg flex flex-col items-center gap-2 text-gray-900 dark:text-white">
+           <button onClick={exportJSON} className="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg flex flex-col items-center gap-2 text-white">
              <FileJson size={24} /> {t('visitor.demo.exportJSON')}
            </button>
         </div>
       </div>
 
-      <div className="bg-black rounded-xl p-6 border border-gray-200 dark:border-gray-800 font-mono text-xs text-green-400 overflow-auto min-h-[300px]">
+      <div className="bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 font-mono text-xs text-green-400 overflow-auto min-h-[300px]">
          <pre>{output || t('visitor.demo.placeholder')}</pre>
       </div>
     </div>

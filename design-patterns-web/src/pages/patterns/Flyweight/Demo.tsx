@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { TreeDeciduous, TreePine } from 'lucide-react';
 import clsx from 'clsx';
 import { useTranslation, Trans } from 'react-i18next';

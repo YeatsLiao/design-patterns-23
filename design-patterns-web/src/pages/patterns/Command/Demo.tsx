@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
-import { Lightbulb, RotateCcw, Play } from 'lucide-react';
+import { useState } from 'react';
+import { Lightbulb, RotateCcw } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
+
+// State Interface
+interface LightState {
+  isOn: boolean;
+  color: string;
+}
 
 // Command Interface
 interface Command {
@@ -11,40 +18,66 @@ interface Command {
 
 // Receiver
 class Light {
-  constructor(private id: string, private updateState: (id: string, isOn: boolean, color: string) => void) {}
+  private id: string;
+  private updateState: (id: string, isOn: boolean, color: string) => void;
+  
+  constructor(id: string, updateState: (id: string, isOn: boolean, color: string) => void) {
+    this.id = id;
+    this.updateState = updateState;
+  }
   
   on() { this.updateState(this.id, true, 'text-yellow-400'); }
   off() { this.updateState(this.id, false, 'text-gray-600'); }
   setColor(color: string) { this.updateState(this.id, true, color); }
+  restore(state: LightState) { this.updateState(this.id, state.isOn, state.color); }
 }
 
 // Concrete Commands
 class TurnOnCommand implements Command {
-  constructor(private light: Light) {}
+  private prevState: LightState;
+  private light: Light;
+  
+  constructor(light: Light, currentState: LightState) {
+    this.light = light;
+    this.prevState = { ...currentState };
+  }
   execute() { this.light.on(); }
-  undo() { this.light.off(); }
+  undo() { this.light.restore(this.prevState); }
 }
 
 class TurnOffCommand implements Command {
-  constructor(private light: Light) {}
+  private prevState: LightState;
+  private light: Light;
+  
+  constructor(light: Light, currentState: LightState) {
+    this.light = light;
+    this.prevState = { ...currentState };
+  }
   execute() { this.light.off(); }
-  undo() { this.light.on(); }
+  undo() { this.light.restore(this.prevState); }
 }
 
 class ChangeColorCommand implements Command {
-  private prevColor: string = 'text-yellow-400';
-  constructor(private light: Light, private newColor: string) {}
+  private prevState: LightState;
+  private light: Light;
+  private newColor: string;
+
+  constructor(light: Light, newColor: string, currentState: LightState) {
+    this.light = light;
+    this.newColor = newColor;
+    this.prevState = { ...currentState };
+  }
   
   execute() { this.light.setColor(this.newColor); }
-  undo() { this.light.setColor(this.prevColor); }
+  undo() { this.light.restore(this.prevState); }
 }
 
 const CommandDemo = () => {
   const { t } = useTranslation();
-  const [lightState, setLightState] = useState({ isOn: false, color: 'text-gray-600' });
+  const [lightState, setLightState] = useState<LightState>({ isOn: false, color: 'text-gray-600' });
   const [history, setHistory] = useState<Command[]>([]);
 
-  const updateLight = (id: string, isOn: boolean, color: string) => {
+  const updateLight = (_id: string, isOn: boolean, color: string) => {
     setLightState({ isOn, color });
   };
 
@@ -68,16 +101,16 @@ const CommandDemo = () => {
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('command.demo.title')}</h3>
         
         <div className="grid grid-cols-2 gap-4 mb-6">
-           <button onClick={() => executeCommand(new TurnOnCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-gray-900 dark:text-white font-medium">{t('command.demo.on')}</button>
-           <button onClick={() => executeCommand(new TurnOffCommand(light))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-gray-900 dark:text-white font-medium">{t('command.demo.off')}</button>
-           <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-red-500'))} className="p-3 bg-red-900/30 text-red-400 border border-red-900 rounded hover:bg-red-900/50">{t('command.demo.red')}</button>
-           <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-blue-500'))} className="p-3 bg-blue-900/30 text-blue-400 border border-blue-900 rounded hover:bg-blue-900/50">{t('command.demo.blue')}</button>
+           <button onClick={() => executeCommand(new TurnOnCommand(light, lightState))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-white font-medium">{t('command.demo.on')}</button>
+           <button onClick={() => executeCommand(new TurnOffCommand(light, lightState))} className="p-3 bg-gray-700 hover:bg-gray-600 rounded text-white font-medium">{t('command.demo.off')}</button>
+           <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-red-500', lightState))} className="p-3 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-900 rounded hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">{t('command.demo.red')}</button>
+           <button onClick={() => executeCommand(new ChangeColorCommand(light, 'text-blue-500', lightState))} className="p-3 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border border-blue-200 dark:border-blue-900 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors">{t('command.demo.blue')}</button>
         </div>
 
         <button 
           onClick={undoLast} 
           disabled={history.length === 0}
-          className="w-full py-3 bg-yellow-600 hover:bg-yellow-500 disabled:bg-gray-700 disabled:text-gray-500 dark:text-gray-500 text-gray-900 dark:text-white rounded-lg flex items-center justify-center gap-2 transition-colors"
+          className="w-full py-3 bg-yellow-500 hover:bg-yellow-400 disabled:bg-gray-200 disabled:text-gray-400 dark:disabled:bg-gray-700 dark:disabled:text-gray-500 text-white rounded-lg flex items-center justify-center gap-2 transition-colors"
         >
           <RotateCcw size={18} /> {t('command.demo.undo', { count: history.length })}
         </button>
@@ -90,7 +123,7 @@ const CommandDemo = () => {
          >
             <Lightbulb size={120} className={lightState.color} />
             {lightState.isOn && (
-              <div className={`absolute inset-0 blur-xl opacity-50 ${lightState.color.replace('text', 'bg')}`}></div>
+              <div className={clsx("absolute inset-0 blur-xl opacity-50", lightState.color.replace('text', 'bg'))}></div>
             )}
          </motion.div>
       </div>

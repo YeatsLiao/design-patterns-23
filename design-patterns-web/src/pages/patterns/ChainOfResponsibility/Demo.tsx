@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { User, ShieldAlert, Bot, MessageSquare } from 'lucide-react';
+import { useState } from 'react';
+import { Bot, MessageSquare, Headset, Briefcase } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -28,7 +28,11 @@ abstract class AbstractHandler implements Handler {
 
 // Concrete Handlers
 class BotHandler extends AbstractHandler {
-  constructor(private t: (key: string, options?: any) => string) { super(); }
+  private t: (key: string, options?: any) => string;
+  constructor(t: (key: string, options?: any) => string) { 
+    super(); 
+    this.t = t;
+  }
   public handle(request: string, priority: Priority): string | null {
     if (priority === 'simple') {
       return this.t('chainOfResponsibility.demo.botReply', { request });
@@ -38,7 +42,11 @@ class BotHandler extends AbstractHandler {
 }
 
 class SupportAgentHandler extends AbstractHandler {
-  constructor(private t: (key: string, options?: any) => string) { super(); }
+  private t: (key: string, options?: any) => string;
+  constructor(t: (key: string, options?: any) => string) { 
+    super(); 
+    this.t = t;
+  }
   public handle(request: string, priority: Priority): string | null {
     if (priority === 'complex') {
       return this.t('chainOfResponsibility.demo.agentReply', { request });
@@ -48,7 +56,11 @@ class SupportAgentHandler extends AbstractHandler {
 }
 
 class ManagerHandler extends AbstractHandler {
-  constructor(private t: (key: string, options?: any) => string) { super(); }
+  private t: (key: string, options?: any) => string;
+  constructor(t: (key: string, options?: any) => string) { 
+    super(); 
+    this.t = t;
+  }
   public handle(request: string, priority: Priority): string | null {
     if (priority === 'critical') {
       return this.t('chainOfResponsibility.demo.managerReply', { request });
@@ -82,30 +94,30 @@ const ChainOfResponsibilityDemo = () => {
           <button onClick={() => handleRequest('simple')} className="w-full p-4 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center gap-4 transition-colors">
             <Bot className="text-blue-400" size={24} />
             <div className="text-left">
-              <div className="text-gray-900 dark:text-white font-bold">{t('chainOfResponsibility.demo.simpleQuery')}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">{t('chainOfResponsibility.demo.simpleQueryDesc')}</div>
+              <div className="text-white font-bold">{t('chainOfResponsibility.demo.simpleQuery')}</div>
+              <div className="text-sm text-gray-300">{t('chainOfResponsibility.demo.simpleQueryDesc')}</div>
             </div>
           </button>
 
           <button onClick={() => handleRequest('complex')} className="w-full p-4 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center gap-4 transition-colors">
-            <User className="text-green-400" size={24} />
+            <Headset className="text-green-400" size={24} />
             <div className="text-left">
-              <div className="text-gray-900 dark:text-white font-bold">{t('chainOfResponsibility.demo.complexIssue')}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">{t('chainOfResponsibility.demo.complexIssueDesc')}</div>
+              <div className="text-white font-bold">{t('chainOfResponsibility.demo.complexIssue')}</div>
+              <div className="text-sm text-gray-300">{t('chainOfResponsibility.demo.complexIssueDesc')}</div>
             </div>
           </button>
 
           <button onClick={() => handleRequest('critical')} className="w-full p-4 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center gap-4 transition-colors">
-            <ShieldAlert className="text-red-400" size={24} />
+            <Briefcase className="text-red-400" size={24} />
             <div className="text-left">
-              <div className="text-gray-900 dark:text-white font-bold">{t('chainOfResponsibility.demo.criticalFailure')}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">{t('chainOfResponsibility.demo.criticalFailureDesc')}</div>
+              <div className="text-white font-bold">{t('chainOfResponsibility.demo.criticalFailure')}</div>
+              <div className="text-sm text-gray-300">{t('chainOfResponsibility.demo.criticalFailureDesc')}</div>
             </div>
           </button>
         </div>
       </div>
 
-      <div className="bg-black rounded-xl p-6 border border-gray-200 dark:border-gray-800 h-[400px] overflow-y-auto">
+      <div className="bg-gray-50 dark:bg-gray-950 rounded-xl p-6 border border-gray-200 dark:border-gray-800 h-[400px] overflow-y-auto">
         <div className="flex items-center gap-2 mb-4 text-gray-500 dark:text-gray-500 pb-2 border-b border-gray-200 dark:border-gray-800">
           <MessageSquare size={16} />
           <span className="text-xs uppercase tracking-wider">{t('chainOfResponsibility.demo.resolutionLog')}</span>
@@ -116,7 +128,7 @@ const ChainOfResponsibilityDemo = () => {
               key={i}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="mb-3 p-3 rounded bg-gray-50 dark:bg-gray-900 border-l-2 border-blue-500 text-sm text-gray-700 dark:text-gray-300"
+              className="mb-3 p-3 rounded bg-white dark:bg-gray-800 border-l-2 border-blue-500 text-sm text-gray-700 dark:text-gray-300 shadow-sm"
             >
               {log}
             </motion.div>

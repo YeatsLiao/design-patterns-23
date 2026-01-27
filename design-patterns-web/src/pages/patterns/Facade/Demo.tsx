@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Moon, Sun, Music, Tv, Lock, Wind } from 'lucide-react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -12,11 +12,8 @@ const SmartHomeFacadeDemo = () => {
   const [curtains, setCurtains] = useState(true); // true = open
   const [music, setMusic] = useState(false);
   
-  const [mode, setMode] = useState<'day' | 'movie' | 'night' | 'off'>('off');
-
   // Facade Methods
   const activateMovieMode = () => {
-    setMode('movie');
     setLights(false);
     setTv(true);
     setAc(true);
@@ -25,7 +22,6 @@ const SmartHomeFacadeDemo = () => {
   };
 
   const activateMorningMode = () => {
-    setMode('day');
     setLights(true);
     setTv(false);
     setAc(false);
@@ -34,7 +30,6 @@ const SmartHomeFacadeDemo = () => {
   };
 
   const activateNightMode = () => {
-    setMode('night');
     setLights(false);
     setTv(false);
     setAc(true);

@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import React from 'react';
 import BridgeDemo from './Demo';
 import BridgeGuide from './Guide';
 

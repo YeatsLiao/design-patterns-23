@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import React from 'react';
 import PrototypeDemo from './Demo';
 import PrototypeGuide from './Guide';
 

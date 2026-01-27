@@ -307,9 +307,9 @@
       "criticalFailure": "严重故障",
       "criticalFailureDesc": "例如：“系统宕机”",
       "resolutionLog": "处理日志",
-      "botReply": "🤖 机器人：我可以帮您处理“{request}”。这是常见问题解答的链接。",
-      "agentReply": "👨‍💼 客服：我看到您有一个复杂问题“{request}”。我将人工解决它。",
-      "managerReply": "🤵 经理：严重问题“{request}”已升级给我。正在尽快调查。",
+      "botReply": "🤖 机器人：我可以帮您处理“{{request}}”。这是常见问题解答的链接。",
+      "agentReply": "👨‍💼 客服：我看到您有一个复杂问题“{{request}}”。我将人工解决它。",
+      "managerReply": "🤵 经理：严重问题“{{request}}”已升级给我。正在尽快调查。",
       "noHandler": "未找到处理者"
     },
     "title": "责任链模式 (Chain of Resp.)",
@@ -326,7 +326,7 @@
       "off": "关",
       "red": "红",
       "blue": "蓝",
-      "undo": "撤销上一步 ({count})"
+      "undo": "撤销上一步 ({{count}})"
     },
     "title": "命令模式 (Command)",
     "description": "将请求转换为独立对象，支持排队或撤销操作，就像智能遥控器能记录并撤回你之前的按键操作一样。"
@@ -386,7 +386,7 @@
       "title": "文本编辑器 (快照)",
       "placeholder": "在这里输入...",
       "save": "保存快照",
-      "undo": "撤销 ({count})",
+      "undo": "撤销 ({{count}})",
       "snapshotStored": "快照存储在备忘录对象中。",
       "caretakerDesc": "“负责人”（HistoryManager）持有堆栈，但从不修改内容。"
     },
@@ -400,7 +400,7 @@
     },
     "demo": {
       "titlePublisher": "发布者 (主题)",
-      "subscribers": "{count} 订阅者",
+      "subscribers": "{{count}} 订阅者",
       "videoTitle": "视频标题",
       "upload": "上传并通知",
       "uploading": "上传中...",
@@ -410,10 +410,10 @@
       "emptyList": "列表为空。加点粉丝！",
       "titleObservers": "观察者 (通知)",
       "clear": "清空",
-      "received": "{name} 收到：",
+      "received": "{{name}} 收到：",
       "formerSubscriber": "前订阅者",
       "noNotifications": "暂无通知",
-      "newVideo": "新视频已上传：“{title}”"
+      "newVideo": "新视频已上传：“{{title}}”"
     },
     "title": "观察者模式 (Observer)",
     "description": "建立一种订阅机制，当发生新事件（如发布视频）时自动通知所有观察者（如订阅粉丝），实现松耦合。"
@@ -464,7 +464,7 @@
       "reset": "点击重置",
       "logs": "系统日志：",
       "waiting": "等待交易...",
-      "delegating": "上下文：将支付委托给 {strategy} 策略...",
+      "delegating": "上下文：将支付委托给 {{strategy}} 策略...",
       "ccCharged": "信用卡策略：扣款 ${amount} (手续费: 2.5%)",
       "paypalPaid": "PayPal 策略：重定向中... 成功支付 ${amount}。",
       "bankInvoice": "银行转账策略：已创建 ${amount} 的发票。等待批准。"

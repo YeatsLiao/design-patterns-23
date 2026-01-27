@@ -1,4 +1,3 @@
-import React from 'react';
 import { Lightbulb, Layers } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 

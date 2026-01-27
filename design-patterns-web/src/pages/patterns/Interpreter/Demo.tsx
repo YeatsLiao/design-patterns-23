@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Calculator, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { Calculator } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 // Expression Interface
@@ -8,17 +8,30 @@ interface Expression {
 }
 
 class NumberExpression implements Expression {
-  constructor(private number: number) {}
+  private number: number;
+  constructor(number: number) {
+    this.number = number;
+  }
   interpret() { return this.number; }
 }
 
 class AddExpression implements Expression {
-  constructor(private left: Expression, private right: Expression) {}
+  private left: Expression;
+  private right: Expression;
+  constructor(left: Expression, right: Expression) {
+    this.left = left;
+    this.right = right;
+  }
   interpret() { return this.left.interpret() + this.right.interpret(); }
 }
 
 class SubtractExpression implements Expression {
-  constructor(private left: Expression, private right: Expression) {}
+  private left: Expression;
+  private right: Expression;
+  constructor(left: Expression, right: Expression) {
+    this.left = left;
+    this.right = right;
+  }
   interpret() { return this.left.interpret() - this.right.interpret(); }
 }
 
@@ -73,7 +86,7 @@ const InterpreterDemo = () => {
              />
              <button 
                onClick={handleCalculate}
-               className="bg-blue-600 hover:bg-blue-500 text-gray-900 dark:text-white px-4 py-2 rounded flex items-center gap-2"
+               className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded flex items-center gap-2"
              >
                <Calculator size={18} /> {t('interpreter.demo.interpret')}
              </button>

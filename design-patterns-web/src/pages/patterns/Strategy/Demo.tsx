@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCard, Wallet, Landmark, CheckCircle, ShoppingBag, ArrowRight } from 'lucide-react';
 import clsx from 'clsx';
@@ -12,7 +12,7 @@ type PaymentMethod = 'credit-card' | 'paypal' | 'bank-transfer';
 const StrategyDemo = () => {
   const { t } = useTranslation();
   const [selectedStrategy, setSelectedStrategy] = useState<PaymentMethod>('credit-card');
-  const [amount, setAmount] = useState(100);
+  const [amount] = useState(100);
   const [processing, setProcessing] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success'>('idle');
   const [logs, setLogs] = useState<string[]>([]);
@@ -52,9 +52,9 @@ const StrategyDemo = () => {
       case 'credit-card':
         return (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
-            <div className="bg-gray-700 p-3 rounded border border-gray-600">
+            <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded border border-gray-200 dark:border-gray-600">
               <div className="flex justify-between mb-2">
-                <div className="w-12 h-8 bg-gray-500 rounded"></div>
+                <div className="w-12 h-8 bg-gray-300 dark:bg-gray-500 rounded"></div>
                 <div className="text-xs text-gray-600 dark:text-gray-400">VISA</div>
               </div>
               <div className="text-sm font-mono tracking-widest text-gray-700 dark:text-gray-300 mb-2">•••• •••• •••• 4242</div>

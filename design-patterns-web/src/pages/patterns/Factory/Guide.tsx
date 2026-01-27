@@ -1,4 +1,3 @@
-import React from 'react';
 import { Lightbulb, AlertTriangle, CheckCircle } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 

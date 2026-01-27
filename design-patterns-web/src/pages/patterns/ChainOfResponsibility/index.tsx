@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import React from 'react';
 import ChainOfResponsibilityDemo from './Demo';
 import ChainOfResponsibilityGuide from './Guide';
 

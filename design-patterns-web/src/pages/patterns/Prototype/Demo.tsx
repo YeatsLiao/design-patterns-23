@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Copy, Trash2, Circle, Square } from 'lucide-react';
 import clsx from 'clsx';
@@ -25,8 +25,8 @@ const PrototypeDemo = () => {
     const offsetY = Math.floor(Math.random() * 40) + 10; // 10 to 50
     
     // Boundary check (simple)
-    let newX = shape.x + 20;
-    let newY = shape.y + 20;
+    let newX = shape.x + offsetX;
+    let newY = shape.y + offsetY;
     
     if (newX > 80) newX = 10;
     if (newY > 80) newY = 10;

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bell, User, Video, Send, Trash2, Heart } from 'lucide-react';
+import { Bell, Video, Send, Trash2, Heart } from 'lucide-react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 

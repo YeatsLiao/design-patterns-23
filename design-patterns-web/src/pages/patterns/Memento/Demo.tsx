@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Save, RotateCcw, History } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 // Memento: Stores state
 class Memento {
-  constructor(private content: string) {}
+  private content: string;
+  constructor(content: string) {
+    this.content = content;
+  }
   getContent() { return this.content; }
 }
 
@@ -55,24 +58,24 @@ const MementoDemo = () => {
         />
 
         <div className="flex gap-4">
-           <button onClick={save} className="flex-1 py-3 bg-blue-600 hover:bg-blue-500 rounded text-gray-900 dark:text-white flex items-center justify-center gap-2 font-bold">
+           <button onClick={save} className="flex-1 py-3 bg-blue-600 hover:bg-blue-500 rounded text-white flex items-center justify-center gap-2 font-bold">
              <Save size={18} /> {t('memento.demo.save')}
            </button>
-           <button onClick={undo} disabled={historyCount === 0} className="flex-1 py-3 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 rounded text-gray-900 dark:text-white flex items-center justify-center gap-2">
+           <button onClick={undo} disabled={historyCount === 0} className="flex-1 py-3 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-200 disabled:text-gray-400 dark:disabled:bg-gray-800 dark:disabled:text-gray-600 rounded text-white flex items-center justify-center gap-2">
              <RotateCcw size={18} /> {t('memento.demo.undo', { count: historyCount })}
            </button>
         </div>
       </div>
 
       <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center">
-         <History size={64} className="text-gray-700 mb-4" />
+         <History size={64} className="text-gray-400 dark:text-gray-600 mb-4" />
          <div className="text-gray-600 dark:text-gray-400 text-center">
            <p className="mb-2">{t('memento.demo.snapshotStored')}</p>
-           <p className="text-xs text-gray-600">{t('memento.demo.caretakerDesc')}</p>
+           <p className="text-xs text-gray-500 dark:text-gray-500">{t('memento.demo.caretakerDesc')}</p>
          </div>
          <div className="mt-8 grid grid-cols-5 gap-2">
             {[...Array(historyCount)].map((_, i) => (
-              <div key={i} className="w-8 h-10 bg-blue-900 border border-blue-500 rounded shadow-lg"></div>
+              <div key={i} className="w-8 h-10 bg-blue-200 border border-blue-400 dark:bg-blue-900 dark:border-blue-500 rounded shadow-sm"></div>
             ))}
          </div>
       </div>

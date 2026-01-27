@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Plug, Zap, CheckCircle, XCircle } from 'lucide-react';
+import { Zap, CheckCircle, XCircle } from 'lucide-react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 

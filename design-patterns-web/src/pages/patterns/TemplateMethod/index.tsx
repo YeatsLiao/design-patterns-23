@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import React from 'react';
 import TemplateMethodDemo from './Demo';
 import TemplateMethodGuide from './Guide';
 

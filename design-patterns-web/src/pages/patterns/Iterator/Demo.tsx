@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Play, SkipForward, SkipBack, Music, Repeat } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { Play, Pause, SkipForward, Music } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 
 // Iterator Interface
 interface Iterator<T> {
@@ -18,7 +19,10 @@ interface Aggregator {
 }
 
 class Playlist implements Aggregator {
-  constructor(public items: string[] = []) {}
+  public items: string[];
+  constructor(items: string[] = []) {
+    this.items = items;
+  }
   
   public getCount() { return this.items.length; }
   
@@ -29,8 +33,11 @@ class Playlist implements Aggregator {
 
 class OrderIterator implements Iterator<string> {
   private position: number = 0;
+  private collection: Playlist;
 
-  constructor(private collection: Playlist) {}
+  constructor(collection: Playlist) {
+    this.collection = collection;
+  }
 
   public current(): string {
     return this.collection.items[this.position];
@@ -53,18 +60,30 @@ class OrderIterator implements Iterator<string> {
   public rewind(): void {
     this.position = 0;
   }
+
+  public jump(index: number): void {
+    this.position = index;
+  }
 }
 
 const IteratorDemo = () => {
   const { t } = useTranslation();
   const songs = ["Song A - Intro", "Song B - Verse", "Song C - Chorus", "Song D - Outro"];
   const playlist = new Playlist(songs);
-  const [iterator, setIterator] = useState<OrderIterator>(new OrderIterator(playlist));
+  const [iterator] = useState<OrderIterator>(new OrderIterator(playlist));
   const [currentSong, setCurrentSong] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const start = () => {
-    iterator.rewind();
+  const togglePlay = () => {
+    if (isPlaying) {
+      setIsPlaying(false);
+      return;
+    }
+
+    if (!iterator.valid()) {
+      iterator.rewind();
+    }
+    
     if (iterator.valid()) {
       setCurrentSong(iterator.current());
       setIsPlaying(true);
@@ -72,13 +91,36 @@ const IteratorDemo = () => {
   };
 
   const next = () => {
+    // If not playing, start playing current song (usually the first one or where we left off)
+    if (!isPlaying) {
+       if (!iterator.valid()) iterator.rewind();
+       
+       if (iterator.valid()) {
+          setIsPlaying(true);
+          setCurrentSong(iterator.current());
+       }
+       return;
+    }
+    
+    // Move to next
     iterator.next();
+    
+    // If reached end, loop back to start
+    if (!iterator.valid()) {
+      iterator.rewind();
+    }
+    
+    // Play the song (either next one or first one if looped)
     if (iterator.valid()) {
       setCurrentSong(iterator.current());
-    } else {
-      setIsPlaying(false);
-      setCurrentSong(t('iterator.demo.endOfPlaylist'));
-      iterator.rewind(); // Reset for next play
+    }
+  };
+
+  const jumpTo = (index: number) => {
+    iterator.jump(index);
+    if (iterator.valid()) {
+      setCurrentSong(iterator.current());
+      setIsPlaying(true);
     }
   };
 
@@ -89,7 +131,15 @@ const IteratorDemo = () => {
         
         <div className="space-y-2 mb-6">
            {songs.map((song, i) => (
-             <div key={i} className={`p-3 rounded flex items-center gap-3 ${currentSong === song ? "bg-blue-900/50 border border-blue-500 text-gray-900 dark:text-white" : "bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-400"}`}>
+             <div 
+               key={i} 
+               onClick={() => jumpTo(i)}
+               className={clsx(
+               "p-3 rounded flex items-center gap-3 transition-colors cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800",
+               currentSong === song 
+                 ? "bg-blue-100 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-500 text-blue-900 dark:text-white" 
+                 : "bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
+             )}>
                 <span className="text-xs font-mono opacity-50">{i + 1}</span>
                 <Music size={16} />
                 <span>{song}</span>
@@ -99,8 +149,12 @@ const IteratorDemo = () => {
         </div>
 
         <div className="flex justify-center gap-4">
-           <button onClick={start} className="p-4 bg-green-600 rounded-full text-gray-900 dark:text-white hover:bg-green-500 shadow-lg"><Play size={24} fill="currentColor" /></button>
-           <button onClick={next} className="p-4 bg-gray-700 rounded-full text-gray-900 dark:text-white hover:bg-gray-600"><SkipForward size={24} /></button>
+           <button onClick={togglePlay} className="p-4 bg-green-600 rounded-full text-gray-900 dark:text-white hover:bg-green-500 shadow-lg transition-all active:scale-95">
+             {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" />}
+           </button>
+           <button onClick={next} className="p-4 bg-gray-700 rounded-full text-gray-900 dark:text-white hover:bg-gray-600 transition-all active:scale-95">
+             <SkipForward size={24} />
+           </button>
         </div>
       </div>
 

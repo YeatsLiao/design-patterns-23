@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Play, Pause, Square, Music } from 'lucide-react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,12 @@ interface AudioState {
 
 // Concrete States
 class PlayingState implements AudioState {
-  constructor(private player: AudioPlayer, private t: (key: string) => string) {}
+  private player: AudioPlayer;
+  private t: (key: string) => string;
+  constructor(player: AudioPlayer, t: (key: string) => string) {
+    this.player = player;
+    this.t = t;
+  }
   play() { return this.t('state.demo.alreadyPlaying'); }
   pause() { 
     this.player.setState(this.player.pausedState); 
@@ -27,7 +32,12 @@ class PlayingState implements AudioState {
 }
 
 class PausedState implements AudioState {
-  constructor(private player: AudioPlayer, private t: (key: string) => string) {}
+  private player: AudioPlayer;
+  private t: (key: string) => string;
+  constructor(player: AudioPlayer, t: (key: string) => string) {
+    this.player = player;
+    this.t = t;
+  }
   play() { 
     this.player.setState(this.player.playingState); 
     return this.t('state.demo.resuming'); 
@@ -41,7 +51,12 @@ class PausedState implements AudioState {
 }
 
 class StoppedState implements AudioState {
-  constructor(private player: AudioPlayer, private t: (key: string) => string) {}
+  private player: AudioPlayer;
+  private t: (key: string) => string;
+  constructor(player: AudioPlayer, t: (key: string) => string) {
+    this.player = player;
+    this.t = t;
+  }
   play() { 
     this.player.setState(this.player.playingState); 
     return this.t('state.demo.startingPlayback'); 
@@ -58,8 +73,10 @@ class AudioPlayer {
   public stoppedState: AudioState;
   
   private currentState: AudioState;
+  private onStateChange: (s: string) => void;
 
-  constructor(private onStateChange: (s: string) => void, t: (key: string) => string) {
+  constructor(onStateChange: (s: string) => void, t: (key: string) => string) {
+    this.onStateChange = onStateChange;
     this.playingState = new PlayingState(this, t);
     this.pausedState = new PausedState(this, t);
     this.stoppedState = new StoppedState(this, t);
@@ -96,13 +113,13 @@ const StateDemo = () => {
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('state.demo.title')}</h3>
         
         <div className="flex justify-center gap-6 mb-8">
-           <button onClick={handlePlay} className="p-4 bg-green-600 rounded-full hover:bg-green-500 shadow-lg text-gray-900 dark:text-white">
+           <button onClick={handlePlay} className="p-4 bg-green-600 rounded-full hover:bg-green-500 shadow-lg text-white">
              <Play size={24} fill="currentColor" />
            </button>
-           <button onClick={handlePause} className="p-4 bg-yellow-600 rounded-full hover:bg-yellow-500 shadow-lg text-gray-900 dark:text-white">
+           <button onClick={handlePause} className="p-4 bg-yellow-500 rounded-full hover:bg-yellow-400 shadow-lg text-gray-900">
              <Pause size={24} fill="currentColor" />
            </button>
-           <button onClick={handleStop} className="p-4 bg-red-600 rounded-full hover:bg-red-500 shadow-lg text-gray-900 dark:text-white">
+           <button onClick={handleStop} className="p-4 bg-red-600 rounded-full hover:bg-red-500 shadow-lg text-white">
              <Square size={24} fill="currentColor" />
            </button>
         </div>

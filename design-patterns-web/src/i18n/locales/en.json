@@ -307,9 +307,9 @@
       "criticalFailure": "Critical Failure",
       "criticalFailureDesc": "e.g., \"System Down\"",
       "resolutionLog": "Resolution Log",
-      "botReply": "🤖 Bot: I can help with \"{request}\". Here is a link to the FAQ.",
-      "agentReply": "👨‍💼 Agent: I see you have a complex issue \"{request}\". I'll resolve it manually.",
-      "managerReply": "🤵 Manager: Critical issue \"{request}\" escalated to me. Investigating ASAP.",
+      "botReply": "🤖 Bot: I can help with \"{{request}}\". Here is a link to the FAQ.",
+      "agentReply": "👨‍💼 Agent: I see you have a complex issue \"{{request}}\". I'll resolve it manually.",
+      "managerReply": "🤵 Manager: Critical issue \"{{request}}\" escalated to me. Investigating ASAP.",
       "noHandler": "No handler found"
     },
     "title": "Chain of Responsibility Pattern",
@@ -326,7 +326,7 @@
       "off": "OFF",
       "red": "Red",
       "blue": "Blue",
-      "undo": "Undo Last Action ({count})"
+      "undo": "Undo Last Action ({{count}})"
     },
     "title": "Command Pattern",
     "description": "This pattern turns a request into a standalone object, allowing you to queue operations or undo actions, like a remote control that remembers your button presses."
@@ -386,7 +386,7 @@
       "title": "Text Editor (Snapshot)",
       "placeholder": "Type something here...",
       "save": "Save Snapshot",
-      "undo": "Undo ({count})",
+      "undo": "Undo ({{count}})",
       "snapshotStored": "Snapshots stored in Memento objects.",
       "caretakerDesc": "The \"Caretaker\" (HistoryManager) holds the stack but never modifies the contents."
     },
@@ -400,7 +400,7 @@
     },
     "demo": {
       "titlePublisher": "Publisher (Subject)",
-      "subscribers": "{count} Subscribers",
+      "subscribers": "{{count}} Subscribers",
       "videoTitle": "Video Title",
       "upload": "Upload & Notify",
       "uploading": "Uploading...",
@@ -410,10 +410,10 @@
       "emptyList": "List is empty. Add some fans!",
       "titleObservers": "Observers (Notifications)",
       "clear": "Clear",
-      "received": "{name} received:",
+      "received": "{{name}} received:",
       "formerSubscriber": "Former Subscriber",
       "noNotifications": "No notifications yet",
-      "newVideo": "New Video Uploaded: \"{title}\""
+      "newVideo": "New Video Uploaded: \"{{title}}\""
     },
     "title": "Observer Pattern",
     "description": "This pattern establishes a subscription mechanism, notifying multiple observers like YouTube subscribers automatically whenever a new event or video occurs."
@@ -464,7 +464,7 @@
       "reset": "Click to reset",
       "logs": "System Logs:",
       "waiting": "Waiting for transaction...",
-      "delegating": "Context: Delegating payment to {strategy} strategy...",
+      "delegating": "Context: Delegating payment to {{strategy}} strategy...",
       "ccCharged": "Credit Card Strategy: Charged ${amount} (Fee: 2.5%)",
       "paypalPaid": "PayPal Strategy: Redirecting... Paid ${amount} successfully.",
       "bankInvoice": "Bank Transfer Strategy: Created invoice for ${amount}. Pending approval."

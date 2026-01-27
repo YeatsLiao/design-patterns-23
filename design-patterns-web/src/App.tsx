@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Layout from './components/Layout';
 import { useTranslation } from 'react-i18next';

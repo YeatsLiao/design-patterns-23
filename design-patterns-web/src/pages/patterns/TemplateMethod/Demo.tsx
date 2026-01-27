@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FileText, FileSpreadsheet, ArrowDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 // Abstract Class
 abstract class DataMiner {
-  constructor(protected t: (key: string) => string) {}
+  protected t: (key: string) => string;
+  constructor(t: (key: string) => string) {
+    this.t = t;
+  }
 
   // Template Method
   public async mine(): Promise<string[]> {
@@ -72,7 +75,7 @@ const TemplateMethodDemo = () => {
            <button 
              onClick={() => runMiner('pdf')}
              disabled={isProcessing}
-             className="p-4 bg-red-900/30 hover:bg-red-900/50 border border-red-800 rounded-xl flex flex-col items-center gap-2 text-red-300 transition-colors disabled:opacity-50"
+             className="p-4 bg-red-50 text-red-700 border-red-200 hover:bg-red-100 dark:bg-red-900/30 dark:hover:bg-red-900/50 dark:border-red-800 rounded-xl flex flex-col items-center gap-2 dark:text-red-300 border transition-colors disabled:opacity-50"
            >
              <FileText size={32} />
              <span>{t('templateMethod.demo.processPDF')}</span>
@@ -80,7 +83,7 @@ const TemplateMethodDemo = () => {
            <button 
              onClick={() => runMiner('csv')}
              disabled={isProcessing}
-             className="p-4 bg-green-900/30 hover:bg-green-900/50 border border-green-800 rounded-xl flex flex-col items-center gap-2 text-green-300 transition-colors disabled:opacity-50"
+             className="p-4 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/30 dark:hover:bg-green-900/50 dark:border-green-800 rounded-xl flex flex-col items-center gap-2 dark:text-green-300 border transition-colors disabled:opacity-50"
            >
              <FileSpreadsheet size={32} />
              <span>{t('templateMethod.demo.processCSV')}</span>
@@ -96,7 +99,7 @@ const TemplateMethodDemo = () => {
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300 bg-black p-3 rounded border-l-4 border-blue-500"
+                className="flex items-center gap-3 text-sm text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-800 p-3 rounded border-l-4 border-blue-500"
               >
                  <ArrowDown size={16} className="text-gray-500 dark:text-gray-500" />
                  {log}

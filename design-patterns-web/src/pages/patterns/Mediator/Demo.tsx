@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { User, Send, MessageCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -7,17 +7,29 @@ import { useTranslation } from 'react-i18next';
 interface ChatMediator {
   sendMessage(msg: string, user: UserComponent): void;
   addUser(user: UserComponent): void;
+  clear(): void;
 }
 
 // Concrete Mediator
 class ChatRoom implements ChatMediator {
   private users: UserComponent[] = [];
+  private logger: (from: string, msg: string) => void = () => {};
+
+  setLogger(logger: (from: string, msg: string) => void) {
+    this.logger = logger;
+  }
 
   addUser(user: UserComponent): void {
+    this.users = this.users.filter(u => u.name !== user.name);
     this.users.push(user);
   }
 
+  clear(): void {
+    this.users = [];
+  }
+
   sendMessage(msg: string, sender: UserComponent): void {
+    this.logger(sender.name, msg);
     this.users.forEach(user => {
       // Don't send back to sender
       if (user !== sender) {
@@ -29,7 +41,14 @@ class ChatRoom implements ChatMediator {
 
 // Colleague
 class UserComponent {
-  constructor(public name: string, private mediator: ChatMediator, private onReceive: (msg: string, from: string) => void) {
+  public name: string;
+  private mediator: ChatMediator;
+  private onReceive: (msg: string, from: string) => void;
+
+  constructor(name: string, mediator: ChatMediator, onReceive: (msg: string, from: string) => void) {
+    this.name = name;
+    this.mediator = mediator;
+    this.onReceive = onReceive;
     mediator.addUser(this);
   }
 
@@ -53,14 +72,21 @@ const MediatorDemo = () => {
   const [user3, setUser3] = useState<UserComponent | null>(null);
 
   useEffect(() => {
+    mediator.setLogger(addLog);
     // Init users and register to mediator
-    const u1 = new UserComponent("Alice", mediator, (msg, from) => addLog(from, msg));
-    const u2 = new UserComponent("Bob", mediator, (msg, from) => addLog(from, msg));
-    const u3 = new UserComponent("Charlie", mediator, (msg, from) => addLog(from, msg));
+    // Users don't need to log directly anymore, the mediator handles it
+    const u1 = new UserComponent("Alice", mediator, () => {});
+    const u2 = new UserComponent("Bob", mediator, () => {});
+    const u3 = new UserComponent("Charlie", mediator, () => {});
     
     setUser1(u1);
     setUser2(u2);
     setUser3(u3);
+
+    return () => {
+      mediator.clear();
+      mediator.setLogger(() => {});
+    };
   }, []);
 
   const addLog = (from: string, msg: string) => {
@@ -83,11 +109,11 @@ const MediatorDemo = () => {
         </div>
       </div>
 
-      <div className="bg-black rounded-xl p-6 border border-gray-200 dark:border-gray-800 h-[400px] overflow-y-auto flex flex-col-reverse">
-         {logs.length === 0 && <div className="text-gray-600 text-center my-auto">{t('mediator.demo.noMessages')}</div>}
+      <div className="bg-gray-100 dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-800 h-[400px] overflow-y-auto flex flex-col-reverse">
+         {logs.length === 0 && <div className="text-gray-500 text-center my-auto">{t('mediator.demo.noMessages')}</div>}
          {logs.map((log, i) => (
            <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-2">
-              <span className="text-xs font-bold text-gray-600 dark:text-gray-400">{log.from}:</span> <span className="text-gray-900 dark:text-white text-sm">{log.msg}</span>
+              <span className="text-xs font-bold text-gray-600 dark:text-gray-400">{log.from}:</span> <span className="text-gray-900 dark:text-gray-200 text-sm ml-2">{log.msg}</span>
            </motion.div>
          ))}
       </div>
@@ -95,11 +121,18 @@ const MediatorDemo = () => {
   );
 };
 
-const UserControl = ({ user, color, onSend, t }: any) => {
+interface UserControlProps {
+  user: UserComponent | null;
+  color: string;
+  onSend: (msg: string) => void;
+  t: (key: string) => string;
+}
+
+const UserControl = ({ user, color, onSend, t }: UserControlProps) => {
   const [msg, setMsg] = useState("");
   return (
     <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg flex items-center gap-4">
-       <div className={`w-10 h-10 rounded-full flex items-center justify-center text-gray-900 dark:text-white font-bold ${color}`}>
+       <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${color}`}>
          {user?.name[0]}
        </div>
        <div className="flex-1">
@@ -110,8 +143,14 @@ const UserControl = ({ user, color, onSend, t }: any) => {
                placeholder={t('mediator.demo.saySomething')}
                value={msg}
                onChange={e => setMsg(e.target.value)}
+               onKeyDown={e => {
+                 if (e.key === 'Enter' && msg.trim()) {
+                   onSend(msg);
+                   setMsg("");
+                 }
+               }}
              />
-             <button onClick={() => { onSend(msg); setMsg(""); }} className="p-1 bg-gray-700 hover:bg-gray-600 rounded text-gray-900 dark:text-white">
+             <button onClick={() => { if (msg.trim()) { onSend(msg); setMsg(""); } }} className="p-1 bg-gray-700 hover:bg-gray-600 rounded text-white">
                <Send size={16} />
              </button>
           </div>

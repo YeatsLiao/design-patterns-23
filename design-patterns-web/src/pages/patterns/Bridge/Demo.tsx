@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tv, Speaker, Power, Volume2 } from 'lucide-react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
