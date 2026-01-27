@@ -1,7 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Globe } from 'lucide-react';
+import clsx from 'clsx';
 
-const LanguageSwitcher = () => {
+interface LanguageSwitcherProps {
+  iconOnly?: boolean;
+}
+
+const LanguageSwitcher = ({ iconOnly = false }: LanguageSwitcherProps) => {
   const { i18n } = useTranslation();
 
   const toggleLanguage = () => {
@@ -12,13 +17,18 @@ const LanguageSwitcher = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-colors border border-gray-700"
+      className={clsx(
+        "flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-colors border border-gray-700",
+        iconOnly ? "p-2 aspect-square" : "gap-2 px-3 py-2"
+      )}
       title="Switch Language"
     >
       <Globe size={18} />
-      <span className="text-sm font-medium">
-        {i18n.language === 'en' ? '中文' : 'English'}
-      </span>
+      {!iconOnly && (
+        <span className="text-sm font-medium">
+          {i18n.language === 'en' ? '中文' : 'English'}
+        </span>
+      )}
     </button>
   );
 };

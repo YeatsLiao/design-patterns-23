@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Box, Layers, Zap, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Box, Layers, Zap, Menu, X, Github } from 'lucide-react';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -114,9 +114,18 @@ const Layout = () => {
           </div>
         </nav>
         
-        <div className="p-4 border-t border-gray-200 dark:border-gray-800 space-y-3">
-           <ThemeSwitcher />
-           <LanguageSwitcher />
+        <div className="p-4 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between gap-2">
+           <ThemeSwitcher iconOnly />
+           <LanguageSwitcher iconOnly />
+           <a
+             href="https://github.com/YeatsLiao/design-patterns-23"
+             target="_blank"
+             rel="noopener noreferrer"
+             className="flex items-center justify-center p-2 rounded-lg transition-colors border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 aspect-square"
+             title="GitHub"
+           >
+             <Github size={20} />
+           </a>
         </div>
       </aside>
 

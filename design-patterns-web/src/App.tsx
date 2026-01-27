@@ -42,7 +42,7 @@ const Dashboard = () => {
         {/* Creational */}
         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all shadow-sm dark:shadow-none group cursor-pointer">
           <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-2 group-hover:text-blue-500 dark:group-hover:text-blue-300">{t('common.creational')}</h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Object creation mechanisms.</p>
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{t('common.creationalDesc')}</p>
           <ul className="space-y-2">
             <li>
               <Link to="/patterns/singleton" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-white text-sm transition-colors">
@@ -59,28 +59,120 @@ const Dashboard = () => {
                 {t('patterns.abstractFactory')}
               </Link>
             </li>
+            <li>
+              <Link to="/patterns/builder" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.builder')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/prototype" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.prototype')}
+              </Link>
+            </li>
           </ul>
         </div>
 
         {/* Structural */}
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-none">
-          <h3 className="text-xl font-semibold text-green-600 dark:text-green-400 mb-2">{t('common.structural')}</h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm">Relationships between entities.</p>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-green-500 dark:hover:border-green-500 transition-all shadow-sm dark:shadow-none group cursor-pointer">
+          <h3 className="text-xl font-semibold text-green-600 dark:text-green-400 mb-2 group-hover:text-green-500 dark:group-hover:text-green-300">{t('common.structural')}</h3>
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{t('common.structuralDesc')}</p>
+          <ul className="space-y-2">
+            <li>
+              <Link to="/patterns/adapter" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-green-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-green-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.adapter')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/bridge" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-green-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-green-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.bridge')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/composite" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-green-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-green-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.composite')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/decorator" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-green-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-green-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.decorator')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/facade" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-green-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-green-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.facade')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/flyweight" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-green-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-green-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.flyweight')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/proxy" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-green-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-green-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.proxy')}
+              </Link>
+            </li>
+          </ul>
         </div>
 
         {/* Behavioral */}
         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-yellow-500 dark:hover:border-yellow-500 transition-all shadow-sm dark:shadow-none group cursor-pointer">
           <h3 className="text-xl font-semibold text-yellow-600 dark:text-yellow-400 mb-2 group-hover:text-yellow-500 dark:group-hover:text-yellow-300">{t('common.behavioral')}</h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Communication patterns.</p>
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{t('common.behavioralDesc')}</p>
           <ul className="space-y-2">
+            <li>
+              <Link to="/patterns/chain-of-responsibility" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.chainOfResponsibility')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/command" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.command')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/interpreter" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.interpreter')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/iterator" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.iterator')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/mediator" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.mediator')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/memento" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.memento')}
+              </Link>
+            </li>
             <li>
               <Link to="/patterns/observer" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
                 {t('patterns.observer')}
               </Link>
             </li>
             <li>
+              <Link to="/patterns/state" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.state')}
+              </Link>
+            </li>
+            <li>
               <Link to="/patterns/strategy" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
                 {t('patterns.strategy')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/template-method" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.templateMethod')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/patterns/visitor" className="block p-2 rounded bg-gray-50 dark:bg-gray-900 hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-yellow-700 dark:hover:text-white text-sm transition-colors">
+                {t('patterns.visitor')}
               </Link>
             </li>
           </ul>

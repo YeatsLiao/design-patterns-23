@@ -32,24 +32,32 @@ export const useTheme = () => {
   return { theme, toggleTheme };
 };
 
-const ThemeSwitcher = () => {
+interface ThemeSwitcherProps {
+  iconOnly?: boolean;
+}
+
+const ThemeSwitcher = ({ iconOnly = false }: ThemeSwitcherProps) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <button
       onClick={toggleTheme}
       className={clsx(
-        "p-2 rounded-lg transition-colors flex items-center justify-center gap-2 w-full border",
+        "rounded-lg transition-colors flex items-center justify-center border",
+        iconOnly ? "p-2 aspect-square" : "p-2 gap-2 w-full",
         theme === 'dark'
           ? "bg-gray-800 text-yellow-400 hover:bg-gray-700 border-gray-700"
           : "bg-white text-orange-500 hover:bg-gray-100 border-gray-200 shadow-sm"
       )}
       aria-label="Toggle Theme"
+      title={iconOnly ? (theme === 'dark' ? 'Dark Mode' : 'Light Mode') : undefined}
     >
       {theme === 'dark' ? <Moon size={20} /> : <Sun size={20} />}
-      <span className="text-sm font-medium">
-        {theme === 'dark' ? 'Dark Mode' : 'Light Mode'}
-      </span>
+      {!iconOnly && (
+        <span className="text-sm font-medium">
+          {theme === 'dark' ? 'Dark Mode' : 'Light Mode'}
+        </span>
+      )}
     </button>
   );
 };
