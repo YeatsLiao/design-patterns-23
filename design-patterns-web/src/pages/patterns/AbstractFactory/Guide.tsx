@@ -1,6 +1,5 @@
 import { Lightbulb, Layers } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
-import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const AbstractFactoryGuide = () => {
   const { t } = useTranslation();
@@ -14,10 +13,10 @@ const AbstractFactoryGuide = () => {
         </h2>
         <div className="prose prose-invert text-gray-700 dark:text-gray-300">
           <p>
-            <MarkdownTrans i18nKey="abstractFactory.concept.definition" />
+            <Trans i18nKey="abstractFactory.concept.definition" />
           </p>
           <p className="mt-4">
-            <MarkdownTrans i18nKey="abstractFactory.concept.analogy" />
+            <Trans i18nKey="abstractFactory.concept.analogy" />
           </p>
         </div>
       </section>
