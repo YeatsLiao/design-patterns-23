@@ -1,5 +1,5 @@
 import { Lightbulb, Radio, PlayCircle } from 'lucide-react';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { MarkdownTrans } from '../../../components/MarkdownTrans';
 
 const ObserverGuide = () => {
